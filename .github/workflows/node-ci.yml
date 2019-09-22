@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -13,6 +13,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "12.x"
+          registry-url: https://npm.pkg.github.com/
+          scope: '@segmentstream'
 
       - name: npm install, build, and test
         run: |
@@ -21,3 +23,8 @@ jobs:
           npm test
         env:
           CI: true
+
+      - name: publish
+        run: npm publish --tag `git rev-parse --short HEAD`
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
