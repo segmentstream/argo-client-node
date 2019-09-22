@@ -1,0 +1,13 @@
+{
+  "name": "@segmentstream/argo-client-node",
+  "version": "0.0.1",
+  "description": "Argo client for node generated from openapi spec",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "build": "tsc"
+  },
+  "private": true,
+  "author": "vardan.manucharian@segmentstream.com",
+  "license": "ISC"
+}

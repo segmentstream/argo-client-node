@@ -1,0 +1,16 @@
+steps:
+  - name: 'gcr.io/cloud-builders/kubectl'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        [[ "$BRANCH_NAME" == "master" ]] && exit 0 || echo 'start check'
+  - name: node:10.13.0
+    entrypoint: npm
+    args: ['ci', '--no-progress']
+  - name: node:10.13.0
+    entrypoint: npm
+    args: ['build']
+  - name: node:10.13.0
+    entrypoint: npm
+    args: ['run', 'test']
