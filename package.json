@@ -5,9 +5,20 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
-    "build": "tsc"
+    "build": "rimraf tsc -c tsconfig.build.json",
+    "gen": "openapi-generator generate -i docs/swagger.json -g typescript-axios -o src"
   },
   "private": true,
   "author": "vardan.manucharian@segmentstream.com",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^1.0.12-4.3.0",
+    "rimraf": "^3.0.2",
+    "axios": "^0.19.2",
+    "url": "^0.11.0"
+  },
+  "peerDependencies": {
+    "axios": "^0.19.2",
+    "url": "^0.11.0"
+  }
 }
