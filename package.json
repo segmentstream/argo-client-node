@@ -11,7 +11,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
-    "build": "rimraf tsc -c tsconfig.build.json",
+    "build": "rimraf ./dist && tsc -p tsconfig.build.json",
     "gen": "openapi-generator generate -i docs/swagger.json -g typescript-axios -o src"
   },
   "private": true,
