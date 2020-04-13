@@ -24,15 +24,14 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set version
-        run: |
-          npm version $(git describe --abbrev=0 --tags)
-
-      - name: Commit version change
+      - name: Configure git
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -m "js: update version" -a
+
+      - name: Set version
+        run: |
+          npm version $(git describe --abbrev=0 --tags)
 
       - name: Push
         uses: ad-m/github-push-action@master
