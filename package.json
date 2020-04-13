@@ -14,6 +14,9 @@
     "build": "rimraf ./dist && tsc -p tsconfig.build.json",
     "gen": "openapi-generator generate -i docs/swagger.json -g typescript-axios -o src"
   },
+  "files": [
+    "dist"
+  ],
   "author": "vardan.manucharian@segmentstream.com",
   "license": "ISC",
   "devDependencies": {
