@@ -22,71 +22,686 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * 
  * @export
- * @interface CronioArgoprojWorkflowV1alpha1CreateCronWorkflowRequest
+ * @interface ArchiveStrategy
  */
-export interface CronioArgoprojWorkflowV1alpha1CreateCronWorkflowRequest {
+export interface ArchiveStrategy {
+    /**
+     * NoneStrategy indicates to skip tar process and upload the files or directory tree as independent files. Note that if the artifact is a directory, the artifact driver must support the ability to save/load the directory appropriately.
+     * @type {object}
+     * @memberof ArchiveStrategy
+     */
+    none?: object;
+    /**
+     * 
+     * @type {object}
+     * @memberof ArchiveStrategy
+     */
+    tar?: object;
+}
+/**
+ * 
+ * @export
+ * @interface Arguments
+ */
+export interface Arguments {
+    /**
+     * 
+     * @type {Array<Artifact>}
+     * @memberof Arguments
+     */
+    artifacts?: Array<Artifact>;
+    /**
+     * 
+     * @type {Array<Parameter>}
+     * @memberof Arguments
+     */
+    parameters?: Array<Parameter>;
+}
+/**
+ * 
+ * @export
+ * @interface Artifact
+ */
+export interface Artifact {
+    /**
+     * 
+     * @type {ArchiveStrategy}
+     * @memberof Artifact
+     */
+    archive?: ArchiveStrategy;
+    /**
+     * 
+     * @type {ArtifactLocation}
+     * @memberof Artifact
+     */
+    artifactLocation?: ArtifactLocation;
+    /**
+     * 
+     * @type {string}
+     * @memberof Artifact
+     */
+    from?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Artifact
+     */
+    globalName?: string;
+    /**
+     * mode bits to use on this file, must be a value between 0 and 0777 set when loading input artifacts.
+     * @type {number}
+     * @memberof Artifact
+     */
+    mode?: number;
+    /**
+     * name of the artifact. must be unique within a template\'s inputs/outputs.
+     * @type {string}
+     * @memberof Artifact
+     */
+    name?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Artifact
+     */
+    optional?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof Artifact
+     */
+    path?: string;
+}
+/**
+ * ArtifactLocation describes a location for a single or multiple artifacts. It is used as single artifact in the context of inputs/outputs (e.g. outputs.artifacts.artname). It is also used to describe the location of multiple artifacts such as the archive location of a single workflow step, which the executor will use as a default location to store its files.
+ * @export
+ * @interface ArtifactLocation
+ */
+export interface ArtifactLocation {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ArtifactLocation
+     */
+    archiveLogs?: boolean;
+    /**
+     * 
+     * @type {ArtifactoryArtifact}
+     * @memberof ArtifactLocation
+     */
+    artifactory?: ArtifactoryArtifact;
+    /**
+     * 
+     * @type {GCSArtifact}
+     * @memberof ArtifactLocation
+     */
+    gcs?: GCSArtifact;
+    /**
+     * 
+     * @type {GitArtifact}
+     * @memberof ArtifactLocation
+     */
+    git?: GitArtifact;
+    /**
+     * 
+     * @type {HDFSArtifact}
+     * @memberof ArtifactLocation
+     */
+    hdfs?: HDFSArtifact;
+    /**
+     * 
+     * @type {HTTPArtifact}
+     * @memberof ArtifactLocation
+     */
+    http?: HTTPArtifact;
+    /**
+     * 
+     * @type {OSSArtifact}
+     * @memberof ArtifactLocation
+     */
+    oss?: OSSArtifact;
+    /**
+     * 
+     * @type {RawArtifact}
+     * @memberof ArtifactLocation
+     */
+    raw?: RawArtifact;
+    /**
+     * 
+     * @type {S3Artifact}
+     * @memberof ArtifactLocation
+     */
+    s3?: S3Artifact;
+}
+/**
+ * 
+ * @export
+ * @interface ArtifactRepositoryRef
+ */
+export interface ArtifactRepositoryRef {
+    /**
+     * 
+     * @type {string}
+     * @memberof ArtifactRepositoryRef
+     */
+    configMap?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ArtifactRepositoryRef
+     */
+    key?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ArtifactoryArtifact
+ */
+export interface ArtifactoryArtifact {
+    /**
+     * 
+     * @type {ArtifactoryAuth}
+     * @memberof ArtifactoryArtifact
+     */
+    artifactoryAuth?: ArtifactoryAuth;
+    /**
+     * 
+     * @type {string}
+     * @memberof ArtifactoryArtifact
+     */
+    url?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ArtifactoryAuth
+ */
+export interface ArtifactoryAuth {
+    /**
+     * 
+     * @type {IoK8sApiCoreV1SecretKeySelector}
+     * @memberof ArtifactoryAuth
+     */
+    passwordSecret?: IoK8sApiCoreV1SecretKeySelector;
+    /**
+     * 
+     * @type {IoK8sApiCoreV1SecretKeySelector}
+     * @memberof ArtifactoryAuth
+     */
+    usernameSecret?: IoK8sApiCoreV1SecretKeySelector;
+}
+/**
+ * 
+ * @export
+ * @interface Backoff
+ */
+export interface Backoff {
+    /**
+     * 
+     * @type {string}
+     * @memberof Backoff
+     */
+    duration?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Backoff
+     */
+    factor?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Backoff
+     */
+    maxDuration?: string;
+}
+/**
+ * ContinueOn defines if a workflow should continue even if a task or step fails/errors. It can be specified if the workflow should continue when the pod errors, fails or both.
+ * @export
+ * @interface ContinueOn
+ */
+export interface ContinueOn {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ContinueOn
+     */
+    error?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ContinueOn
+     */
+    failed?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface Counter
+ */
+export interface Counter {
+    /**
+     * 
+     * @type {string}
+     * @memberof Counter
+     */
+    value?: string;
+}
+/**
+ * 
+ * @export
+ * @interface CronCreateCronWorkflowRequest
+ */
+export interface CronCreateCronWorkflowRequest {
     /**
      * 
      * @type {IoK8sApiCoreV1CreateOptions}
-     * @memberof CronioArgoprojWorkflowV1alpha1CreateCronWorkflowRequest
+     * @memberof CronCreateCronWorkflowRequest
      */
     createOptions?: IoK8sApiCoreV1CreateOptions;
     /**
      * 
-     * @type {IoArgoprojWorkflowV1alpha1CronWorkflow}
-     * @memberof CronioArgoprojWorkflowV1alpha1CreateCronWorkflowRequest
+     * @type {CronWorkflow}
+     * @memberof CronCreateCronWorkflowRequest
      */
-    cronWorkflow?: IoArgoprojWorkflowV1alpha1CronWorkflow;
+    cronWorkflow?: CronWorkflow;
     /**
      * 
      * @type {string}
-     * @memberof CronioArgoprojWorkflowV1alpha1CreateCronWorkflowRequest
+     * @memberof CronCreateCronWorkflowRequest
      */
     namespace?: string;
 }
 /**
  * 
  * @export
- * @interface CronioArgoprojWorkflowV1alpha1LintCronWorkflowRequest
+ * @interface CronLintCronWorkflowRequest
  */
-export interface CronioArgoprojWorkflowV1alpha1LintCronWorkflowRequest {
+export interface CronLintCronWorkflowRequest {
     /**
      * 
-     * @type {IoArgoprojWorkflowV1alpha1CronWorkflow}
-     * @memberof CronioArgoprojWorkflowV1alpha1LintCronWorkflowRequest
+     * @type {CronWorkflow}
+     * @memberof CronLintCronWorkflowRequest
      */
-    cronWorkflow?: IoArgoprojWorkflowV1alpha1CronWorkflow;
+    cronWorkflow?: CronWorkflow;
     /**
      * 
      * @type {string}
-     * @memberof CronioArgoprojWorkflowV1alpha1LintCronWorkflowRequest
+     * @memberof CronLintCronWorkflowRequest
      */
     namespace?: string;
 }
 /**
  * 
  * @export
- * @interface CronioArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest
+ * @interface CronUpdateCronWorkflowRequest
  */
-export interface CronioArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest {
+export interface CronUpdateCronWorkflowRequest {
     /**
      * 
-     * @type {IoArgoprojWorkflowV1alpha1CronWorkflow}
-     * @memberof CronioArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest
+     * @type {CronWorkflow}
+     * @memberof CronUpdateCronWorkflowRequest
      */
-    cronWorkflow?: IoArgoprojWorkflowV1alpha1CronWorkflow;
+    cronWorkflow?: CronWorkflow;
     /**
      * 
      * @type {string}
-     * @memberof CronioArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest
+     * @memberof CronUpdateCronWorkflowRequest
      */
     name?: string;
     /**
      * 
      * @type {string}
-     * @memberof CronioArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest
+     * @memberof CronUpdateCronWorkflowRequest
      */
     namespace?: string;
+}
+/**
+ * 
+ * @export
+ * @interface CronWorkflow
+ */
+export interface CronWorkflow {
+    /**
+     * 
+     * @type {IoK8sApiCoreV1ObjectMeta}
+     * @memberof CronWorkflow
+     */
+    metadata?: IoK8sApiCoreV1ObjectMeta;
+    /**
+     * 
+     * @type {CronWorkflowSpec}
+     * @memberof CronWorkflow
+     */
+    spec?: CronWorkflowSpec;
+    /**
+     * 
+     * @type {CronWorkflowStatus}
+     * @memberof CronWorkflow
+     */
+    status?: CronWorkflowStatus;
+}
+/**
+ * 
+ * @export
+ * @interface CronWorkflowList
+ */
+export interface CronWorkflowList {
+    /**
+     * 
+     * @type {Array<CronWorkflow>}
+     * @memberof CronWorkflowList
+     */
+    items?: Array<CronWorkflow>;
+    /**
+     * 
+     * @type {IoK8sApiCoreV1ListMeta}
+     * @memberof CronWorkflowList
+     */
+    metadata?: IoK8sApiCoreV1ListMeta;
+}
+/**
+ * 
+ * @export
+ * @interface CronWorkflowSpec
+ */
+export interface CronWorkflowSpec {
+    /**
+     * 
+     * @type {string}
+     * @memberof CronWorkflowSpec
+     */
+    concurrencyPolicy?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CronWorkflowSpec
+     */
+    failedJobsHistoryLimit?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CronWorkflowSpec
+     */
+    schedule?: string;
+    /**
+     * StartingDeadlineSeconds is the K8s-style deadline that will limit the time a CronWorkflow will be run after its original scheduled time if it is missed.
+     * @type {string}
+     * @memberof CronWorkflowSpec
+     */
+    startingDeadlineSeconds?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CronWorkflowSpec
+     */
+    successfulJobsHistoryLimit?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CronWorkflowSpec
+     */
+    suspend?: boolean;
+    /**
+     * Timezone is the timezone against which the cron schedule will be calculated, e.g. \"Asia/Tokyo\". Default is machine\'s local time.
+     * @type {string}
+     * @memberof CronWorkflowSpec
+     */
+    timezone?: string;
+    /**
+     * 
+     * @type {IoK8sApiCoreV1ObjectMeta}
+     * @memberof CronWorkflowSpec
+     */
+    workflowMeta?: IoK8sApiCoreV1ObjectMeta;
+    /**
+     * 
+     * @type {WorkflowSpec}
+     * @memberof CronWorkflowSpec
+     */
+    workflowSpec?: WorkflowSpec;
+}
+/**
+ * 
+ * @export
+ * @interface CronWorkflowStatus
+ */
+export interface CronWorkflowStatus {
+    /**
+     * 
+     * @type {Array<IoK8sApiCoreV1ObjectReference>}
+     * @memberof CronWorkflowStatus
+     */
+    active?: Array<IoK8sApiCoreV1ObjectReference>;
+    /**
+     * 
+     * @type {IoK8sApiCoreV1Time}
+     * @memberof CronWorkflowStatus
+     */
+    lastScheduledTime?: IoK8sApiCoreV1Time;
+}
+/**
+ * 
+ * @export
+ * @interface DAGTask
+ */
+export interface DAGTask {
+    /**
+     * 
+     * @type {Arguments}
+     * @memberof DAGTask
+     */
+    arguments?: Arguments;
+    /**
+     * 
+     * @type {ContinueOn}
+     * @memberof DAGTask
+     */
+    continueOn?: ContinueOn;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof DAGTask
+     */
+    dependencies?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof DAGTask
+     */
+    name?: string;
+    /**
+     * OnExit is a template reference which is invoked at the end of the template, irrespective of the success, failure, or error of the primary template.
+     * @type {string}
+     * @memberof DAGTask
+     */
+    onExit?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DAGTask
+     */
+    template?: string;
+    /**
+     * 
+     * @type {TemplateRef}
+     * @memberof DAGTask
+     */
+    templateRef?: TemplateRef;
+    /**
+     * 
+     * @type {string}
+     * @memberof DAGTask
+     */
+    when?: string;
+    /**
+     * 
+     * @type {Array<Item>}
+     * @memberof DAGTask
+     */
+    withItems?: Array<Item>;
+    /**
+     * WithParam expands a task into multiple parallel tasks from the value in the parameter, which is expected to be a JSON list.
+     * @type {string}
+     * @memberof DAGTask
+     */
+    withParam?: string;
+    /**
+     * 
+     * @type {Sequence}
+     * @memberof DAGTask
+     */
+    withSequence?: Sequence;
+}
+/**
+ * 
+ * @export
+ * @interface DAGTemplate
+ */
+export interface DAGTemplate {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DAGTemplate
+     */
+    failFast?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof DAGTemplate
+     */
+    target?: string;
+    /**
+     * 
+     * @type {Array<DAGTask>}
+     * @memberof DAGTemplate
+     */
+    tasks?: Array<DAGTask>;
+}
+/**
+ * ExecutorConfig holds configurations of an executor container.
+ * @export
+ * @interface ExecutorConfig
+ */
+export interface ExecutorConfig {
+    /**
+     * ServiceAccountName specifies the service account name of the executor container.
+     * @type {string}
+     * @memberof ExecutorConfig
+     */
+    serviceAccountName?: string;
+}
+/**
+ * 
+ * @export
+ * @interface GCSArtifact
+ */
+export interface GCSArtifact {
+    /**
+     * 
+     * @type {GCSBucket}
+     * @memberof GCSArtifact
+     */
+    gCSBucket?: GCSBucket;
+    /**
+     * 
+     * @type {string}
+     * @memberof GCSArtifact
+     */
+    key?: string;
+}
+/**
+ * 
+ * @export
+ * @interface GCSBucket
+ */
+export interface GCSBucket {
+    /**
+     * 
+     * @type {string}
+     * @memberof GCSBucket
+     */
+    bucket?: string;
+    /**
+     * 
+     * @type {IoK8sApiCoreV1SecretKeySelector}
+     * @memberof GCSBucket
+     */
+    serviceAccountKeySecret?: IoK8sApiCoreV1SecretKeySelector;
+}
+/**
+ * 
+ * @export
+ * @interface Gauge
+ */
+export interface Gauge {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Gauge
+     */
+    realtime?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof Gauge
+     */
+    value?: string;
+}
+/**
+ * 
+ * @export
+ * @interface GitArtifact
+ */
+export interface GitArtifact {
+    /**
+     * 
+     * @type {string}
+     * @memberof GitArtifact
+     */
+    depth?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GitArtifact
+     */
+    fetch?: Array<string>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GitArtifact
+     */
+    insecureIgnoreHostKey?: boolean;
+    /**
+     * 
+     * @type {IoK8sApiCoreV1SecretKeySelector}
+     * @memberof GitArtifact
+     */
+    passwordSecret?: IoK8sApiCoreV1SecretKeySelector;
+    /**
+     * 
+     * @type {string}
+     * @memberof GitArtifact
+     */
+    repo?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GitArtifact
+     */
+    revision?: string;
+    /**
+     * 
+     * @type {IoK8sApiCoreV1SecretKeySelector}
+     * @memberof GitArtifact
+     */
+    sshPrivateKeySecret?: IoK8sApiCoreV1SecretKeySelector;
+    /**
+     * 
+     * @type {IoK8sApiCoreV1SecretKeySelector}
+     * @memberof GitArtifact
+     */
+    usernameSecret?: IoK8sApiCoreV1SecretKeySelector;
 }
 /**
  * 
@@ -147,2568 +762,165 @@ export interface GrpcGatewayRuntimeStreamError {
 /**
  * 
  * @export
- * @interface IoArgoprojWorkflowV1alpha1ArchiveStrategy
+ * @interface HDFSArtifact
  */
-export interface IoArgoprojWorkflowV1alpha1ArchiveStrategy {
-    /**
-     * NoneStrategy indicates to skip tar process and upload the files or directory tree as independent files. Note that if the artifact is a directory, the artifact driver must support the ability to save/load the directory appropriately.
-     * @type {object}
-     * @memberof IoArgoprojWorkflowV1alpha1ArchiveStrategy
-     */
-    none?: object;
-    /**
-     * 
-     * @type {object}
-     * @memberof IoArgoprojWorkflowV1alpha1ArchiveStrategy
-     */
-    tar?: object;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1Arguments
- */
-export interface IoArgoprojWorkflowV1alpha1Arguments {
-    /**
-     * 
-     * @type {Array<IoArgoprojWorkflowV1alpha1Artifact>}
-     * @memberof IoArgoprojWorkflowV1alpha1Arguments
-     */
-    artifacts?: Array<IoArgoprojWorkflowV1alpha1Artifact>;
-    /**
-     * 
-     * @type {Array<IoArgoprojWorkflowV1alpha1Parameter>}
-     * @memberof IoArgoprojWorkflowV1alpha1Arguments
-     */
-    parameters?: Array<IoArgoprojWorkflowV1alpha1Parameter>;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1Artifact
- */
-export interface IoArgoprojWorkflowV1alpha1Artifact {
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1ArchiveStrategy}
-     * @memberof IoArgoprojWorkflowV1alpha1Artifact
-     */
-    archive?: IoArgoprojWorkflowV1alpha1ArchiveStrategy;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1ArtifactLocation}
-     * @memberof IoArgoprojWorkflowV1alpha1Artifact
-     */
-    artifactLocation?: IoArgoprojWorkflowV1alpha1ArtifactLocation;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Artifact
-     */
-    from?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Artifact
-     */
-    globalName?: string;
-    /**
-     * mode bits to use on this file, must be a value between 0 and 0777 set when loading input artifacts.
-     * @type {number}
-     * @memberof IoArgoprojWorkflowV1alpha1Artifact
-     */
-    mode?: number;
-    /**
-     * name of the artifact. must be unique within a template\'s inputs/outputs.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Artifact
-     */
-    name?: string;
+export interface HDFSArtifact {
     /**
      * 
      * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1Artifact
-     */
-    optional?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Artifact
-     */
-    path?: string;
-}
-/**
- * ArtifactLocation describes a location for a single or multiple artifacts. It is used as single artifact in the context of inputs/outputs (e.g. outputs.artifacts.artname). It is also used to describe the location of multiple artifacts such as the archive location of a single workflow step, which the executor will use as a default location to store its files.
- * @export
- * @interface IoArgoprojWorkflowV1alpha1ArtifactLocation
- */
-export interface IoArgoprojWorkflowV1alpha1ArtifactLocation {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1ArtifactLocation
-     */
-    archiveLogs?: boolean;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1ArtifactoryArtifact}
-     * @memberof IoArgoprojWorkflowV1alpha1ArtifactLocation
-     */
-    artifactory?: IoArgoprojWorkflowV1alpha1ArtifactoryArtifact;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1GCSArtifact}
-     * @memberof IoArgoprojWorkflowV1alpha1ArtifactLocation
-     */
-    gcs?: IoArgoprojWorkflowV1alpha1GCSArtifact;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1GitArtifact}
-     * @memberof IoArgoprojWorkflowV1alpha1ArtifactLocation
-     */
-    git?: IoArgoprojWorkflowV1alpha1GitArtifact;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1HDFSArtifact}
-     * @memberof IoArgoprojWorkflowV1alpha1ArtifactLocation
-     */
-    hdfs?: IoArgoprojWorkflowV1alpha1HDFSArtifact;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1HTTPArtifact}
-     * @memberof IoArgoprojWorkflowV1alpha1ArtifactLocation
-     */
-    http?: IoArgoprojWorkflowV1alpha1HTTPArtifact;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1OSSArtifact}
-     * @memberof IoArgoprojWorkflowV1alpha1ArtifactLocation
-     */
-    oss?: IoArgoprojWorkflowV1alpha1OSSArtifact;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1RawArtifact}
-     * @memberof IoArgoprojWorkflowV1alpha1ArtifactLocation
-     */
-    raw?: IoArgoprojWorkflowV1alpha1RawArtifact;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1S3Artifact}
-     * @memberof IoArgoprojWorkflowV1alpha1ArtifactLocation
-     */
-    s3?: IoArgoprojWorkflowV1alpha1S3Artifact;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1ArtifactRepositoryRef
- */
-export interface IoArgoprojWorkflowV1alpha1ArtifactRepositoryRef {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1ArtifactRepositoryRef
-     */
-    configMap?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1ArtifactRepositoryRef
-     */
-    key?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1ArtifactoryArtifact
- */
-export interface IoArgoprojWorkflowV1alpha1ArtifactoryArtifact {
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1ArtifactoryAuth}
-     * @memberof IoArgoprojWorkflowV1alpha1ArtifactoryArtifact
-     */
-    artifactoryAuth?: IoArgoprojWorkflowV1alpha1ArtifactoryAuth;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1ArtifactoryArtifact
-     */
-    url?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1ArtifactoryAuth
- */
-export interface IoArgoprojWorkflowV1alpha1ArtifactoryAuth {
-    /**
-     * 
-     * @type {IoK8sApiCoreV1SecretKeySelector}
-     * @memberof IoArgoprojWorkflowV1alpha1ArtifactoryAuth
-     */
-    passwordSecret?: IoK8sApiCoreV1SecretKeySelector;
-    /**
-     * 
-     * @type {IoK8sApiCoreV1SecretKeySelector}
-     * @memberof IoArgoprojWorkflowV1alpha1ArtifactoryAuth
-     */
-    usernameSecret?: IoK8sApiCoreV1SecretKeySelector;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1Backoff
- */
-export interface IoArgoprojWorkflowV1alpha1Backoff {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Backoff
-     */
-    duration?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof IoArgoprojWorkflowV1alpha1Backoff
-     */
-    factor?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Backoff
-     */
-    maxDuration?: string;
-}
-/**
- * ContinueOn defines if a workflow should continue even if a task or step fails/errors. It can be specified if the workflow should continue when the pod errors, fails or both.
- * @export
- * @interface IoArgoprojWorkflowV1alpha1ContinueOn
- */
-export interface IoArgoprojWorkflowV1alpha1ContinueOn {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1ContinueOn
-     */
-    error?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1ContinueOn
-     */
-    failed?: boolean;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1Counter
- */
-export interface IoArgoprojWorkflowV1alpha1Counter {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Counter
-     */
-    value?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1CronWorkflow
- */
-export interface IoArgoprojWorkflowV1alpha1CronWorkflow {
-    /**
-     * 
-     * @type {IoK8sApiCoreV1ObjectMeta}
-     * @memberof IoArgoprojWorkflowV1alpha1CronWorkflow
-     */
-    metadata?: IoK8sApiCoreV1ObjectMeta;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1CronWorkflowSpec}
-     * @memberof IoArgoprojWorkflowV1alpha1CronWorkflow
-     */
-    spec?: IoArgoprojWorkflowV1alpha1CronWorkflowSpec;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1CronWorkflowStatus}
-     * @memberof IoArgoprojWorkflowV1alpha1CronWorkflow
-     */
-    status?: IoArgoprojWorkflowV1alpha1CronWorkflowStatus;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1CronWorkflowList
- */
-export interface IoArgoprojWorkflowV1alpha1CronWorkflowList {
-    /**
-     * 
-     * @type {Array<IoArgoprojWorkflowV1alpha1CronWorkflow>}
-     * @memberof IoArgoprojWorkflowV1alpha1CronWorkflowList
-     */
-    items?: Array<IoArgoprojWorkflowV1alpha1CronWorkflow>;
-    /**
-     * 
-     * @type {IoK8sApiCoreV1ListMeta}
-     * @memberof IoArgoprojWorkflowV1alpha1CronWorkflowList
-     */
-    metadata?: IoK8sApiCoreV1ListMeta;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1CronWorkflowSpec
- */
-export interface IoArgoprojWorkflowV1alpha1CronWorkflowSpec {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1CronWorkflowSpec
-     */
-    concurrencyPolicy?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof IoArgoprojWorkflowV1alpha1CronWorkflowSpec
-     */
-    failedJobsHistoryLimit?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1CronWorkflowSpec
-     */
-    schedule?: string;
-    /**
-     * StartingDeadlineSeconds is the K8s-style deadline that will limit the time a CronWorkflow will be run after its original scheduled time if it is missed.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1CronWorkflowSpec
-     */
-    startingDeadlineSeconds?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof IoArgoprojWorkflowV1alpha1CronWorkflowSpec
-     */
-    successfulJobsHistoryLimit?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1CronWorkflowSpec
-     */
-    suspend?: boolean;
-    /**
-     * Timezone is the timezone against which the cron schedule will be calculated, e.g. \"Asia/Tokyo\". Default is machine\'s local time.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1CronWorkflowSpec
-     */
-    timezone?: string;
-    /**
-     * 
-     * @type {IoK8sApiCoreV1ObjectMeta}
-     * @memberof IoArgoprojWorkflowV1alpha1CronWorkflowSpec
-     */
-    workflowMeta?: IoK8sApiCoreV1ObjectMeta;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1WorkflowSpec}
-     * @memberof IoArgoprojWorkflowV1alpha1CronWorkflowSpec
-     */
-    workflowSpec?: IoArgoprojWorkflowV1alpha1WorkflowSpec;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1CronWorkflowStatus
- */
-export interface IoArgoprojWorkflowV1alpha1CronWorkflowStatus {
-    /**
-     * 
-     * @type {Array<IoK8sApiCoreV1ObjectReference>}
-     * @memberof IoArgoprojWorkflowV1alpha1CronWorkflowStatus
-     */
-    active?: Array<IoK8sApiCoreV1ObjectReference>;
-    /**
-     * 
-     * @type {IoK8sApiCoreV1Time}
-     * @memberof IoArgoprojWorkflowV1alpha1CronWorkflowStatus
-     */
-    lastScheduledTime?: IoK8sApiCoreV1Time;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1DAGTask
- */
-export interface IoArgoprojWorkflowV1alpha1DAGTask {
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1Arguments}
-     * @memberof IoArgoprojWorkflowV1alpha1DAGTask
-     */
-    arguments?: IoArgoprojWorkflowV1alpha1Arguments;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1ContinueOn}
-     * @memberof IoArgoprojWorkflowV1alpha1DAGTask
-     */
-    continueOn?: IoArgoprojWorkflowV1alpha1ContinueOn;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof IoArgoprojWorkflowV1alpha1DAGTask
-     */
-    dependencies?: Array<string>;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1DAGTask
-     */
-    name?: string;
-    /**
-     * OnExit is a template reference which is invoked at the end of the template, irrespective of the success, failure, or error of the primary template.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1DAGTask
-     */
-    onExit?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1DAGTask
-     */
-    template?: string;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1TemplateRef}
-     * @memberof IoArgoprojWorkflowV1alpha1DAGTask
-     */
-    templateRef?: IoArgoprojWorkflowV1alpha1TemplateRef;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1DAGTask
-     */
-    when?: string;
-    /**
-     * 
-     * @type {Array<IoArgoprojWorkflowV1alpha1Item>}
-     * @memberof IoArgoprojWorkflowV1alpha1DAGTask
-     */
-    withItems?: Array<IoArgoprojWorkflowV1alpha1Item>;
-    /**
-     * WithParam expands a task into multiple parallel tasks from the value in the parameter, which is expected to be a JSON list.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1DAGTask
-     */
-    withParam?: string;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1Sequence}
-     * @memberof IoArgoprojWorkflowV1alpha1DAGTask
-     */
-    withSequence?: IoArgoprojWorkflowV1alpha1Sequence;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1DAGTemplate
- */
-export interface IoArgoprojWorkflowV1alpha1DAGTemplate {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1DAGTemplate
-     */
-    failFast?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1DAGTemplate
-     */
-    target?: string;
-    /**
-     * 
-     * @type {Array<IoArgoprojWorkflowV1alpha1DAGTask>}
-     * @memberof IoArgoprojWorkflowV1alpha1DAGTemplate
-     */
-    tasks?: Array<IoArgoprojWorkflowV1alpha1DAGTask>;
-}
-/**
- * ExecutorConfig holds configurations of an executor container.
- * @export
- * @interface IoArgoprojWorkflowV1alpha1ExecutorConfig
- */
-export interface IoArgoprojWorkflowV1alpha1ExecutorConfig {
-    /**
-     * ServiceAccountName specifies the service account name of the executor container.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1ExecutorConfig
-     */
-    serviceAccountName?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1GCSArtifact
- */
-export interface IoArgoprojWorkflowV1alpha1GCSArtifact {
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1GCSBucket}
-     * @memberof IoArgoprojWorkflowV1alpha1GCSArtifact
-     */
-    gCSBucket?: IoArgoprojWorkflowV1alpha1GCSBucket;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1GCSArtifact
-     */
-    key?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1GCSBucket
- */
-export interface IoArgoprojWorkflowV1alpha1GCSBucket {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1GCSBucket
-     */
-    bucket?: string;
-    /**
-     * 
-     * @type {IoK8sApiCoreV1SecretKeySelector}
-     * @memberof IoArgoprojWorkflowV1alpha1GCSBucket
-     */
-    serviceAccountKeySecret?: IoK8sApiCoreV1SecretKeySelector;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1Gauge
- */
-export interface IoArgoprojWorkflowV1alpha1Gauge {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1Gauge
-     */
-    realtime?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Gauge
-     */
-    value?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1GitArtifact
- */
-export interface IoArgoprojWorkflowV1alpha1GitArtifact {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1GitArtifact
-     */
-    depth?: string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof IoArgoprojWorkflowV1alpha1GitArtifact
-     */
-    fetch?: Array<string>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1GitArtifact
-     */
-    insecureIgnoreHostKey?: boolean;
-    /**
-     * 
-     * @type {IoK8sApiCoreV1SecretKeySelector}
-     * @memberof IoArgoprojWorkflowV1alpha1GitArtifact
-     */
-    passwordSecret?: IoK8sApiCoreV1SecretKeySelector;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1GitArtifact
-     */
-    repo?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1GitArtifact
-     */
-    revision?: string;
-    /**
-     * 
-     * @type {IoK8sApiCoreV1SecretKeySelector}
-     * @memberof IoArgoprojWorkflowV1alpha1GitArtifact
-     */
-    sshPrivateKeySecret?: IoK8sApiCoreV1SecretKeySelector;
-    /**
-     * 
-     * @type {IoK8sApiCoreV1SecretKeySelector}
-     * @memberof IoArgoprojWorkflowV1alpha1GitArtifact
-     */
-    usernameSecret?: IoK8sApiCoreV1SecretKeySelector;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1HDFSArtifact
- */
-export interface IoArgoprojWorkflowV1alpha1HDFSArtifact {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1HDFSArtifact
+     * @memberof HDFSArtifact
      */
     force?: boolean;
     /**
      * 
-     * @type {IoArgoprojWorkflowV1alpha1HDFSConfig}
-     * @memberof IoArgoprojWorkflowV1alpha1HDFSArtifact
+     * @type {HDFSConfig}
+     * @memberof HDFSArtifact
      */
-    hDFSConfig?: IoArgoprojWorkflowV1alpha1HDFSConfig;
+    hDFSConfig?: HDFSConfig;
     /**
      * 
      * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1HDFSArtifact
+     * @memberof HDFSArtifact
      */
     path?: string;
 }
 /**
  * 
  * @export
- * @interface IoArgoprojWorkflowV1alpha1HDFSConfig
+ * @interface HDFSConfig
  */
-export interface IoArgoprojWorkflowV1alpha1HDFSConfig {
+export interface HDFSConfig {
     /**
      * 
      * @type {Array<string>}
-     * @memberof IoArgoprojWorkflowV1alpha1HDFSConfig
+     * @memberof HDFSConfig
      */
     addresses?: Array<string>;
     /**
      * 
-     * @type {IoArgoprojWorkflowV1alpha1HDFSKrbConfig}
-     * @memberof IoArgoprojWorkflowV1alpha1HDFSConfig
+     * @type {HDFSKrbConfig}
+     * @memberof HDFSConfig
      */
-    hDFSKrbConfig?: IoArgoprojWorkflowV1alpha1HDFSKrbConfig;
+    hDFSKrbConfig?: HDFSKrbConfig;
     /**
      * HDFSUser is the user to access HDFS file system. It is ignored if either ccache or keytab is used.
      * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1HDFSConfig
+     * @memberof HDFSConfig
      */
     hdfsUser?: string;
 }
 /**
  * 
  * @export
- * @interface IoArgoprojWorkflowV1alpha1HDFSKrbConfig
+ * @interface HDFSKrbConfig
  */
-export interface IoArgoprojWorkflowV1alpha1HDFSKrbConfig {
+export interface HDFSKrbConfig {
     /**
      * 
      * @type {IoK8sApiCoreV1SecretKeySelector}
-     * @memberof IoArgoprojWorkflowV1alpha1HDFSKrbConfig
+     * @memberof HDFSKrbConfig
      */
     krbCCacheSecret?: IoK8sApiCoreV1SecretKeySelector;
     /**
      * 
      * @type {IoK8sApiCoreV1ConfigMapKeySelector}
-     * @memberof IoArgoprojWorkflowV1alpha1HDFSKrbConfig
+     * @memberof HDFSKrbConfig
      */
     krbConfigConfigMap?: IoK8sApiCoreV1ConfigMapKeySelector;
     /**
      * 
      * @type {IoK8sApiCoreV1SecretKeySelector}
-     * @memberof IoArgoprojWorkflowV1alpha1HDFSKrbConfig
+     * @memberof HDFSKrbConfig
      */
     krbKeytabSecret?: IoK8sApiCoreV1SecretKeySelector;
     /**
      * KrbRealm is the Kerberos realm used with Kerberos keytab It must be set if keytab is used.
      * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1HDFSKrbConfig
+     * @memberof HDFSKrbConfig
      */
     krbRealm?: string;
     /**
      * KrbServicePrincipalName is the principal name of Kerberos service It must be set if either ccache or keytab is used.
      * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1HDFSKrbConfig
+     * @memberof HDFSKrbConfig
      */
     krbServicePrincipalName?: string;
     /**
      * KrbUsername is the Kerberos username used with Kerberos keytab It must be set if keytab is used.
      * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1HDFSKrbConfig
+     * @memberof HDFSKrbConfig
      */
     krbUsername?: string;
 }
 /**
  * 
  * @export
- * @interface IoArgoprojWorkflowV1alpha1HTTPArtifact
+ * @interface HTTPArtifact
  */
-export interface IoArgoprojWorkflowV1alpha1HTTPArtifact {
+export interface HTTPArtifact {
     /**
      * 
      * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1HTTPArtifact
+     * @memberof HTTPArtifact
      */
     url?: string;
 }
 /**
  * 
  * @export
- * @interface IoArgoprojWorkflowV1alpha1Histogram
+ * @interface Histogram
  */
-export interface IoArgoprojWorkflowV1alpha1Histogram {
+export interface Histogram {
     /**
      * 
      * @type {Array<number>}
-     * @memberof IoArgoprojWorkflowV1alpha1Histogram
+     * @memberof Histogram
      */
     buckets?: Array<number>;
     /**
      * 
      * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Histogram
+     * @memberof Histogram
      */
     value?: string;
 }
 /**
  * 
  * @export
- * @interface IoArgoprojWorkflowV1alpha1InfoResponse
+ * @interface InfoResponse
  */
-export interface IoArgoprojWorkflowV1alpha1InfoResponse {
+export interface InfoResponse {
     /**
      * 
-     * @type {Array<IoArgoprojWorkflowV1alpha1Link>}
-     * @memberof IoArgoprojWorkflowV1alpha1InfoResponse
+     * @type {Array<Link>}
+     * @memberof InfoResponse
      */
-    links?: Array<IoArgoprojWorkflowV1alpha1Link>;
+    links?: Array<Link>;
     /**
      * 
      * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1InfoResponse
+     * @memberof InfoResponse
      */
     managedNamespace?: string;
 }
 /**
  * 
  * @export
- * @interface IoArgoprojWorkflowV1alpha1Inputs
+ * @interface Inputs
  */
-export interface IoArgoprojWorkflowV1alpha1Inputs {
+export interface Inputs {
     /**
      * 
-     * @type {Array<IoArgoprojWorkflowV1alpha1Artifact>}
-     * @memberof IoArgoprojWorkflowV1alpha1Inputs
+     * @type {Array<Artifact>}
+     * @memberof Inputs
      */
-    artifacts?: Array<IoArgoprojWorkflowV1alpha1Artifact>;
+    artifacts?: Array<Artifact>;
     /**
      * 
-     * @type {Array<IoArgoprojWorkflowV1alpha1Parameter>}
-     * @memberof IoArgoprojWorkflowV1alpha1Inputs
+     * @type {Array<Parameter>}
+     * @memberof Inputs
      */
-    parameters?: Array<IoArgoprojWorkflowV1alpha1Parameter>;
-}
-/**
- * +protobuf=true +protobuf.options.(gogoproto.goproto_stringer)=false +k8s:openapi-gen=true
- * @export
- * @interface IoArgoprojWorkflowV1alpha1Item
- */
-export interface IoArgoprojWorkflowV1alpha1Item {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1Item
-     */
-    boolVal?: boolean;
-    /**
-     * 
-     * @type {Array<IoArgoprojWorkflowV1alpha1ItemValue>}
-     * @memberof IoArgoprojWorkflowV1alpha1Item
-     */
-    listVal?: Array<IoArgoprojWorkflowV1alpha1ItemValue>;
-    /**
-     * 
-     * @type {{ [key: string]: IoArgoprojWorkflowV1alpha1ItemValue; }}
-     * @memberof IoArgoprojWorkflowV1alpha1Item
-     */
-    mapVal?: { [key: string]: IoArgoprojWorkflowV1alpha1ItemValue; };
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Item
-     */
-    numVal?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Item
-     */
-    strVal?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Item
-     */
-    type?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1ItemValue
- */
-export interface IoArgoprojWorkflowV1alpha1ItemValue {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1ItemValue
-     */
-    boolVal?: boolean;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof IoArgoprojWorkflowV1alpha1ItemValue
-     */
-    listVal?: Array<string>;
-    /**
-     * 
-     * @type {{ [key: string]: string; }}
-     * @memberof IoArgoprojWorkflowV1alpha1ItemValue
-     */
-    mapVal?: { [key: string]: string; };
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1ItemValue
-     */
-    numVal?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1ItemValue
-     */
-    strVal?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1ItemValue
-     */
-    type?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1Link
- */
-export interface IoArgoprojWorkflowV1alpha1Link {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Link
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Link
-     */
-    scope?: string;
-    /**
-     * The URL. May contain \"${metadata.namespace}\" and \"${metadata.name}\".
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Link
-     */
-    url?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1LogEntry
- */
-export interface IoArgoprojWorkflowV1alpha1LogEntry {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1LogEntry
-     */
-    content?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1LogEntry
-     */
-    podName?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1Metadata
- */
-export interface IoArgoprojWorkflowV1alpha1Metadata {
-    /**
-     * 
-     * @type {{ [key: string]: string; }}
-     * @memberof IoArgoprojWorkflowV1alpha1Metadata
-     */
-    annotations?: { [key: string]: string; };
-    /**
-     * 
-     * @type {{ [key: string]: string; }}
-     * @memberof IoArgoprojWorkflowV1alpha1Metadata
-     */
-    labels?: { [key: string]: string; };
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1MetricLabel
- */
-export interface IoArgoprojWorkflowV1alpha1MetricLabel {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1MetricLabel
-     */
-    key?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1MetricLabel
-     */
-    value?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1Metrics
- */
-export interface IoArgoprojWorkflowV1alpha1Metrics {
-    /**
-     * 
-     * @type {Array<IoArgoprojWorkflowV1alpha1Prometheus>}
-     * @memberof IoArgoprojWorkflowV1alpha1Metrics
-     */
-    prometheus?: Array<IoArgoprojWorkflowV1alpha1Prometheus>;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1NodeStatus
- */
-export interface IoArgoprojWorkflowV1alpha1NodeStatus {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1NodeStatus
-     */
-    boundaryID?: string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof IoArgoprojWorkflowV1alpha1NodeStatus
-     */
-    children?: Array<string>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1NodeStatus
-     */
-    daemoned?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1NodeStatus
-     */
-    displayName?: string;
-    /**
-     * 
-     * @type {IoK8sApiCoreV1Time}
-     * @memberof IoArgoprojWorkflowV1alpha1NodeStatus
-     */
-    finishedAt?: IoK8sApiCoreV1Time;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1NodeStatus
-     */
-    id?: string;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1Inputs}
-     * @memberof IoArgoprojWorkflowV1alpha1NodeStatus
-     */
-    inputs?: IoArgoprojWorkflowV1alpha1Inputs;
-    /**
-     * A human readable message indicating details about why the node is in this condition.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1NodeStatus
-     */
-    message?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1NodeStatus
-     */
-    name?: string;
-    /**
-     * OutboundNodes tracks the node IDs which are considered \"outbound\" nodes to a template invocation. For every invocation of a template, there are nodes which we considered as \"outbound\". Essentially, these are last nodes in the execution sequence to run, before the template is considered completed. These nodes are then connected as parents to a following step.  In the case of single pod steps (i.e. container, script, resource templates), this list will be nil since the pod itself is already considered the \"outbound\" node. In the case of DAGs, outbound nodes are the \"target\" tasks (tasks with no children). In the case of steps, outbound nodes are all the containers involved in the last step group. NOTE: since templates are composable, the list of outbound nodes are carried upwards when a DAG/steps template invokes another DAG/steps template. In other words, the outbound nodes of a template, will be a superset of the outbound nodes of its last children.
-     * @type {Array<string>}
-     * @memberof IoArgoprojWorkflowV1alpha1NodeStatus
-     */
-    outboundNodes?: Array<string>;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1Outputs}
-     * @memberof IoArgoprojWorkflowV1alpha1NodeStatus
-     */
-    outputs?: IoArgoprojWorkflowV1alpha1Outputs;
-    /**
-     * Phase a simple, high-level summary of where the node is in its lifecycle. Can be used as a state machine.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1NodeStatus
-     */
-    phase?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1NodeStatus
-     */
-    podIP?: string;
-    /**
-     * ResourcesDuration is indicative, but not accurate, resource duration. This is populated when the nodes completes.
-     * @type {{ [key: string]: string; }}
-     * @memberof IoArgoprojWorkflowV1alpha1NodeStatus
-     */
-    resourcesDuration?: { [key: string]: string; };
-    /**
-     * 
-     * @type {IoK8sApiCoreV1Time}
-     * @memberof IoArgoprojWorkflowV1alpha1NodeStatus
-     */
-    startedAt?: IoK8sApiCoreV1Time;
-    /**
-     * StoredTemplateID is the ID of stored template. DEPRECATED: This value is not used anymore.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1NodeStatus
-     */
-    storedTemplateID?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1NodeStatus
-     */
-    templateName?: string;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1TemplateRef}
-     * @memberof IoArgoprojWorkflowV1alpha1NodeStatus
-     */
-    templateRef?: IoArgoprojWorkflowV1alpha1TemplateRef;
-    /**
-     * TemplateScope is the template scope in which the template of this node was retrieved.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1NodeStatus
-     */
-    templateScope?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1NodeStatus
-     */
-    type?: string;
-    /**
-     * WorkflowTemplateName is the WorkflowTemplate resource name on which the resolved template of this node is retrieved. DEPRECATED: This value is not used anymore.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1NodeStatus
-     */
-    workflowTemplateName?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1OSSArtifact
- */
-export interface IoArgoprojWorkflowV1alpha1OSSArtifact {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1OSSArtifact
-     */
-    key?: string;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1OSSBucket}
-     * @memberof IoArgoprojWorkflowV1alpha1OSSArtifact
-     */
-    oSSBucket?: IoArgoprojWorkflowV1alpha1OSSBucket;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1OSSBucket
- */
-export interface IoArgoprojWorkflowV1alpha1OSSBucket {
-    /**
-     * 
-     * @type {IoK8sApiCoreV1SecretKeySelector}
-     * @memberof IoArgoprojWorkflowV1alpha1OSSBucket
-     */
-    accessKeySecret?: IoK8sApiCoreV1SecretKeySelector;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1OSSBucket
-     */
-    bucket?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1OSSBucket
-     */
-    endpoint?: string;
-    /**
-     * 
-     * @type {IoK8sApiCoreV1SecretKeySelector}
-     * @memberof IoArgoprojWorkflowV1alpha1OSSBucket
-     */
-    secretKeySecret?: IoK8sApiCoreV1SecretKeySelector;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1Outputs
- */
-export interface IoArgoprojWorkflowV1alpha1Outputs {
-    /**
-     * 
-     * @type {Array<IoArgoprojWorkflowV1alpha1Artifact>}
-     * @memberof IoArgoprojWorkflowV1alpha1Outputs
-     */
-    artifacts?: Array<IoArgoprojWorkflowV1alpha1Artifact>;
-    /**
-     * 
-     * @type {Array<IoArgoprojWorkflowV1alpha1Parameter>}
-     * @memberof IoArgoprojWorkflowV1alpha1Outputs
-     */
-    parameters?: Array<IoArgoprojWorkflowV1alpha1Parameter>;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Outputs
-     */
-    result?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1Parameter
- */
-export interface IoArgoprojWorkflowV1alpha1Parameter {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Parameter
-     */
-    _default?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Parameter
-     */
-    globalName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Parameter
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Parameter
-     */
-    value?: string;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1ValueFrom}
-     * @memberof IoArgoprojWorkflowV1alpha1Parameter
-     */
-    valueFrom?: IoArgoprojWorkflowV1alpha1ValueFrom;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1PodGC
- */
-export interface IoArgoprojWorkflowV1alpha1PodGC {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1PodGC
-     */
-    strategy?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1Prometheus
- */
-export interface IoArgoprojWorkflowV1alpha1Prometheus {
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1Counter}
-     * @memberof IoArgoprojWorkflowV1alpha1Prometheus
-     */
-    counter?: IoArgoprojWorkflowV1alpha1Counter;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1Gauge}
-     * @memberof IoArgoprojWorkflowV1alpha1Prometheus
-     */
-    gauge?: IoArgoprojWorkflowV1alpha1Gauge;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Prometheus
-     */
-    help?: string;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1Histogram}
-     * @memberof IoArgoprojWorkflowV1alpha1Prometheus
-     */
-    histogram?: IoArgoprojWorkflowV1alpha1Histogram;
-    /**
-     * 
-     * @type {Array<IoArgoprojWorkflowV1alpha1MetricLabel>}
-     * @memberof IoArgoprojWorkflowV1alpha1Prometheus
-     */
-    labels?: Array<IoArgoprojWorkflowV1alpha1MetricLabel>;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Prometheus
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Prometheus
-     */
-    when?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1RawArtifact
- */
-export interface IoArgoprojWorkflowV1alpha1RawArtifact {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1RawArtifact
-     */
-    data?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1ResourceTemplate
- */
-export interface IoArgoprojWorkflowV1alpha1ResourceTemplate {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1ResourceTemplate
-     */
-    action?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1ResourceTemplate
-     */
-    failureCondition?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1ResourceTemplate
-     */
-    manifest?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1ResourceTemplate
-     */
-    mergeStrategy?: string;
-    /**
-     * SetOwnerReference sets the reference to the workflow on the OwnerReference of generated resource.
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1ResourceTemplate
-     */
-    setOwnerReference?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1ResourceTemplate
-     */
-    successCondition?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1RetryStrategy
- */
-export interface IoArgoprojWorkflowV1alpha1RetryStrategy {
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1Backoff}
-     * @memberof IoArgoprojWorkflowV1alpha1RetryStrategy
-     */
-    backoff?: IoArgoprojWorkflowV1alpha1Backoff;
-    /**
-     * 
-     * @type {number}
-     * @memberof IoArgoprojWorkflowV1alpha1RetryStrategy
-     */
-    limit?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1RetryStrategy
-     */
-    retryPolicy?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1S3Artifact
- */
-export interface IoArgoprojWorkflowV1alpha1S3Artifact {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1S3Artifact
-     */
-    key?: string;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1S3Bucket}
-     * @memberof IoArgoprojWorkflowV1alpha1S3Artifact
-     */
-    s3Bucket?: IoArgoprojWorkflowV1alpha1S3Bucket;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1S3Bucket
- */
-export interface IoArgoprojWorkflowV1alpha1S3Bucket {
-    /**
-     * 
-     * @type {IoK8sApiCoreV1SecretKeySelector}
-     * @memberof IoArgoprojWorkflowV1alpha1S3Bucket
-     */
-    accessKeySecret?: IoK8sApiCoreV1SecretKeySelector;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1S3Bucket
-     */
-    bucket?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1S3Bucket
-     */
-    endpoint?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1S3Bucket
-     */
-    insecure?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1S3Bucket
-     */
-    region?: string;
-    /**
-     * RoleARN is the Amazon Resource Name (ARN) of the role to assume.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1S3Bucket
-     */
-    roleARN?: string;
-    /**
-     * 
-     * @type {IoK8sApiCoreV1SecretKeySelector}
-     * @memberof IoArgoprojWorkflowV1alpha1S3Bucket
-     */
-    secretKeySecret?: IoK8sApiCoreV1SecretKeySelector;
-    /**
-     * UseSDKCreds tells the driver to figure out credentials based on sdk defaults.
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1S3Bucket
-     */
-    useSDKCreds?: boolean;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1ScriptTemplate
- */
-export interface IoArgoprojWorkflowV1alpha1ScriptTemplate {
-    /**
-     * 
-     * @type {IoK8sApiCoreV1Container}
-     * @memberof IoArgoprojWorkflowV1alpha1ScriptTemplate
-     */
-    container?: IoK8sApiCoreV1Container;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1ScriptTemplate
-     */
-    source?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1Sequence
- */
-export interface IoArgoprojWorkflowV1alpha1Sequence {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Sequence
-     */
-    count?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Sequence
-     */
-    end?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Sequence
-     */
-    format?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Sequence
-     */
-    start?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1SuspendTemplate
- */
-export interface IoArgoprojWorkflowV1alpha1SuspendTemplate {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1SuspendTemplate
-     */
-    duration?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1TTLStrategy
- */
-export interface IoArgoprojWorkflowV1alpha1TTLStrategy {
-    /**
-     * 
-     * @type {number}
-     * @memberof IoArgoprojWorkflowV1alpha1TTLStrategy
-     */
-    secondsAfterCompletion?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof IoArgoprojWorkflowV1alpha1TTLStrategy
-     */
-    secondsAfterFailure?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof IoArgoprojWorkflowV1alpha1TTLStrategy
-     */
-    secondsAfterSuccess?: number;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1Template
- */
-export interface IoArgoprojWorkflowV1alpha1Template {
-    /**
-     * Optional duration in seconds relative to the StartTime that the pod may be active on a node before the system actively tries to terminate the pod; value must be positive integer This field is only applicable to container and script templates.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    activeDeadlineSeconds?: string;
-    /**
-     * 
-     * @type {IoK8sApiCoreV1Affinity}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    affinity?: IoK8sApiCoreV1Affinity;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1ArtifactLocation}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    archiveLocation?: IoArgoprojWorkflowV1alpha1ArtifactLocation;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1Arguments}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    arguments?: IoArgoprojWorkflowV1alpha1Arguments;
-    /**
-     * AutomountServiceAccountToken indicates whether a service account token should be automatically mounted in pods. ServiceAccountName of ExecutorConfig must be specified if this value is false.
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    automountServiceAccountToken?: boolean;
-    /**
-     * 
-     * @type {IoK8sApiCoreV1Container}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    container?: IoK8sApiCoreV1Container;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    daemon?: boolean;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1DAGTemplate}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    dag?: IoArgoprojWorkflowV1alpha1DAGTemplate;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1ExecutorConfig}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    executor?: IoArgoprojWorkflowV1alpha1ExecutorConfig;
-    /**
-     * 
-     * @type {Array<IoK8sApiCoreV1HostAlias>}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    hostAliases?: Array<IoK8sApiCoreV1HostAlias>;
-    /**
-     * 
-     * @type {Array<IoArgoprojWorkflowV1alpha1UserContainer>}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    initContainers?: Array<IoArgoprojWorkflowV1alpha1UserContainer>;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1Inputs}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    inputs?: IoArgoprojWorkflowV1alpha1Inputs;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1Metadata}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    metadata?: IoArgoprojWorkflowV1alpha1Metadata;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1Metrics}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    metrics?: IoArgoprojWorkflowV1alpha1Metrics;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    name?: string;
-    /**
-     * NodeSelector is a selector to schedule this step of the workflow to be run on the selected node(s). Overrides the selector set at the workflow level.
-     * @type {{ [key: string]: string; }}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    nodeSelector?: { [key: string]: string; };
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1Outputs}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    outputs?: IoArgoprojWorkflowV1alpha1Outputs;
-    /**
-     * Parallelism limits the max total parallel pods that can execute at the same time within the boundaries of this template invocation. If additional steps/dag templates are invoked, the pods created by those templates will not be counted towards this total.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    parallelism?: string;
-    /**
-     * PodSpecPatch holds strategic merge patch to apply against the pod spec. Allows parameterization of container fields which are not strings (e.g. resource limits).
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    podSpecPatch?: string;
-    /**
-     * Priority to apply to workflow pods.
-     * @type {number}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    priority?: number;
-    /**
-     * PriorityClassName to apply to workflow pods.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    priorityClassName?: string;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1ResourceTemplate}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    resource?: IoArgoprojWorkflowV1alpha1ResourceTemplate;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    resubmitPendingPods?: boolean;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1RetryStrategy}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    retryStrategy?: IoArgoprojWorkflowV1alpha1RetryStrategy;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    schedulerName?: string;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1ScriptTemplate}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    script?: IoArgoprojWorkflowV1alpha1ScriptTemplate;
-    /**
-     * 
-     * @type {IoK8sApiCoreV1PodSecurityContext}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    securityContext?: IoK8sApiCoreV1PodSecurityContext;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    serviceAccountName?: string;
-    /**
-     * 
-     * @type {Array<IoArgoprojWorkflowV1alpha1UserContainer>}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    sidecars?: Array<IoArgoprojWorkflowV1alpha1UserContainer>;
-    /**
-     * 
-     * @type {Array<Array<IoArgoprojWorkflowV1alpha1WorkflowStep>>}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    steps?: Array<Array<IoArgoprojWorkflowV1alpha1WorkflowStep>>;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1SuspendTemplate}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    suspend?: IoArgoprojWorkflowV1alpha1SuspendTemplate;
-    /**
-     * Template is the name of the template which is used as the base of this template. DEPRECATED: This field is not used.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    template?: string;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1TemplateRef}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    templateRef?: IoArgoprojWorkflowV1alpha1TemplateRef;
-    /**
-     * 
-     * @type {Array<IoK8sApiCoreV1Toleration>}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    tolerations?: Array<IoK8sApiCoreV1Toleration>;
-    /**
-     * 
-     * @type {Array<IoK8sApiCoreV1Volume>}
-     * @memberof IoArgoprojWorkflowV1alpha1Template
-     */
-    volumes?: Array<IoK8sApiCoreV1Volume>;
-}
-/**
- * TemplateRef is a reference of template resource.
- * @export
- * @interface IoArgoprojWorkflowV1alpha1TemplateRef
- */
-export interface IoArgoprojWorkflowV1alpha1TemplateRef {
-    /**
-     * Name is the resource name of the template.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1TemplateRef
-     */
-    name?: string;
-    /**
-     * RuntimeResolution skips validation at creation time. By enabling this option, you can create the referred workflow template before the actual runtime.
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1TemplateRef
-     */
-    runtimeResolution?: boolean;
-    /**
-     * Template is the name of referred template in the resource.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1TemplateRef
-     */
-    template?: string;
-}
-/**
- * UserContainer is a container specified by a user.
- * @export
- * @interface IoArgoprojWorkflowV1alpha1UserContainer
- */
-export interface IoArgoprojWorkflowV1alpha1UserContainer {
-    /**
-     * 
-     * @type {IoK8sApiCoreV1Container}
-     * @memberof IoArgoprojWorkflowV1alpha1UserContainer
-     */
-    container?: IoK8sApiCoreV1Container;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1UserContainer
-     */
-    mirrorVolumeMounts?: boolean;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1ValueFrom
- */
-export interface IoArgoprojWorkflowV1alpha1ValueFrom {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1ValueFrom
-     */
-    _default?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1ValueFrom
-     */
-    jqFilter?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1ValueFrom
-     */
-    jsonPath?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1ValueFrom
-     */
-    parameter?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1ValueFrom
-     */
-    path?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1Workflow
- */
-export interface IoArgoprojWorkflowV1alpha1Workflow {
-    /**
-     * 
-     * @type {IoK8sApiCoreV1ObjectMeta}
-     * @memberof IoArgoprojWorkflowV1alpha1Workflow
-     */
-    metadata?: IoK8sApiCoreV1ObjectMeta;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1WorkflowSpec}
-     * @memberof IoArgoprojWorkflowV1alpha1Workflow
-     */
-    spec?: IoArgoprojWorkflowV1alpha1WorkflowSpec;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1WorkflowStatus}
-     * @memberof IoArgoprojWorkflowV1alpha1Workflow
-     */
-    status?: IoArgoprojWorkflowV1alpha1WorkflowStatus;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1WorkflowCondition
- */
-export interface IoArgoprojWorkflowV1alpha1WorkflowCondition {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowCondition
-     */
-    message?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowCondition
-     */
-    status?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowCondition
-     */
-    type?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1WorkflowCreateRequest
- */
-export interface IoArgoprojWorkflowV1alpha1WorkflowCreateRequest {
-    /**
-     * 
-     * @type {IoK8sApiCoreV1CreateOptions}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowCreateRequest
-     */
-    createOptions?: IoK8sApiCoreV1CreateOptions;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowCreateRequest
-     */
-    instanceID?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowCreateRequest
-     */
-    namespace?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowCreateRequest
-     */
-    serverDryRun?: boolean;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1Workflow}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowCreateRequest
-     */
-    workflow?: IoArgoprojWorkflowV1alpha1Workflow;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1WorkflowLintRequest
- */
-export interface IoArgoprojWorkflowV1alpha1WorkflowLintRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowLintRequest
-     */
-    namespace?: string;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1Workflow}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowLintRequest
-     */
-    workflow?: IoArgoprojWorkflowV1alpha1Workflow;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1WorkflowList
- */
-export interface IoArgoprojWorkflowV1alpha1WorkflowList {
-    /**
-     * 
-     * @type {Array<IoArgoprojWorkflowV1alpha1Workflow>}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowList
-     */
-    items?: Array<IoArgoprojWorkflowV1alpha1Workflow>;
-    /**
-     * 
-     * @type {IoK8sApiCoreV1ListMeta}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowList
-     */
-    metadata?: IoK8sApiCoreV1ListMeta;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest
- */
-export interface IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest
-     */
-    memoized?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest
-     */
-    namespace?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1WorkflowResumeRequest
- */
-export interface IoArgoprojWorkflowV1alpha1WorkflowResumeRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowResumeRequest
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowResumeRequest
-     */
-    namespace?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowResumeRequest
-     */
-    nodeFieldSelector?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1WorkflowRetryRequest
- */
-export interface IoArgoprojWorkflowV1alpha1WorkflowRetryRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowRetryRequest
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowRetryRequest
-     */
-    namespace?: string;
-}
-/**
- * WorkflowSpec is the specification of a Workflow.
- * @export
- * @interface IoArgoprojWorkflowV1alpha1WorkflowSpec
- */
-export interface IoArgoprojWorkflowV1alpha1WorkflowSpec {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    activeDeadlineSeconds?: string;
-    /**
-     * 
-     * @type {IoK8sApiCoreV1Affinity}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    affinity?: IoK8sApiCoreV1Affinity;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1Arguments}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    arguments?: IoArgoprojWorkflowV1alpha1Arguments;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1ArtifactRepositoryRef}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    artifactRepositoryRef?: IoArgoprojWorkflowV1alpha1ArtifactRepositoryRef;
-    /**
-     * AutomountServiceAccountToken indicates whether a service account token should be automatically mounted in pods. ServiceAccountName of ExecutorConfig must be specified if this value is false.
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    automountServiceAccountToken?: boolean;
-    /**
-     * 
-     * @type {IoK8sApiCoreV1PodDNSConfig}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    dnsConfig?: IoK8sApiCoreV1PodDNSConfig;
-    /**
-     * Set DNS policy for the pod. Defaults to \"ClusterFirst\". Valid values are \'ClusterFirstWithHostNet\', \'ClusterFirst\', \'Default\' or \'None\'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to \'ClusterFirstWithHostNet\'.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    dnsPolicy?: string;
-    /**
-     * Entrypoint is a template reference to the starting point of the io.argoproj.workflow.v1alpha1.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    entrypoint?: string;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1ExecutorConfig}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    executor?: IoArgoprojWorkflowV1alpha1ExecutorConfig;
-    /**
-     * 
-     * @type {Array<IoK8sApiCoreV1HostAlias>}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    hostAliases?: Array<IoK8sApiCoreV1HostAlias>;
-    /**
-     * Host networking requested for this workflow pod. Default to false.
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    hostNetwork?: boolean;
-    /**
-     * 
-     * @type {Array<IoK8sApiCoreV1LocalObjectReference>}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    imagePullSecrets?: Array<IoK8sApiCoreV1LocalObjectReference>;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1Metrics}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    metrics?: IoArgoprojWorkflowV1alpha1Metrics;
-    /**
-     * NodeSelector is a selector which will result in all pods of the workflow to be scheduled on the selected node(s). This is able to be overridden by a nodeSelector specified in the template.
-     * @type {{ [key: string]: string; }}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    nodeSelector?: { [key: string]: string; };
-    /**
-     * OnExit is a template reference which is invoked at the end of the workflow, irrespective of the success, failure, or error of the primary io.argoproj.workflow.v1alpha1.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    onExit?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    parallelism?: string;
-    /**
-     * 
-     * @type {IoK8sApiCoreV1PodDisruptionBudgetSpec}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    podDisruptionBudget?: IoK8sApiCoreV1PodDisruptionBudgetSpec;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1PodGC}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    podGC?: IoArgoprojWorkflowV1alpha1PodGC;
-    /**
-     * Priority to apply to workflow pods.
-     * @type {number}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    podPriority?: number;
-    /**
-     * PriorityClassName to apply to workflow pods.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    podPriorityClassName?: string;
-    /**
-     * PodSpecPatch holds strategic merge patch to apply against the pod spec. Allows parameterization of container fields which are not strings (e.g. resource limits).
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    podSpecPatch?: string;
-    /**
-     * Priority is used if controller is configured to process limited number of workflows in parallel. Workflows with higher priority are processed first.
-     * @type {number}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    priority?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    schedulerName?: string;
-    /**
-     * 
-     * @type {IoK8sApiCoreV1PodSecurityContext}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    securityContext?: IoK8sApiCoreV1PodSecurityContext;
-    /**
-     * ServiceAccountName is the name of the ServiceAccount to run all pods of the workflow as.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    serviceAccountName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    shutdown?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    suspend?: boolean;
-    /**
-     * 
-     * @type {Array<IoArgoprojWorkflowV1alpha1Template>}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    templates?: Array<IoArgoprojWorkflowV1alpha1Template>;
-    /**
-     * 
-     * @type {Array<IoK8sApiCoreV1Toleration>}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    tolerations?: Array<IoK8sApiCoreV1Toleration>;
-    /**
-     * TTLSecondsAfterFinished limits the lifetime of a Workflow that has finished execution (Succeeded, Failed, Error). If this field is set, once the Workflow finishes, it will be deleted after ttlSecondsAfterFinished expires. If this field is unset, ttlSecondsAfterFinished will not expire. If this field is set to zero, ttlSecondsAfterFinished expires immediately after the Workflow finishes. DEPRECATED: Use TTLStrategy.SecondsAfterCompletion instead.
-     * @type {number}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    ttlSecondsAfterFinished?: number;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1TTLStrategy}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    ttlStrategy?: IoArgoprojWorkflowV1alpha1TTLStrategy;
-    /**
-     * 
-     * @type {Array<IoK8sApiCoreV1PersistentVolumeClaim>}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    volumeClaimTemplates?: Array<IoK8sApiCoreV1PersistentVolumeClaim>;
-    /**
-     * 
-     * @type {Array<IoK8sApiCoreV1Volume>}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSpec
-     */
-    volumes?: Array<IoK8sApiCoreV1Volume>;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1WorkflowStatus
- */
-export interface IoArgoprojWorkflowV1alpha1WorkflowStatus {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStatus
-     */
-    compressedNodes?: string;
-    /**
-     * 
-     * @type {Array<IoArgoprojWorkflowV1alpha1WorkflowCondition>}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStatus
-     */
-    conditions?: Array<IoArgoprojWorkflowV1alpha1WorkflowCondition>;
-    /**
-     * 
-     * @type {IoK8sApiCoreV1Time}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStatus
-     */
-    finishedAt?: IoK8sApiCoreV1Time;
-    /**
-     * A human readable message indicating details about why the workflow is in this condition.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStatus
-     */
-    message?: string;
-    /**
-     * Nodes is a mapping between a node ID and the node\'s status.
-     * @type {{ [key: string]: IoArgoprojWorkflowV1alpha1NodeStatus; }}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStatus
-     */
-    nodes?: { [key: string]: IoArgoprojWorkflowV1alpha1NodeStatus; };
-    /**
-     * Whether on not node status has been offloaded to a database. If exists, then Nodes and CompressedNodes will be empty. This will actually be populated with a hash of the offloaded data.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStatus
-     */
-    offloadNodeStatusVersion?: string;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1Outputs}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStatus
-     */
-    outputs?: IoArgoprojWorkflowV1alpha1Outputs;
-    /**
-     * PersistentVolumeClaims tracks all PVCs that were created as part of the io.argoproj.workflow.v1alpha1. The contents of this list are drained at the end of the workflow.
-     * @type {Array<IoK8sApiCoreV1Volume>}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStatus
-     */
-    persistentVolumeClaims?: Array<IoK8sApiCoreV1Volume>;
-    /**
-     * Phase a simple, high-level summary of where the workflow is in its lifecycle.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStatus
-     */
-    phase?: string;
-    /**
-     * 
-     * @type {{ [key: string]: string; }}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStatus
-     */
-    resourcesDuration?: { [key: string]: string; };
-    /**
-     * 
-     * @type {IoK8sApiCoreV1Time}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStatus
-     */
-    startedAt?: IoK8sApiCoreV1Time;
-    /**
-     * StoredTemplates is a mapping between a template ref and the node\'s status.
-     * @type {{ [key: string]: IoArgoprojWorkflowV1alpha1Template; }}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStatus
-     */
-    storedTemplates?: { [key: string]: IoArgoprojWorkflowV1alpha1Template; };
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1WorkflowStep
- */
-export interface IoArgoprojWorkflowV1alpha1WorkflowStep {
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1Arguments}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStep
-     */
-    arguments?: IoArgoprojWorkflowV1alpha1Arguments;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1ContinueOn}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStep
-     */
-    continueOn?: IoArgoprojWorkflowV1alpha1ContinueOn;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStep
-     */
-    name?: string;
-    /**
-     * OnExit is a template reference which is invoked at the end of the template, irrespective of the success, failure, or error of the primary template.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStep
-     */
-    onExit?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStep
-     */
-    template?: string;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1TemplateRef}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStep
-     */
-    templateRef?: IoArgoprojWorkflowV1alpha1TemplateRef;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStep
-     */
-    when?: string;
-    /**
-     * 
-     * @type {Array<IoArgoprojWorkflowV1alpha1Item>}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStep
-     */
-    withItems?: Array<IoArgoprojWorkflowV1alpha1Item>;
-    /**
-     * WithParam expands a step into multiple parallel steps from the value in the parameter, which is expected to be a JSON list.
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStep
-     */
-    withParam?: string;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1Sequence}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStep
-     */
-    withSequence?: IoArgoprojWorkflowV1alpha1Sequence;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1WorkflowStopRequest
- */
-export interface IoArgoprojWorkflowV1alpha1WorkflowStopRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStopRequest
-     */
-    message?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStopRequest
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStopRequest
-     */
-    namespace?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowStopRequest
-     */
-    nodeFieldSelector?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1WorkflowSuspendRequest
- */
-export interface IoArgoprojWorkflowV1alpha1WorkflowSuspendRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSuspendRequest
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowSuspendRequest
-     */
-    namespace?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1WorkflowTemplate
- */
-export interface IoArgoprojWorkflowV1alpha1WorkflowTemplate {
-    /**
-     * 
-     * @type {IoK8sApiCoreV1ObjectMeta}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowTemplate
-     */
-    metadata?: IoK8sApiCoreV1ObjectMeta;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1WorkflowTemplateSpec}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowTemplate
-     */
-    spec?: IoArgoprojWorkflowV1alpha1WorkflowTemplateSpec;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1WorkflowTemplateCreateRequest
- */
-export interface IoArgoprojWorkflowV1alpha1WorkflowTemplateCreateRequest {
-    /**
-     * 
-     * @type {IoK8sApiCoreV1CreateOptions}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowTemplateCreateRequest
-     */
-    createOptions?: IoK8sApiCoreV1CreateOptions;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowTemplateCreateRequest
-     */
-    namespace?: string;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1WorkflowTemplate}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowTemplateCreateRequest
-     */
-    template?: IoArgoprojWorkflowV1alpha1WorkflowTemplate;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1WorkflowTemplateLintRequest
- */
-export interface IoArgoprojWorkflowV1alpha1WorkflowTemplateLintRequest {
-    /**
-     * 
-     * @type {IoK8sApiCoreV1CreateOptions}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowTemplateLintRequest
-     */
-    createOptions?: IoK8sApiCoreV1CreateOptions;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowTemplateLintRequest
-     */
-    namespace?: string;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1WorkflowTemplate}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowTemplateLintRequest
-     */
-    template?: IoArgoprojWorkflowV1alpha1WorkflowTemplate;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1WorkflowTemplateList
- */
-export interface IoArgoprojWorkflowV1alpha1WorkflowTemplateList {
-    /**
-     * 
-     * @type {Array<IoArgoprojWorkflowV1alpha1WorkflowTemplate>}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowTemplateList
-     */
-    items?: Array<IoArgoprojWorkflowV1alpha1WorkflowTemplate>;
-    /**
-     * 
-     * @type {IoK8sApiCoreV1ListMeta}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowTemplateList
-     */
-    metadata?: IoK8sApiCoreV1ListMeta;
-}
-/**
- * WorkflowTemplateSpec is a spec of WorkflowTemplate.
- * @export
- * @interface IoArgoprojWorkflowV1alpha1WorkflowTemplateSpec
- */
-export interface IoArgoprojWorkflowV1alpha1WorkflowTemplateSpec {
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1WorkflowSpec}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowTemplateSpec
-     */
-    workflowSpec?: IoArgoprojWorkflowV1alpha1WorkflowSpec;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1WorkflowTemplateUpdateRequest
- */
-export interface IoArgoprojWorkflowV1alpha1WorkflowTemplateUpdateRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowTemplateUpdateRequest
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowTemplateUpdateRequest
-     */
-    namespace?: string;
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1WorkflowTemplate}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowTemplateUpdateRequest
-     */
-    template?: IoArgoprojWorkflowV1alpha1WorkflowTemplate;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1WorkflowTerminateRequest
- */
-export interface IoArgoprojWorkflowV1alpha1WorkflowTerminateRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowTerminateRequest
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowTerminateRequest
-     */
-    namespace?: string;
-}
-/**
- * 
- * @export
- * @interface IoArgoprojWorkflowV1alpha1WorkflowWatchEvent
- */
-export interface IoArgoprojWorkflowV1alpha1WorkflowWatchEvent {
-    /**
-     * 
-     * @type {IoArgoprojWorkflowV1alpha1Workflow}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowWatchEvent
-     */
-    object?: IoArgoprojWorkflowV1alpha1Workflow;
-    /**
-     * 
-     * @type {string}
-     * @memberof IoArgoprojWorkflowV1alpha1WorkflowWatchEvent
-     */
-    type?: string;
+    parameters?: Array<Parameter>;
 }
 /**
  * Represents a Persistent Disk resource in AWS.  An AWS EBS disk must exist before mounting to a container. The disk must also be in the same AWS zone as the kubelet. An AWS EBS disk can only be mounted as read/write once. AWS EBS volumes support ownership management and SELinux relabeling.
@@ -3341,7 +1553,7 @@ export interface IoK8sApiCoreV1DownwardAPIVolumeFile {
     resourceFieldRef?: IoK8sApiCoreV1ResourceFieldSelector;
 }
 /**
- * DownwardAPIVolumeSource represents a volume containing downward API io.argoproj.workflow.v1alpha1. Downward API volumes support ownership management and SELinux relabeling.
+ * DownwardAPIVolumeSource represents a volume containing downward API  Downward API volumes support ownership management and SELinux relabeling.
  * @export
  * @interface IoK8sApiCoreV1DownwardAPIVolumeSource
  */
@@ -4300,7 +2512,7 @@ export interface IoK8sApiCoreV1ObjectMeta {
      */
     labels?: { [key: string]: string; };
     /**
-     * ManagedFields maps workflow-id and version to the set of fields that are managed by that io.argoproj.workflow.v1alpha1. This is mostly for internal housekeeping, and users typically shouldn\'t need to set or understand this field. A workflow can be the user\'s name, a controller\'s name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.  +optional
+     * ManagedFields maps workflow-id and version to the set of fields that are managed by that  This is mostly for internal housekeeping, and users typically shouldn\'t need to set or understand this field. A workflow can be the user\'s name, a controller\'s name, or the name of a specific apply path like \"ci-cd\". The set of fields is always in the version that the workflow used when modifying the object.  +optional
      * @type {Array<IoK8sApiCoreV1ManagedFieldsEntry>}
      * @memberof IoK8sApiCoreV1ObjectMeta
      */
@@ -5950,6 +4162,1794 @@ export interface IoK8sApiCoreV1WindowsSecurityContextOptions {
      */
     runAsUserName?: string;
 }
+/**
+ * +protobuf=true +protobuf.options.(gogoproto.goproto_stringer)=false +k8s:openapi-gen=true
+ * @export
+ * @interface Item
+ */
+export interface Item {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Item
+     */
+    boolVal?: boolean;
+    /**
+     * 
+     * @type {Array<ItemValue>}
+     * @memberof Item
+     */
+    listVal?: Array<ItemValue>;
+    /**
+     * 
+     * @type {{ [key: string]: ItemValue; }}
+     * @memberof Item
+     */
+    mapVal?: { [key: string]: ItemValue; };
+    /**
+     * 
+     * @type {string}
+     * @memberof Item
+     */
+    numVal?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Item
+     */
+    strVal?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Item
+     */
+    type?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ItemValue
+ */
+export interface ItemValue {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ItemValue
+     */
+    boolVal?: boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ItemValue
+     */
+    listVal?: Array<string>;
+    /**
+     * 
+     * @type {{ [key: string]: string; }}
+     * @memberof ItemValue
+     */
+    mapVal?: { [key: string]: string; };
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemValue
+     */
+    numVal?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemValue
+     */
+    strVal?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemValue
+     */
+    type?: string;
+}
+/**
+ * 
+ * @export
+ * @interface Link
+ */
+export interface Link {
+    /**
+     * 
+     * @type {string}
+     * @memberof Link
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Link
+     */
+    scope?: string;
+    /**
+     * The URL. May contain \"${metadata.namespace}\" and \"${metadata.name}\".
+     * @type {string}
+     * @memberof Link
+     */
+    url?: string;
+}
+/**
+ * 
+ * @export
+ * @interface LogEntry
+ */
+export interface LogEntry {
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntry
+     */
+    content?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LogEntry
+     */
+    podName?: string;
+}
+/**
+ * 
+ * @export
+ * @interface Metadata
+ */
+export interface Metadata {
+    /**
+     * 
+     * @type {{ [key: string]: string; }}
+     * @memberof Metadata
+     */
+    annotations?: { [key: string]: string; };
+    /**
+     * 
+     * @type {{ [key: string]: string; }}
+     * @memberof Metadata
+     */
+    labels?: { [key: string]: string; };
+}
+/**
+ * 
+ * @export
+ * @interface MetricLabel
+ */
+export interface MetricLabel {
+    /**
+     * 
+     * @type {string}
+     * @memberof MetricLabel
+     */
+    key?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MetricLabel
+     */
+    value?: string;
+}
+/**
+ * 
+ * @export
+ * @interface Metrics
+ */
+export interface Metrics {
+    /**
+     * 
+     * @type {Array<Prometheus>}
+     * @memberof Metrics
+     */
+    prometheus?: Array<Prometheus>;
+}
+/**
+ * 
+ * @export
+ * @interface NodeStatus
+ */
+export interface NodeStatus {
+    /**
+     * 
+     * @type {string}
+     * @memberof NodeStatus
+     */
+    boundaryID?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof NodeStatus
+     */
+    children?: Array<string>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof NodeStatus
+     */
+    daemoned?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof NodeStatus
+     */
+    displayName?: string;
+    /**
+     * 
+     * @type {IoK8sApiCoreV1Time}
+     * @memberof NodeStatus
+     */
+    finishedAt?: IoK8sApiCoreV1Time;
+    /**
+     * 
+     * @type {string}
+     * @memberof NodeStatus
+     */
+    id?: string;
+    /**
+     * 
+     * @type {Inputs}
+     * @memberof NodeStatus
+     */
+    inputs?: Inputs;
+    /**
+     * A human readable message indicating details about why the node is in this condition.
+     * @type {string}
+     * @memberof NodeStatus
+     */
+    message?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NodeStatus
+     */
+    name?: string;
+    /**
+     * OutboundNodes tracks the node IDs which are considered \"outbound\" nodes to a template invocation. For every invocation of a template, there are nodes which we considered as \"outbound\". Essentially, these are last nodes in the execution sequence to run, before the template is considered completed. These nodes are then connected as parents to a following step.  In the case of single pod steps (i.e. container, script, resource templates), this list will be nil since the pod itself is already considered the \"outbound\" node. In the case of DAGs, outbound nodes are the \"target\" tasks (tasks with no children). In the case of steps, outbound nodes are all the containers involved in the last step group. NOTE: since templates are composable, the list of outbound nodes are carried upwards when a DAG/steps template invokes another DAG/steps template. In other words, the outbound nodes of a template, will be a superset of the outbound nodes of its last children.
+     * @type {Array<string>}
+     * @memberof NodeStatus
+     */
+    outboundNodes?: Array<string>;
+    /**
+     * 
+     * @type {Outputs}
+     * @memberof NodeStatus
+     */
+    outputs?: Outputs;
+    /**
+     * Phase a simple, high-level summary of where the node is in its lifecycle. Can be used as a state machine.
+     * @type {string}
+     * @memberof NodeStatus
+     */
+    phase?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NodeStatus
+     */
+    podIP?: string;
+    /**
+     * ResourcesDuration is indicative, but not accurate, resource duration. This is populated when the nodes completes.
+     * @type {{ [key: string]: string; }}
+     * @memberof NodeStatus
+     */
+    resourcesDuration?: { [key: string]: string; };
+    /**
+     * 
+     * @type {IoK8sApiCoreV1Time}
+     * @memberof NodeStatus
+     */
+    startedAt?: IoK8sApiCoreV1Time;
+    /**
+     * StoredTemplateID is the ID of stored template. DEPRECATED: This value is not used anymore.
+     * @type {string}
+     * @memberof NodeStatus
+     */
+    storedTemplateID?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NodeStatus
+     */
+    templateName?: string;
+    /**
+     * 
+     * @type {TemplateRef}
+     * @memberof NodeStatus
+     */
+    templateRef?: TemplateRef;
+    /**
+     * TemplateScope is the template scope in which the template of this node was retrieved.
+     * @type {string}
+     * @memberof NodeStatus
+     */
+    templateScope?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NodeStatus
+     */
+    type?: string;
+    /**
+     * WorkflowTemplateName is the WorkflowTemplate resource name on which the resolved template of this node is retrieved. DEPRECATED: This value is not used anymore.
+     * @type {string}
+     * @memberof NodeStatus
+     */
+    workflowTemplateName?: string;
+}
+/**
+ * 
+ * @export
+ * @interface OSSArtifact
+ */
+export interface OSSArtifact {
+    /**
+     * 
+     * @type {string}
+     * @memberof OSSArtifact
+     */
+    key?: string;
+    /**
+     * 
+     * @type {OSSBucket}
+     * @memberof OSSArtifact
+     */
+    oSSBucket?: OSSBucket;
+}
+/**
+ * 
+ * @export
+ * @interface OSSBucket
+ */
+export interface OSSBucket {
+    /**
+     * 
+     * @type {IoK8sApiCoreV1SecretKeySelector}
+     * @memberof OSSBucket
+     */
+    accessKeySecret?: IoK8sApiCoreV1SecretKeySelector;
+    /**
+     * 
+     * @type {string}
+     * @memberof OSSBucket
+     */
+    bucket?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OSSBucket
+     */
+    endpoint?: string;
+    /**
+     * 
+     * @type {IoK8sApiCoreV1SecretKeySelector}
+     * @memberof OSSBucket
+     */
+    secretKeySecret?: IoK8sApiCoreV1SecretKeySelector;
+}
+/**
+ * 
+ * @export
+ * @interface Outputs
+ */
+export interface Outputs {
+    /**
+     * 
+     * @type {Array<Artifact>}
+     * @memberof Outputs
+     */
+    artifacts?: Array<Artifact>;
+    /**
+     * 
+     * @type {Array<Parameter>}
+     * @memberof Outputs
+     */
+    parameters?: Array<Parameter>;
+    /**
+     * 
+     * @type {string}
+     * @memberof Outputs
+     */
+    result?: string;
+}
+/**
+ * 
+ * @export
+ * @interface Parameter
+ */
+export interface Parameter {
+    /**
+     * 
+     * @type {string}
+     * @memberof Parameter
+     */
+    _default?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Parameter
+     */
+    globalName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Parameter
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Parameter
+     */
+    value?: string;
+    /**
+     * 
+     * @type {ValueFrom}
+     * @memberof Parameter
+     */
+    valueFrom?: ValueFrom;
+}
+/**
+ * 
+ * @export
+ * @interface PodGC
+ */
+export interface PodGC {
+    /**
+     * 
+     * @type {string}
+     * @memberof PodGC
+     */
+    strategy?: string;
+}
+/**
+ * 
+ * @export
+ * @interface Prometheus
+ */
+export interface Prometheus {
+    /**
+     * 
+     * @type {Counter}
+     * @memberof Prometheus
+     */
+    counter?: Counter;
+    /**
+     * 
+     * @type {Gauge}
+     * @memberof Prometheus
+     */
+    gauge?: Gauge;
+    /**
+     * 
+     * @type {string}
+     * @memberof Prometheus
+     */
+    help?: string;
+    /**
+     * 
+     * @type {Histogram}
+     * @memberof Prometheus
+     */
+    histogram?: Histogram;
+    /**
+     * 
+     * @type {Array<MetricLabel>}
+     * @memberof Prometheus
+     */
+    labels?: Array<MetricLabel>;
+    /**
+     * 
+     * @type {string}
+     * @memberof Prometheus
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Prometheus
+     */
+    when?: string;
+}
+/**
+ * 
+ * @export
+ * @interface RawArtifact
+ */
+export interface RawArtifact {
+    /**
+     * 
+     * @type {string}
+     * @memberof RawArtifact
+     */
+    data?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ResourceTemplate
+ */
+export interface ResourceTemplate {
+    /**
+     * 
+     * @type {string}
+     * @memberof ResourceTemplate
+     */
+    action?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ResourceTemplate
+     */
+    failureCondition?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ResourceTemplate
+     */
+    manifest?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ResourceTemplate
+     */
+    mergeStrategy?: string;
+    /**
+     * SetOwnerReference sets the reference to the workflow on the OwnerReference of generated resource.
+     * @type {boolean}
+     * @memberof ResourceTemplate
+     */
+    setOwnerReference?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ResourceTemplate
+     */
+    successCondition?: string;
+}
+/**
+ * 
+ * @export
+ * @interface RetryStrategy
+ */
+export interface RetryStrategy {
+    /**
+     * 
+     * @type {Backoff}
+     * @memberof RetryStrategy
+     */
+    backoff?: Backoff;
+    /**
+     * 
+     * @type {number}
+     * @memberof RetryStrategy
+     */
+    limit?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RetryStrategy
+     */
+    retryPolicy?: string;
+}
+/**
+ * 
+ * @export
+ * @interface S3Artifact
+ */
+export interface S3Artifact {
+    /**
+     * 
+     * @type {string}
+     * @memberof S3Artifact
+     */
+    key?: string;
+    /**
+     * 
+     * @type {S3Bucket}
+     * @memberof S3Artifact
+     */
+    s3Bucket?: S3Bucket;
+}
+/**
+ * 
+ * @export
+ * @interface S3Bucket
+ */
+export interface S3Bucket {
+    /**
+     * 
+     * @type {IoK8sApiCoreV1SecretKeySelector}
+     * @memberof S3Bucket
+     */
+    accessKeySecret?: IoK8sApiCoreV1SecretKeySelector;
+    /**
+     * 
+     * @type {string}
+     * @memberof S3Bucket
+     */
+    bucket?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof S3Bucket
+     */
+    endpoint?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof S3Bucket
+     */
+    insecure?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof S3Bucket
+     */
+    region?: string;
+    /**
+     * RoleARN is the Amazon Resource Name (ARN) of the role to assume.
+     * @type {string}
+     * @memberof S3Bucket
+     */
+    roleARN?: string;
+    /**
+     * 
+     * @type {IoK8sApiCoreV1SecretKeySelector}
+     * @memberof S3Bucket
+     */
+    secretKeySecret?: IoK8sApiCoreV1SecretKeySelector;
+    /**
+     * UseSDKCreds tells the driver to figure out credentials based on sdk defaults.
+     * @type {boolean}
+     * @memberof S3Bucket
+     */
+    useSDKCreds?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface ScriptTemplate
+ */
+export interface ScriptTemplate {
+    /**
+     * 
+     * @type {IoK8sApiCoreV1Container}
+     * @memberof ScriptTemplate
+     */
+    container?: IoK8sApiCoreV1Container;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScriptTemplate
+     */
+    source?: string;
+}
+/**
+ * 
+ * @export
+ * @interface Sequence
+ */
+export interface Sequence {
+    /**
+     * 
+     * @type {string}
+     * @memberof Sequence
+     */
+    count?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Sequence
+     */
+    end?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Sequence
+     */
+    format?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Sequence
+     */
+    start?: string;
+}
+/**
+ * 
+ * @export
+ * @interface SuspendTemplate
+ */
+export interface SuspendTemplate {
+    /**
+     * 
+     * @type {string}
+     * @memberof SuspendTemplate
+     */
+    duration?: string;
+}
+/**
+ * 
+ * @export
+ * @interface TTLStrategy
+ */
+export interface TTLStrategy {
+    /**
+     * 
+     * @type {number}
+     * @memberof TTLStrategy
+     */
+    secondsAfterCompletion?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TTLStrategy
+     */
+    secondsAfterFailure?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof TTLStrategy
+     */
+    secondsAfterSuccess?: number;
+}
+/**
+ * 
+ * @export
+ * @interface Template
+ */
+export interface Template {
+    /**
+     * Optional duration in seconds relative to the StartTime that the pod may be active on a node before the system actively tries to terminate the pod; value must be positive integer This field is only applicable to container and script templates.
+     * @type {string}
+     * @memberof Template
+     */
+    activeDeadlineSeconds?: string;
+    /**
+     * 
+     * @type {IoK8sApiCoreV1Affinity}
+     * @memberof Template
+     */
+    affinity?: IoK8sApiCoreV1Affinity;
+    /**
+     * 
+     * @type {ArtifactLocation}
+     * @memberof Template
+     */
+    archiveLocation?: ArtifactLocation;
+    /**
+     * 
+     * @type {Arguments}
+     * @memberof Template
+     */
+    arguments?: Arguments;
+    /**
+     * AutomountServiceAccountToken indicates whether a service account token should be automatically mounted in pods. ServiceAccountName of ExecutorConfig must be specified if this value is false.
+     * @type {boolean}
+     * @memberof Template
+     */
+    automountServiceAccountToken?: boolean;
+    /**
+     * 
+     * @type {IoK8sApiCoreV1Container}
+     * @memberof Template
+     */
+    container?: IoK8sApiCoreV1Container;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Template
+     */
+    daemon?: boolean;
+    /**
+     * 
+     * @type {DAGTemplate}
+     * @memberof Template
+     */
+    dag?: DAGTemplate;
+    /**
+     * 
+     * @type {ExecutorConfig}
+     * @memberof Template
+     */
+    executor?: ExecutorConfig;
+    /**
+     * 
+     * @type {Array<IoK8sApiCoreV1HostAlias>}
+     * @memberof Template
+     */
+    hostAliases?: Array<IoK8sApiCoreV1HostAlias>;
+    /**
+     * 
+     * @type {Array<UserContainer>}
+     * @memberof Template
+     */
+    initContainers?: Array<UserContainer>;
+    /**
+     * 
+     * @type {Inputs}
+     * @memberof Template
+     */
+    inputs?: Inputs;
+    /**
+     * 
+     * @type {Metadata}
+     * @memberof Template
+     */
+    metadata?: Metadata;
+    /**
+     * 
+     * @type {Metrics}
+     * @memberof Template
+     */
+    metrics?: Metrics;
+    /**
+     * 
+     * @type {string}
+     * @memberof Template
+     */
+    name?: string;
+    /**
+     * NodeSelector is a selector to schedule this step of the workflow to be run on the selected node(s). Overrides the selector set at the workflow level.
+     * @type {{ [key: string]: string; }}
+     * @memberof Template
+     */
+    nodeSelector?: { [key: string]: string; };
+    /**
+     * 
+     * @type {Outputs}
+     * @memberof Template
+     */
+    outputs?: Outputs;
+    /**
+     * Parallelism limits the max total parallel pods that can execute at the same time within the boundaries of this template invocation. If additional steps/dag templates are invoked, the pods created by those templates will not be counted towards this total.
+     * @type {number}
+     * @memberof Template
+     */
+    parallelism?: number;
+    /**
+     * PodSpecPatch holds strategic merge patch to apply against the pod spec. Allows parameterization of container fields which are not strings (e.g. resource limits).
+     * @type {string}
+     * @memberof Template
+     */
+    podSpecPatch?: string;
+    /**
+     * Priority to apply to workflow pods.
+     * @type {number}
+     * @memberof Template
+     */
+    priority?: number;
+    /**
+     * PriorityClassName to apply to workflow pods.
+     * @type {string}
+     * @memberof Template
+     */
+    priorityClassName?: string;
+    /**
+     * 
+     * @type {ResourceTemplate}
+     * @memberof Template
+     */
+    resource?: ResourceTemplate;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Template
+     */
+    resubmitPendingPods?: boolean;
+    /**
+     * 
+     * @type {RetryStrategy}
+     * @memberof Template
+     */
+    retryStrategy?: RetryStrategy;
+    /**
+     * 
+     * @type {string}
+     * @memberof Template
+     */
+    schedulerName?: string;
+    /**
+     * 
+     * @type {ScriptTemplate}
+     * @memberof Template
+     */
+    script?: ScriptTemplate;
+    /**
+     * 
+     * @type {IoK8sApiCoreV1PodSecurityContext}
+     * @memberof Template
+     */
+    securityContext?: IoK8sApiCoreV1PodSecurityContext;
+    /**
+     * 
+     * @type {string}
+     * @memberof Template
+     */
+    serviceAccountName?: string;
+    /**
+     * 
+     * @type {Array<UserContainer>}
+     * @memberof Template
+     */
+    sidecars?: Array<UserContainer>;
+    /**
+     * 
+     * @type {Array<Array<WorkflowStep>>}
+     * @memberof Template
+     */
+    steps?: Array<Array<WorkflowStep>>;
+    /**
+     * 
+     * @type {SuspendTemplate}
+     * @memberof Template
+     */
+    suspend?: SuspendTemplate;
+    /**
+     * Template is the name of the template which is used as the base of this template. DEPRECATED: This field is not used.
+     * @type {string}
+     * @memberof Template
+     */
+    template?: string;
+    /**
+     * 
+     * @type {TemplateRef}
+     * @memberof Template
+     */
+    templateRef?: TemplateRef;
+    /**
+     * 
+     * @type {Array<IoK8sApiCoreV1Toleration>}
+     * @memberof Template
+     */
+    tolerations?: Array<IoK8sApiCoreV1Toleration>;
+    /**
+     * 
+     * @type {Array<IoK8sApiCoreV1Volume>}
+     * @memberof Template
+     */
+    volumes?: Array<IoK8sApiCoreV1Volume>;
+}
+/**
+ * TemplateRef is a reference of template resource.
+ * @export
+ * @interface TemplateRef
+ */
+export interface TemplateRef {
+    /**
+     * Name is the resource name of the template.
+     * @type {string}
+     * @memberof TemplateRef
+     */
+    name?: string;
+    /**
+     * RuntimeResolution skips validation at creation time. By enabling this option, you can create the referred workflow template before the actual runtime.
+     * @type {boolean}
+     * @memberof TemplateRef
+     */
+    runtimeResolution?: boolean;
+    /**
+     * Template is the name of referred template in the resource.
+     * @type {string}
+     * @memberof TemplateRef
+     */
+    template?: string;
+}
+/**
+ * UserContainer is a container specified by a user.
+ * @export
+ * @interface UserContainer
+ */
+export interface UserContainer {
+    /**
+     * 
+     * @type {IoK8sApiCoreV1Container}
+     * @memberof UserContainer
+     */
+    container?: IoK8sApiCoreV1Container;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UserContainer
+     */
+    mirrorVolumeMounts?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface ValueFrom
+ */
+export interface ValueFrom {
+    /**
+     * 
+     * @type {string}
+     * @memberof ValueFrom
+     */
+    _default?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ValueFrom
+     */
+    jqFilter?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ValueFrom
+     */
+    jsonPath?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ValueFrom
+     */
+    parameter?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ValueFrom
+     */
+    path?: string;
+}
+/**
+ * 
+ * @export
+ * @interface Workflow
+ */
+export interface Workflow {
+    /**
+     * 
+     * @type {IoK8sApiCoreV1ObjectMeta}
+     * @memberof Workflow
+     */
+    metadata?: IoK8sApiCoreV1ObjectMeta;
+    /**
+     * 
+     * @type {WorkflowSpec}
+     * @memberof Workflow
+     */
+    spec?: WorkflowSpec;
+    /**
+     * 
+     * @type {WorkflowStatus}
+     * @memberof Workflow
+     */
+    status?: WorkflowStatus;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowCondition
+ */
+export interface WorkflowCondition {
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowCondition
+     */
+    message?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowCondition
+     */
+    status?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowCondition
+     */
+    type?: string;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowCreateRequest
+ */
+export interface WorkflowCreateRequest {
+    /**
+     * 
+     * @type {IoK8sApiCoreV1CreateOptions}
+     * @memberof WorkflowCreateRequest
+     */
+    createOptions?: IoK8sApiCoreV1CreateOptions;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowCreateRequest
+     */
+    instanceID?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowCreateRequest
+     */
+    namespace?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof WorkflowCreateRequest
+     */
+    serverDryRun?: boolean;
+    /**
+     * 
+     * @type {Workflow}
+     * @memberof WorkflowCreateRequest
+     */
+    workflow?: Workflow;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowLintRequest
+ */
+export interface WorkflowLintRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowLintRequest
+     */
+    namespace?: string;
+    /**
+     * 
+     * @type {Workflow}
+     * @memberof WorkflowLintRequest
+     */
+    workflow?: Workflow;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowList
+ */
+export interface WorkflowList {
+    /**
+     * 
+     * @type {Array<Workflow>}
+     * @memberof WorkflowList
+     */
+    items?: Array<Workflow>;
+    /**
+     * 
+     * @type {IoK8sApiCoreV1ListMeta}
+     * @memberof WorkflowList
+     */
+    metadata?: IoK8sApiCoreV1ListMeta;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowResubmitRequest
+ */
+export interface WorkflowResubmitRequest {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof WorkflowResubmitRequest
+     */
+    memoized?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowResubmitRequest
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowResubmitRequest
+     */
+    namespace?: string;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowResumeRequest
+ */
+export interface WorkflowResumeRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowResumeRequest
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowResumeRequest
+     */
+    namespace?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowResumeRequest
+     */
+    nodeFieldSelector?: string;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowRetryRequest
+ */
+export interface WorkflowRetryRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowRetryRequest
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowRetryRequest
+     */
+    namespace?: string;
+}
+/**
+ * WorkflowSpec is the specification of a Workflow.
+ * @export
+ * @interface WorkflowSpec
+ */
+export interface WorkflowSpec {
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowSpec
+     */
+    activeDeadlineSeconds?: string;
+    /**
+     * 
+     * @type {IoK8sApiCoreV1Affinity}
+     * @memberof WorkflowSpec
+     */
+    affinity?: IoK8sApiCoreV1Affinity;
+    /**
+     * 
+     * @type {Arguments}
+     * @memberof WorkflowSpec
+     */
+    arguments?: Arguments;
+    /**
+     * 
+     * @type {ArtifactRepositoryRef}
+     * @memberof WorkflowSpec
+     */
+    artifactRepositoryRef?: ArtifactRepositoryRef;
+    /**
+     * AutomountServiceAccountToken indicates whether a service account token should be automatically mounted in pods. ServiceAccountName of ExecutorConfig must be specified if this value is false.
+     * @type {boolean}
+     * @memberof WorkflowSpec
+     */
+    automountServiceAccountToken?: boolean;
+    /**
+     * 
+     * @type {IoK8sApiCoreV1PodDNSConfig}
+     * @memberof WorkflowSpec
+     */
+    dnsConfig?: IoK8sApiCoreV1PodDNSConfig;
+    /**
+     * Set DNS policy for the pod. Defaults to \"ClusterFirst\". Valid values are \'ClusterFirstWithHostNet\', \'ClusterFirst\', \'Default\' or \'None\'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to \'ClusterFirstWithHostNet\'.
+     * @type {string}
+     * @memberof WorkflowSpec
+     */
+    dnsPolicy?: string;
+    /**
+     * Entrypoint is a template reference to the starting point of the 
+     * @type {string}
+     * @memberof WorkflowSpec
+     */
+    entrypoint?: string;
+    /**
+     * 
+     * @type {ExecutorConfig}
+     * @memberof WorkflowSpec
+     */
+    executor?: ExecutorConfig;
+    /**
+     * 
+     * @type {Array<IoK8sApiCoreV1HostAlias>}
+     * @memberof WorkflowSpec
+     */
+    hostAliases?: Array<IoK8sApiCoreV1HostAlias>;
+    /**
+     * Host networking requested for this workflow pod. Default to false.
+     * @type {boolean}
+     * @memberof WorkflowSpec
+     */
+    hostNetwork?: boolean;
+    /**
+     * 
+     * @type {Array<IoK8sApiCoreV1LocalObjectReference>}
+     * @memberof WorkflowSpec
+     */
+    imagePullSecrets?: Array<IoK8sApiCoreV1LocalObjectReference>;
+    /**
+     * 
+     * @type {Metrics}
+     * @memberof WorkflowSpec
+     */
+    metrics?: Metrics;
+    /**
+     * NodeSelector is a selector which will result in all pods of the workflow to be scheduled on the selected node(s). This is able to be overridden by a nodeSelector specified in the template.
+     * @type {{ [key: string]: string; }}
+     * @memberof WorkflowSpec
+     */
+    nodeSelector?: { [key: string]: string; };
+    /**
+     * OnExit is a template reference which is invoked at the end of the workflow, irrespective of the success, failure, or error of the primary 
+     * @type {string}
+     * @memberof WorkflowSpec
+     */
+    onExit?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkflowSpec
+     */
+    parallelism?: number;
+    /**
+     * 
+     * @type {IoK8sApiCoreV1PodDisruptionBudgetSpec}
+     * @memberof WorkflowSpec
+     */
+    podDisruptionBudget?: IoK8sApiCoreV1PodDisruptionBudgetSpec;
+    /**
+     * 
+     * @type {PodGC}
+     * @memberof WorkflowSpec
+     */
+    podGC?: PodGC;
+    /**
+     * Priority to apply to workflow pods.
+     * @type {number}
+     * @memberof WorkflowSpec
+     */
+    podPriority?: number;
+    /**
+     * PriorityClassName to apply to workflow pods.
+     * @type {string}
+     * @memberof WorkflowSpec
+     */
+    podPriorityClassName?: string;
+    /**
+     * PodSpecPatch holds strategic merge patch to apply against the pod spec. Allows parameterization of container fields which are not strings (e.g. resource limits).
+     * @type {string}
+     * @memberof WorkflowSpec
+     */
+    podSpecPatch?: string;
+    /**
+     * Priority is used if controller is configured to process limited number of workflows in parallel. Workflows with higher priority are processed first.
+     * @type {number}
+     * @memberof WorkflowSpec
+     */
+    priority?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowSpec
+     */
+    schedulerName?: string;
+    /**
+     * 
+     * @type {IoK8sApiCoreV1PodSecurityContext}
+     * @memberof WorkflowSpec
+     */
+    securityContext?: IoK8sApiCoreV1PodSecurityContext;
+    /**
+     * ServiceAccountName is the name of the ServiceAccount to run all pods of the workflow as.
+     * @type {string}
+     * @memberof WorkflowSpec
+     */
+    serviceAccountName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowSpec
+     */
+    shutdown?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof WorkflowSpec
+     */
+    suspend?: boolean;
+    /**
+     * 
+     * @type {Array<Template>}
+     * @memberof WorkflowSpec
+     */
+    templates?: Array<Template>;
+    /**
+     * 
+     * @type {Array<IoK8sApiCoreV1Toleration>}
+     * @memberof WorkflowSpec
+     */
+    tolerations?: Array<IoK8sApiCoreV1Toleration>;
+    /**
+     * TTLSecondsAfterFinished limits the lifetime of a Workflow that has finished execution (Succeeded, Failed, Error). If this field is set, once the Workflow finishes, it will be deleted after ttlSecondsAfterFinished expires. If this field is unset, ttlSecondsAfterFinished will not expire. If this field is set to zero, ttlSecondsAfterFinished expires immediately after the Workflow finishes. DEPRECATED: Use TTLStrategy.SecondsAfterCompletion instead.
+     * @type {number}
+     * @memberof WorkflowSpec
+     */
+    ttlSecondsAfterFinished?: number;
+    /**
+     * 
+     * @type {TTLStrategy}
+     * @memberof WorkflowSpec
+     */
+    ttlStrategy?: TTLStrategy;
+    /**
+     * 
+     * @type {Array<IoK8sApiCoreV1PersistentVolumeClaim>}
+     * @memberof WorkflowSpec
+     */
+    volumeClaimTemplates?: Array<IoK8sApiCoreV1PersistentVolumeClaim>;
+    /**
+     * 
+     * @type {Array<IoK8sApiCoreV1Volume>}
+     * @memberof WorkflowSpec
+     */
+    volumes?: Array<IoK8sApiCoreV1Volume>;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowStatus
+ */
+export interface WorkflowStatus {
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowStatus
+     */
+    compressedNodes?: string;
+    /**
+     * 
+     * @type {Array<WorkflowCondition>}
+     * @memberof WorkflowStatus
+     */
+    conditions?: Array<WorkflowCondition>;
+    /**
+     * 
+     * @type {IoK8sApiCoreV1Time}
+     * @memberof WorkflowStatus
+     */
+    finishedAt?: IoK8sApiCoreV1Time;
+    /**
+     * A human readable message indicating details about why the workflow is in this condition.
+     * @type {string}
+     * @memberof WorkflowStatus
+     */
+    message?: string;
+    /**
+     * Nodes is a mapping between a node ID and the node\'s status.
+     * @type {{ [key: string]: NodeStatus; }}
+     * @memberof WorkflowStatus
+     */
+    nodes?: { [key: string]: NodeStatus; };
+    /**
+     * Whether on not node status has been offloaded to a database. If exists, then Nodes and CompressedNodes will be empty. This will actually be populated with a hash of the offloaded data.
+     * @type {string}
+     * @memberof WorkflowStatus
+     */
+    offloadNodeStatusVersion?: string;
+    /**
+     * 
+     * @type {Outputs}
+     * @memberof WorkflowStatus
+     */
+    outputs?: Outputs;
+    /**
+     * PersistentVolumeClaims tracks all PVCs that were created as part of the  The contents of this list are drained at the end of the workflow.
+     * @type {Array<IoK8sApiCoreV1Volume>}
+     * @memberof WorkflowStatus
+     */
+    persistentVolumeClaims?: Array<IoK8sApiCoreV1Volume>;
+    /**
+     * Phase a simple, high-level summary of where the workflow is in its lifecycle.
+     * @type {string}
+     * @memberof WorkflowStatus
+     */
+    phase?: string;
+    /**
+     * 
+     * @type {{ [key: string]: string; }}
+     * @memberof WorkflowStatus
+     */
+    resourcesDuration?: { [key: string]: string; };
+    /**
+     * 
+     * @type {IoK8sApiCoreV1Time}
+     * @memberof WorkflowStatus
+     */
+    startedAt?: IoK8sApiCoreV1Time;
+    /**
+     * StoredTemplates is a mapping between a template ref and the node\'s status.
+     * @type {{ [key: string]: Template; }}
+     * @memberof WorkflowStatus
+     */
+    storedTemplates?: { [key: string]: Template; };
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowStep
+ */
+export interface WorkflowStep {
+    /**
+     * 
+     * @type {Arguments}
+     * @memberof WorkflowStep
+     */
+    arguments?: Arguments;
+    /**
+     * 
+     * @type {ContinueOn}
+     * @memberof WorkflowStep
+     */
+    continueOn?: ContinueOn;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowStep
+     */
+    name?: string;
+    /**
+     * OnExit is a template reference which is invoked at the end of the template, irrespective of the success, failure, or error of the primary template.
+     * @type {string}
+     * @memberof WorkflowStep
+     */
+    onExit?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowStep
+     */
+    template?: string;
+    /**
+     * 
+     * @type {TemplateRef}
+     * @memberof WorkflowStep
+     */
+    templateRef?: TemplateRef;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowStep
+     */
+    when?: string;
+    /**
+     * 
+     * @type {Array<Item>}
+     * @memberof WorkflowStep
+     */
+    withItems?: Array<Item>;
+    /**
+     * WithParam expands a step into multiple parallel steps from the value in the parameter, which is expected to be a JSON list.
+     * @type {string}
+     * @memberof WorkflowStep
+     */
+    withParam?: string;
+    /**
+     * 
+     * @type {Sequence}
+     * @memberof WorkflowStep
+     */
+    withSequence?: Sequence;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowStopRequest
+ */
+export interface WorkflowStopRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowStopRequest
+     */
+    message?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowStopRequest
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowStopRequest
+     */
+    namespace?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowStopRequest
+     */
+    nodeFieldSelector?: string;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowSuspendRequest
+ */
+export interface WorkflowSuspendRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowSuspendRequest
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowSuspendRequest
+     */
+    namespace?: string;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowTemplate
+ */
+export interface WorkflowTemplate {
+    /**
+     * 
+     * @type {IoK8sApiCoreV1ObjectMeta}
+     * @memberof WorkflowTemplate
+     */
+    metadata?: IoK8sApiCoreV1ObjectMeta;
+    /**
+     * 
+     * @type {WorkflowTemplateSpec}
+     * @memberof WorkflowTemplate
+     */
+    spec?: WorkflowTemplateSpec;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowTemplateCreateRequest
+ */
+export interface WorkflowTemplateCreateRequest {
+    /**
+     * 
+     * @type {IoK8sApiCoreV1CreateOptions}
+     * @memberof WorkflowTemplateCreateRequest
+     */
+    createOptions?: IoK8sApiCoreV1CreateOptions;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowTemplateCreateRequest
+     */
+    namespace?: string;
+    /**
+     * 
+     * @type {WorkflowTemplate}
+     * @memberof WorkflowTemplateCreateRequest
+     */
+    template?: WorkflowTemplate;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowTemplateLintRequest
+ */
+export interface WorkflowTemplateLintRequest {
+    /**
+     * 
+     * @type {IoK8sApiCoreV1CreateOptions}
+     * @memberof WorkflowTemplateLintRequest
+     */
+    createOptions?: IoK8sApiCoreV1CreateOptions;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowTemplateLintRequest
+     */
+    namespace?: string;
+    /**
+     * 
+     * @type {WorkflowTemplate}
+     * @memberof WorkflowTemplateLintRequest
+     */
+    template?: WorkflowTemplate;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowTemplateList
+ */
+export interface WorkflowTemplateList {
+    /**
+     * 
+     * @type {Array<WorkflowTemplate>}
+     * @memberof WorkflowTemplateList
+     */
+    items?: Array<WorkflowTemplate>;
+    /**
+     * 
+     * @type {IoK8sApiCoreV1ListMeta}
+     * @memberof WorkflowTemplateList
+     */
+    metadata?: IoK8sApiCoreV1ListMeta;
+}
+/**
+ * WorkflowTemplateSpec is a spec of WorkflowTemplate.
+ * @export
+ * @interface WorkflowTemplateSpec
+ */
+export interface WorkflowTemplateSpec {
+    /**
+     * 
+     * @type {WorkflowSpec}
+     * @memberof WorkflowTemplateSpec
+     */
+    workflowSpec?: WorkflowSpec;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowTemplateUpdateRequest
+ */
+export interface WorkflowTemplateUpdateRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowTemplateUpdateRequest
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowTemplateUpdateRequest
+     */
+    namespace?: string;
+    /**
+     * 
+     * @type {WorkflowTemplate}
+     * @memberof WorkflowTemplateUpdateRequest
+     */
+    template?: WorkflowTemplate;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowTerminateRequest
+ */
+export interface WorkflowTerminateRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowTerminateRequest
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowTerminateRequest
+     */
+    namespace?: string;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowWatchEvent
+ */
+export interface WorkflowWatchEvent {
+    /**
+     * 
+     * @type {Workflow}
+     * @memberof WorkflowWatchEvent
+     */
+    object?: Workflow;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowWatchEvent
+     */
+    type?: string;
+}
 
 /**
  * ArchivedWorkflowServiceApi - axios parameter creator
@@ -6124,7 +6124,7 @@ export const ArchivedWorkflowServiceApiFp = function(configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getArchivedWorkflow(uid: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1Workflow> {
+        getArchivedWorkflow(uid: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Workflow> {
             const localVarAxiosArgs = ArchivedWorkflowServiceApiAxiosParamCreator(configuration).getArchivedWorkflow(uid, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -6144,7 +6144,7 @@ export const ArchivedWorkflowServiceApiFp = function(configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listArchivedWorkflows(listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1WorkflowList> {
+        listArchivedWorkflows(listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<WorkflowList> {
             const localVarAxiosArgs = ArchivedWorkflowServiceApiAxiosParamCreator(configuration).listArchivedWorkflows(listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -6175,7 +6175,7 @@ export const ArchivedWorkflowServiceApiFactory = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getArchivedWorkflow(uid: string, options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1Workflow> {
+        getArchivedWorkflow(uid: string, options?: any): AxiosPromise<Workflow> {
             return ArchivedWorkflowServiceApiFp(configuration).getArchivedWorkflow(uid, options)(axios, basePath);
         },
         /**
@@ -6191,7 +6191,7 @@ export const ArchivedWorkflowServiceApiFactory = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listArchivedWorkflows(listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1WorkflowList> {
+        listArchivedWorkflows(listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, options?: any): AxiosPromise<WorkflowList> {
             return ArchivedWorkflowServiceApiFp(configuration).listArchivedWorkflows(listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, options)(axios, basePath);
         },
     };
@@ -6256,11 +6256,11 @@ export const CronWorkflowServiceApiAxiosParamCreator = function (configuration?:
         /**
          * 
          * @param {string} namespace 
-         * @param {CronioArgoprojWorkflowV1alpha1CreateCronWorkflowRequest} body 
+         * @param {CronCreateCronWorkflowRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCronWorkflow(namespace: string, body: CronioArgoprojWorkflowV1alpha1CreateCronWorkflowRequest, options: any = {}): RequestArgs {
+        createCronWorkflow(namespace: string, body: CronCreateCronWorkflowRequest, options: any = {}): RequestArgs {
             // verify required parameter 'namespace' is not null or undefined
             if (namespace === null || namespace === undefined) {
                 throw new RequiredError('namespace','Required parameter namespace was null or undefined when calling createCronWorkflow.');
@@ -6417,11 +6417,11 @@ export const CronWorkflowServiceApiAxiosParamCreator = function (configuration?:
         /**
          * 
          * @param {string} namespace 
-         * @param {CronioArgoprojWorkflowV1alpha1LintCronWorkflowRequest} body 
+         * @param {CronLintCronWorkflowRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        lintCronWorkflow(namespace: string, body: CronioArgoprojWorkflowV1alpha1LintCronWorkflowRequest, options: any = {}): RequestArgs {
+        lintCronWorkflow(namespace: string, body: CronLintCronWorkflowRequest, options: any = {}): RequestArgs {
             // verify required parameter 'namespace' is not null or undefined
             if (namespace === null || namespace === undefined) {
                 throw new RequiredError('namespace','Required parameter namespace was null or undefined when calling lintCronWorkflow.');
@@ -6537,11 +6537,11 @@ export const CronWorkflowServiceApiAxiosParamCreator = function (configuration?:
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {CronioArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest} body 
+         * @param {CronUpdateCronWorkflowRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCronWorkflow(namespace: string, name: string, body: CronioArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest, options: any = {}): RequestArgs {
+        updateCronWorkflow(namespace: string, name: string, body: CronUpdateCronWorkflowRequest, options: any = {}): RequestArgs {
             // verify required parameter 'namespace' is not null or undefined
             if (namespace === null || namespace === undefined) {
                 throw new RequiredError('namespace','Required parameter namespace was null or undefined when calling updateCronWorkflow.');
@@ -6595,11 +6595,11 @@ export const CronWorkflowServiceApiFp = function(configuration?: Configuration) 
         /**
          * 
          * @param {string} namespace 
-         * @param {CronioArgoprojWorkflowV1alpha1CreateCronWorkflowRequest} body 
+         * @param {CronCreateCronWorkflowRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCronWorkflow(namespace: string, body: CronioArgoprojWorkflowV1alpha1CreateCronWorkflowRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1CronWorkflow> {
+        createCronWorkflow(namespace: string, body: CronCreateCronWorkflowRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CronWorkflow> {
             const localVarAxiosArgs = CronWorkflowServiceApiAxiosParamCreator(configuration).createCronWorkflow(namespace, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -6634,7 +6634,7 @@ export const CronWorkflowServiceApiFp = function(configuration?: Configuration) 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCronWorkflow(namespace: string, name: string, getOptionsResourceVersion?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1CronWorkflow> {
+        getCronWorkflow(namespace: string, name: string, getOptionsResourceVersion?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CronWorkflow> {
             const localVarAxiosArgs = CronWorkflowServiceApiAxiosParamCreator(configuration).getCronWorkflow(namespace, name, getOptionsResourceVersion, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -6644,11 +6644,11 @@ export const CronWorkflowServiceApiFp = function(configuration?: Configuration) 
         /**
          * 
          * @param {string} namespace 
-         * @param {CronioArgoprojWorkflowV1alpha1LintCronWorkflowRequest} body 
+         * @param {CronLintCronWorkflowRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        lintCronWorkflow(namespace: string, body: CronioArgoprojWorkflowV1alpha1LintCronWorkflowRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1CronWorkflow> {
+        lintCronWorkflow(namespace: string, body: CronLintCronWorkflowRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CronWorkflow> {
             const localVarAxiosArgs = CronWorkflowServiceApiAxiosParamCreator(configuration).lintCronWorkflow(namespace, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -6669,7 +6669,7 @@ export const CronWorkflowServiceApiFp = function(configuration?: Configuration) 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listCronWorkflows(namespace: string, listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1CronWorkflowList> {
+        listCronWorkflows(namespace: string, listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CronWorkflowList> {
             const localVarAxiosArgs = CronWorkflowServiceApiAxiosParamCreator(configuration).listCronWorkflows(namespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -6680,11 +6680,11 @@ export const CronWorkflowServiceApiFp = function(configuration?: Configuration) 
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {CronioArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest} body 
+         * @param {CronUpdateCronWorkflowRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCronWorkflow(namespace: string, name: string, body: CronioArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1CronWorkflow> {
+        updateCronWorkflow(namespace: string, name: string, body: CronUpdateCronWorkflowRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<CronWorkflow> {
             const localVarAxiosArgs = CronWorkflowServiceApiAxiosParamCreator(configuration).updateCronWorkflow(namespace, name, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -6703,11 +6703,11 @@ export const CronWorkflowServiceApiFactory = function (configuration?: Configura
         /**
          * 
          * @param {string} namespace 
-         * @param {CronioArgoprojWorkflowV1alpha1CreateCronWorkflowRequest} body 
+         * @param {CronCreateCronWorkflowRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCronWorkflow(namespace: string, body: CronioArgoprojWorkflowV1alpha1CreateCronWorkflowRequest, options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1CronWorkflow> {
+        createCronWorkflow(namespace: string, body: CronCreateCronWorkflowRequest, options?: any): AxiosPromise<CronWorkflow> {
             return CronWorkflowServiceApiFp(configuration).createCronWorkflow(namespace, body, options)(axios, basePath);
         },
         /**
@@ -6734,17 +6734,17 @@ export const CronWorkflowServiceApiFactory = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCronWorkflow(namespace: string, name: string, getOptionsResourceVersion?: string, options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1CronWorkflow> {
+        getCronWorkflow(namespace: string, name: string, getOptionsResourceVersion?: string, options?: any): AxiosPromise<CronWorkflow> {
             return CronWorkflowServiceApiFp(configuration).getCronWorkflow(namespace, name, getOptionsResourceVersion, options)(axios, basePath);
         },
         /**
          * 
          * @param {string} namespace 
-         * @param {CronioArgoprojWorkflowV1alpha1LintCronWorkflowRequest} body 
+         * @param {CronLintCronWorkflowRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        lintCronWorkflow(namespace: string, body: CronioArgoprojWorkflowV1alpha1LintCronWorkflowRequest, options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1CronWorkflow> {
+        lintCronWorkflow(namespace: string, body: CronLintCronWorkflowRequest, options?: any): AxiosPromise<CronWorkflow> {
             return CronWorkflowServiceApiFp(configuration).lintCronWorkflow(namespace, body, options)(axios, basePath);
         },
         /**
@@ -6761,18 +6761,18 @@ export const CronWorkflowServiceApiFactory = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listCronWorkflows(namespace: string, listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1CronWorkflowList> {
+        listCronWorkflows(namespace: string, listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, options?: any): AxiosPromise<CronWorkflowList> {
             return CronWorkflowServiceApiFp(configuration).listCronWorkflows(namespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, options)(axios, basePath);
         },
         /**
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {CronioArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest} body 
+         * @param {CronUpdateCronWorkflowRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCronWorkflow(namespace: string, name: string, body: CronioArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest, options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1CronWorkflow> {
+        updateCronWorkflow(namespace: string, name: string, body: CronUpdateCronWorkflowRequest, options?: any): AxiosPromise<CronWorkflow> {
             return CronWorkflowServiceApiFp(configuration).updateCronWorkflow(namespace, name, body, options)(axios, basePath);
         },
     };
@@ -6788,12 +6788,12 @@ export class CronWorkflowServiceApi extends BaseAPI {
     /**
      * 
      * @param {string} namespace 
-     * @param {CronioArgoprojWorkflowV1alpha1CreateCronWorkflowRequest} body 
+     * @param {CronCreateCronWorkflowRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CronWorkflowServiceApi
      */
-    public createCronWorkflow(namespace: string, body: CronioArgoprojWorkflowV1alpha1CreateCronWorkflowRequest, options?: any) {
+    public createCronWorkflow(namespace: string, body: CronCreateCronWorkflowRequest, options?: any) {
         return CronWorkflowServiceApiFp(this.configuration).createCronWorkflow(namespace, body, options)(this.axios, this.basePath);
     }
 
@@ -6831,12 +6831,12 @@ export class CronWorkflowServiceApi extends BaseAPI {
     /**
      * 
      * @param {string} namespace 
-     * @param {CronioArgoprojWorkflowV1alpha1LintCronWorkflowRequest} body 
+     * @param {CronLintCronWorkflowRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CronWorkflowServiceApi
      */
-    public lintCronWorkflow(namespace: string, body: CronioArgoprojWorkflowV1alpha1LintCronWorkflowRequest, options?: any) {
+    public lintCronWorkflow(namespace: string, body: CronLintCronWorkflowRequest, options?: any) {
         return CronWorkflowServiceApiFp(this.configuration).lintCronWorkflow(namespace, body, options)(this.axios, this.basePath);
     }
 
@@ -6863,12 +6863,12 @@ export class CronWorkflowServiceApi extends BaseAPI {
      * 
      * @param {string} namespace 
      * @param {string} name 
-     * @param {CronioArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest} body 
+     * @param {CronUpdateCronWorkflowRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CronWorkflowServiceApi
      */
-    public updateCronWorkflow(namespace: string, name: string, body: CronioArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest, options?: any) {
+    public updateCronWorkflow(namespace: string, name: string, body: CronUpdateCronWorkflowRequest, options?: any) {
         return CronWorkflowServiceApiFp(this.configuration).updateCronWorkflow(namespace, name, body, options)(this.axios, this.basePath);
     }
 
@@ -6924,7 +6924,7 @@ export const InfoServiceApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInfo(options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1InfoResponse> {
+        getInfo(options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<InfoResponse> {
             const localVarAxiosArgs = InfoServiceApiAxiosParamCreator(configuration).getInfo(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -6945,7 +6945,7 @@ export const InfoServiceApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInfo(options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1InfoResponse> {
+        getInfo(options?: any): AxiosPromise<InfoResponse> {
             return InfoServiceApiFp(configuration).getInfo(options)(axios, basePath);
         },
     };
@@ -6980,11 +6980,11 @@ export const WorkflowServiceApiAxiosParamCreator = function (configuration?: Con
         /**
          * 
          * @param {string} namespace 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowCreateRequest} body 
+         * @param {WorkflowCreateRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createWorkflow(namespace: string, body: IoArgoprojWorkflowV1alpha1WorkflowCreateRequest, options: any = {}): RequestArgs {
+        createWorkflow(namespace: string, body: WorkflowCreateRequest, options: any = {}): RequestArgs {
             // verify required parameter 'namespace' is not null or undefined
             if (namespace === null || namespace === undefined) {
                 throw new RequiredError('namespace','Required parameter namespace was null or undefined when calling createWorkflow.');
@@ -7146,11 +7146,11 @@ export const WorkflowServiceApiAxiosParamCreator = function (configuration?: Con
         /**
          * 
          * @param {string} namespace 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowLintRequest} body 
+         * @param {WorkflowLintRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        lintWorkflow(namespace: string, body: IoArgoprojWorkflowV1alpha1WorkflowLintRequest, options: any = {}): RequestArgs {
+        lintWorkflow(namespace: string, body: WorkflowLintRequest, options: any = {}): RequestArgs {
             // verify required parameter 'namespace' is not null or undefined
             if (namespace === null || namespace === undefined) {
                 throw new RequiredError('namespace','Required parameter namespace was null or undefined when calling lintWorkflow.');
@@ -7363,11 +7363,11 @@ export const WorkflowServiceApiAxiosParamCreator = function (configuration?: Con
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest} body 
+         * @param {WorkflowResubmitRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        resubmitWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest, options: any = {}): RequestArgs {
+        resubmitWorkflow(namespace: string, name: string, body: WorkflowResubmitRequest, options: any = {}): RequestArgs {
             // verify required parameter 'namespace' is not null or undefined
             if (namespace === null || namespace === undefined) {
                 throw new RequiredError('namespace','Required parameter namespace was null or undefined when calling resubmitWorkflow.');
@@ -7413,11 +7413,11 @@ export const WorkflowServiceApiAxiosParamCreator = function (configuration?: Con
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowResumeRequest} body 
+         * @param {WorkflowResumeRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        resumeWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowResumeRequest, options: any = {}): RequestArgs {
+        resumeWorkflow(namespace: string, name: string, body: WorkflowResumeRequest, options: any = {}): RequestArgs {
             // verify required parameter 'namespace' is not null or undefined
             if (namespace === null || namespace === undefined) {
                 throw new RequiredError('namespace','Required parameter namespace was null or undefined when calling resumeWorkflow.');
@@ -7463,11 +7463,11 @@ export const WorkflowServiceApiAxiosParamCreator = function (configuration?: Con
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowRetryRequest} body 
+         * @param {WorkflowRetryRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retryWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowRetryRequest, options: any = {}): RequestArgs {
+        retryWorkflow(namespace: string, name: string, body: WorkflowRetryRequest, options: any = {}): RequestArgs {
             // verify required parameter 'namespace' is not null or undefined
             if (namespace === null || namespace === undefined) {
                 throw new RequiredError('namespace','Required parameter namespace was null or undefined when calling retryWorkflow.');
@@ -7513,11 +7513,11 @@ export const WorkflowServiceApiAxiosParamCreator = function (configuration?: Con
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowStopRequest} body 
+         * @param {WorkflowStopRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        stopWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowStopRequest, options: any = {}): RequestArgs {
+        stopWorkflow(namespace: string, name: string, body: WorkflowStopRequest, options: any = {}): RequestArgs {
             // verify required parameter 'namespace' is not null or undefined
             if (namespace === null || namespace === undefined) {
                 throw new RequiredError('namespace','Required parameter namespace was null or undefined when calling stopWorkflow.');
@@ -7563,11 +7563,11 @@ export const WorkflowServiceApiAxiosParamCreator = function (configuration?: Con
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowSuspendRequest} body 
+         * @param {WorkflowSuspendRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        suspendWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowSuspendRequest, options: any = {}): RequestArgs {
+        suspendWorkflow(namespace: string, name: string, body: WorkflowSuspendRequest, options: any = {}): RequestArgs {
             // verify required parameter 'namespace' is not null or undefined
             if (namespace === null || namespace === undefined) {
                 throw new RequiredError('namespace','Required parameter namespace was null or undefined when calling suspendWorkflow.');
@@ -7613,11 +7613,11 @@ export const WorkflowServiceApiAxiosParamCreator = function (configuration?: Con
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowTerminateRequest} body 
+         * @param {WorkflowTerminateRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        terminateWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowTerminateRequest, options: any = {}): RequestArgs {
+        terminateWorkflow(namespace: string, name: string, body: WorkflowTerminateRequest, options: any = {}): RequestArgs {
             // verify required parameter 'namespace' is not null or undefined
             if (namespace === null || namespace === undefined) {
                 throw new RequiredError('namespace','Required parameter namespace was null or undefined when calling terminateWorkflow.');
@@ -7746,11 +7746,11 @@ export const WorkflowServiceApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} namespace 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowCreateRequest} body 
+         * @param {WorkflowCreateRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createWorkflow(namespace: string, body: IoArgoprojWorkflowV1alpha1WorkflowCreateRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1Workflow> {
+        createWorkflow(namespace: string, body: WorkflowCreateRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Workflow> {
             const localVarAxiosArgs = WorkflowServiceApiAxiosParamCreator(configuration).createWorkflow(namespace, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -7786,7 +7786,7 @@ export const WorkflowServiceApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWorkflow(namespace: string, name: string, getOptionsResourceVersion?: string, fields?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1Workflow> {
+        getWorkflow(namespace: string, name: string, getOptionsResourceVersion?: string, fields?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Workflow> {
             const localVarAxiosArgs = WorkflowServiceApiAxiosParamCreator(configuration).getWorkflow(namespace, name, getOptionsResourceVersion, fields, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -7796,11 +7796,11 @@ export const WorkflowServiceApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} namespace 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowLintRequest} body 
+         * @param {WorkflowLintRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        lintWorkflow(namespace: string, body: IoArgoprojWorkflowV1alpha1WorkflowLintRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1Workflow> {
+        lintWorkflow(namespace: string, body: WorkflowLintRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Workflow> {
             const localVarAxiosArgs = WorkflowServiceApiAxiosParamCreator(configuration).lintWorkflow(namespace, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -7822,7 +7822,7 @@ export const WorkflowServiceApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listWorkflows(namespace: string, listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, fields?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1WorkflowList> {
+        listWorkflows(namespace: string, listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, fields?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<WorkflowList> {
             const localVarAxiosArgs = WorkflowServiceApiAxiosParamCreator(configuration).listWorkflows(namespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, fields, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -7857,11 +7857,11 @@ export const WorkflowServiceApiFp = function(configuration?: Configuration) {
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest} body 
+         * @param {WorkflowResubmitRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        resubmitWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1Workflow> {
+        resubmitWorkflow(namespace: string, name: string, body: WorkflowResubmitRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Workflow> {
             const localVarAxiosArgs = WorkflowServiceApiAxiosParamCreator(configuration).resubmitWorkflow(namespace, name, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -7872,11 +7872,11 @@ export const WorkflowServiceApiFp = function(configuration?: Configuration) {
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowResumeRequest} body 
+         * @param {WorkflowResumeRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        resumeWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowResumeRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1Workflow> {
+        resumeWorkflow(namespace: string, name: string, body: WorkflowResumeRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Workflow> {
             const localVarAxiosArgs = WorkflowServiceApiAxiosParamCreator(configuration).resumeWorkflow(namespace, name, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -7887,11 +7887,11 @@ export const WorkflowServiceApiFp = function(configuration?: Configuration) {
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowRetryRequest} body 
+         * @param {WorkflowRetryRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retryWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowRetryRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1Workflow> {
+        retryWorkflow(namespace: string, name: string, body: WorkflowRetryRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Workflow> {
             const localVarAxiosArgs = WorkflowServiceApiAxiosParamCreator(configuration).retryWorkflow(namespace, name, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -7902,11 +7902,11 @@ export const WorkflowServiceApiFp = function(configuration?: Configuration) {
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowStopRequest} body 
+         * @param {WorkflowStopRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        stopWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowStopRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1Workflow> {
+        stopWorkflow(namespace: string, name: string, body: WorkflowStopRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Workflow> {
             const localVarAxiosArgs = WorkflowServiceApiAxiosParamCreator(configuration).stopWorkflow(namespace, name, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -7917,11 +7917,11 @@ export const WorkflowServiceApiFp = function(configuration?: Configuration) {
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowSuspendRequest} body 
+         * @param {WorkflowSuspendRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        suspendWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowSuspendRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1Workflow> {
+        suspendWorkflow(namespace: string, name: string, body: WorkflowSuspendRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Workflow> {
             const localVarAxiosArgs = WorkflowServiceApiAxiosParamCreator(configuration).suspendWorkflow(namespace, name, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -7932,11 +7932,11 @@ export const WorkflowServiceApiFp = function(configuration?: Configuration) {
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowTerminateRequest} body 
+         * @param {WorkflowTerminateRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        terminateWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowTerminateRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1Workflow> {
+        terminateWorkflow(namespace: string, name: string, body: WorkflowTerminateRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Workflow> {
             const localVarAxiosArgs = WorkflowServiceApiAxiosParamCreator(configuration).terminateWorkflow(namespace, name, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -7976,11 +7976,11 @@ export const WorkflowServiceApiFactory = function (configuration?: Configuration
         /**
          * 
          * @param {string} namespace 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowCreateRequest} body 
+         * @param {WorkflowCreateRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createWorkflow(namespace: string, body: IoArgoprojWorkflowV1alpha1WorkflowCreateRequest, options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1Workflow> {
+        createWorkflow(namespace: string, body: WorkflowCreateRequest, options?: any): AxiosPromise<Workflow> {
             return WorkflowServiceApiFp(configuration).createWorkflow(namespace, body, options)(axios, basePath);
         },
         /**
@@ -8008,17 +8008,17 @@ export const WorkflowServiceApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWorkflow(namespace: string, name: string, getOptionsResourceVersion?: string, fields?: string, options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1Workflow> {
+        getWorkflow(namespace: string, name: string, getOptionsResourceVersion?: string, fields?: string, options?: any): AxiosPromise<Workflow> {
             return WorkflowServiceApiFp(configuration).getWorkflow(namespace, name, getOptionsResourceVersion, fields, options)(axios, basePath);
         },
         /**
          * 
          * @param {string} namespace 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowLintRequest} body 
+         * @param {WorkflowLintRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        lintWorkflow(namespace: string, body: IoArgoprojWorkflowV1alpha1WorkflowLintRequest, options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1Workflow> {
+        lintWorkflow(namespace: string, body: WorkflowLintRequest, options?: any): AxiosPromise<Workflow> {
             return WorkflowServiceApiFp(configuration).lintWorkflow(namespace, body, options)(axios, basePath);
         },
         /**
@@ -8036,7 +8036,7 @@ export const WorkflowServiceApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listWorkflows(namespace: string, listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, fields?: string, options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1WorkflowList> {
+        listWorkflows(namespace: string, listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, fields?: string, options?: any): AxiosPromise<WorkflowList> {
             return WorkflowServiceApiFp(configuration).listWorkflows(namespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, fields, options)(axios, basePath);
         },
         /**
@@ -8063,66 +8063,66 @@ export const WorkflowServiceApiFactory = function (configuration?: Configuration
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest} body 
+         * @param {WorkflowResubmitRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        resubmitWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest, options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1Workflow> {
+        resubmitWorkflow(namespace: string, name: string, body: WorkflowResubmitRequest, options?: any): AxiosPromise<Workflow> {
             return WorkflowServiceApiFp(configuration).resubmitWorkflow(namespace, name, body, options)(axios, basePath);
         },
         /**
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowResumeRequest} body 
+         * @param {WorkflowResumeRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        resumeWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowResumeRequest, options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1Workflow> {
+        resumeWorkflow(namespace: string, name: string, body: WorkflowResumeRequest, options?: any): AxiosPromise<Workflow> {
             return WorkflowServiceApiFp(configuration).resumeWorkflow(namespace, name, body, options)(axios, basePath);
         },
         /**
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowRetryRequest} body 
+         * @param {WorkflowRetryRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retryWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowRetryRequest, options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1Workflow> {
+        retryWorkflow(namespace: string, name: string, body: WorkflowRetryRequest, options?: any): AxiosPromise<Workflow> {
             return WorkflowServiceApiFp(configuration).retryWorkflow(namespace, name, body, options)(axios, basePath);
         },
         /**
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowStopRequest} body 
+         * @param {WorkflowStopRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        stopWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowStopRequest, options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1Workflow> {
+        stopWorkflow(namespace: string, name: string, body: WorkflowStopRequest, options?: any): AxiosPromise<Workflow> {
             return WorkflowServiceApiFp(configuration).stopWorkflow(namespace, name, body, options)(axios, basePath);
         },
         /**
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowSuspendRequest} body 
+         * @param {WorkflowSuspendRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        suspendWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowSuspendRequest, options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1Workflow> {
+        suspendWorkflow(namespace: string, name: string, body: WorkflowSuspendRequest, options?: any): AxiosPromise<Workflow> {
             return WorkflowServiceApiFp(configuration).suspendWorkflow(namespace, name, body, options)(axios, basePath);
         },
         /**
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowTerminateRequest} body 
+         * @param {WorkflowTerminateRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        terminateWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowTerminateRequest, options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1Workflow> {
+        terminateWorkflow(namespace: string, name: string, body: WorkflowTerminateRequest, options?: any): AxiosPromise<Workflow> {
             return WorkflowServiceApiFp(configuration).terminateWorkflow(namespace, name, body, options)(axios, basePath);
         },
         /**
@@ -8155,12 +8155,12 @@ export class WorkflowServiceApi extends BaseAPI {
     /**
      * 
      * @param {string} namespace 
-     * @param {IoArgoprojWorkflowV1alpha1WorkflowCreateRequest} body 
+     * @param {WorkflowCreateRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorkflowServiceApi
      */
-    public createWorkflow(namespace: string, body: IoArgoprojWorkflowV1alpha1WorkflowCreateRequest, options?: any) {
+    public createWorkflow(namespace: string, body: WorkflowCreateRequest, options?: any) {
         return WorkflowServiceApiFp(this.configuration).createWorkflow(namespace, body, options)(this.axios, this.basePath);
     }
 
@@ -8199,12 +8199,12 @@ export class WorkflowServiceApi extends BaseAPI {
     /**
      * 
      * @param {string} namespace 
-     * @param {IoArgoprojWorkflowV1alpha1WorkflowLintRequest} body 
+     * @param {WorkflowLintRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorkflowServiceApi
      */
-    public lintWorkflow(namespace: string, body: IoArgoprojWorkflowV1alpha1WorkflowLintRequest, options?: any) {
+    public lintWorkflow(namespace: string, body: WorkflowLintRequest, options?: any) {
         return WorkflowServiceApiFp(this.configuration).lintWorkflow(namespace, body, options)(this.axios, this.basePath);
     }
 
@@ -8254,12 +8254,12 @@ export class WorkflowServiceApi extends BaseAPI {
      * 
      * @param {string} namespace 
      * @param {string} name 
-     * @param {IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest} body 
+     * @param {WorkflowResubmitRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorkflowServiceApi
      */
-    public resubmitWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowResubmitRequest, options?: any) {
+    public resubmitWorkflow(namespace: string, name: string, body: WorkflowResubmitRequest, options?: any) {
         return WorkflowServiceApiFp(this.configuration).resubmitWorkflow(namespace, name, body, options)(this.axios, this.basePath);
     }
 
@@ -8267,12 +8267,12 @@ export class WorkflowServiceApi extends BaseAPI {
      * 
      * @param {string} namespace 
      * @param {string} name 
-     * @param {IoArgoprojWorkflowV1alpha1WorkflowResumeRequest} body 
+     * @param {WorkflowResumeRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorkflowServiceApi
      */
-    public resumeWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowResumeRequest, options?: any) {
+    public resumeWorkflow(namespace: string, name: string, body: WorkflowResumeRequest, options?: any) {
         return WorkflowServiceApiFp(this.configuration).resumeWorkflow(namespace, name, body, options)(this.axios, this.basePath);
     }
 
@@ -8280,12 +8280,12 @@ export class WorkflowServiceApi extends BaseAPI {
      * 
      * @param {string} namespace 
      * @param {string} name 
-     * @param {IoArgoprojWorkflowV1alpha1WorkflowRetryRequest} body 
+     * @param {WorkflowRetryRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorkflowServiceApi
      */
-    public retryWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowRetryRequest, options?: any) {
+    public retryWorkflow(namespace: string, name: string, body: WorkflowRetryRequest, options?: any) {
         return WorkflowServiceApiFp(this.configuration).retryWorkflow(namespace, name, body, options)(this.axios, this.basePath);
     }
 
@@ -8293,12 +8293,12 @@ export class WorkflowServiceApi extends BaseAPI {
      * 
      * @param {string} namespace 
      * @param {string} name 
-     * @param {IoArgoprojWorkflowV1alpha1WorkflowStopRequest} body 
+     * @param {WorkflowStopRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorkflowServiceApi
      */
-    public stopWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowStopRequest, options?: any) {
+    public stopWorkflow(namespace: string, name: string, body: WorkflowStopRequest, options?: any) {
         return WorkflowServiceApiFp(this.configuration).stopWorkflow(namespace, name, body, options)(this.axios, this.basePath);
     }
 
@@ -8306,12 +8306,12 @@ export class WorkflowServiceApi extends BaseAPI {
      * 
      * @param {string} namespace 
      * @param {string} name 
-     * @param {IoArgoprojWorkflowV1alpha1WorkflowSuspendRequest} body 
+     * @param {WorkflowSuspendRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorkflowServiceApi
      */
-    public suspendWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowSuspendRequest, options?: any) {
+    public suspendWorkflow(namespace: string, name: string, body: WorkflowSuspendRequest, options?: any) {
         return WorkflowServiceApiFp(this.configuration).suspendWorkflow(namespace, name, body, options)(this.axios, this.basePath);
     }
 
@@ -8319,12 +8319,12 @@ export class WorkflowServiceApi extends BaseAPI {
      * 
      * @param {string} namespace 
      * @param {string} name 
-     * @param {IoArgoprojWorkflowV1alpha1WorkflowTerminateRequest} body 
+     * @param {WorkflowTerminateRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorkflowServiceApi
      */
-    public terminateWorkflow(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowTerminateRequest, options?: any) {
+    public terminateWorkflow(namespace: string, name: string, body: WorkflowTerminateRequest, options?: any) {
         return WorkflowServiceApiFp(this.configuration).terminateWorkflow(namespace, name, body, options)(this.axios, this.basePath);
     }
 
@@ -8359,11 +8359,11 @@ export const WorkflowTemplateServiceApiAxiosParamCreator = function (configurati
         /**
          * 
          * @param {string} namespace 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowTemplateCreateRequest} body 
+         * @param {WorkflowTemplateCreateRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createWorkflowTemplate(namespace: string, body: IoArgoprojWorkflowV1alpha1WorkflowTemplateCreateRequest, options: any = {}): RequestArgs {
+        createWorkflowTemplate(namespace: string, body: WorkflowTemplateCreateRequest, options: any = {}): RequestArgs {
             // verify required parameter 'namespace' is not null or undefined
             if (namespace === null || namespace === undefined) {
                 throw new RequiredError('namespace','Required parameter namespace was null or undefined when calling createWorkflowTemplate.');
@@ -8520,11 +8520,11 @@ export const WorkflowTemplateServiceApiAxiosParamCreator = function (configurati
         /**
          * 
          * @param {string} namespace 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowTemplateLintRequest} body 
+         * @param {WorkflowTemplateLintRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        lintWorkflowTemplate(namespace: string, body: IoArgoprojWorkflowV1alpha1WorkflowTemplateLintRequest, options: any = {}): RequestArgs {
+        lintWorkflowTemplate(namespace: string, body: WorkflowTemplateLintRequest, options: any = {}): RequestArgs {
             // verify required parameter 'namespace' is not null or undefined
             if (namespace === null || namespace === undefined) {
                 throw new RequiredError('namespace','Required parameter namespace was null or undefined when calling lintWorkflowTemplate.');
@@ -8640,11 +8640,11 @@ export const WorkflowTemplateServiceApiAxiosParamCreator = function (configurati
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowTemplateUpdateRequest} body 
+         * @param {WorkflowTemplateUpdateRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateWorkflowTemplate(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowTemplateUpdateRequest, options: any = {}): RequestArgs {
+        updateWorkflowTemplate(namespace: string, name: string, body: WorkflowTemplateUpdateRequest, options: any = {}): RequestArgs {
             // verify required parameter 'namespace' is not null or undefined
             if (namespace === null || namespace === undefined) {
                 throw new RequiredError('namespace','Required parameter namespace was null or undefined when calling updateWorkflowTemplate.');
@@ -8698,11 +8698,11 @@ export const WorkflowTemplateServiceApiFp = function(configuration?: Configurati
         /**
          * 
          * @param {string} namespace 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowTemplateCreateRequest} body 
+         * @param {WorkflowTemplateCreateRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createWorkflowTemplate(namespace: string, body: IoArgoprojWorkflowV1alpha1WorkflowTemplateCreateRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1WorkflowTemplate> {
+        createWorkflowTemplate(namespace: string, body: WorkflowTemplateCreateRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<WorkflowTemplate> {
             const localVarAxiosArgs = WorkflowTemplateServiceApiAxiosParamCreator(configuration).createWorkflowTemplate(namespace, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -8737,7 +8737,7 @@ export const WorkflowTemplateServiceApiFp = function(configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWorkflowTemplate(namespace: string, name: string, getOptionsResourceVersion?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1WorkflowTemplate> {
+        getWorkflowTemplate(namespace: string, name: string, getOptionsResourceVersion?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<WorkflowTemplate> {
             const localVarAxiosArgs = WorkflowTemplateServiceApiAxiosParamCreator(configuration).getWorkflowTemplate(namespace, name, getOptionsResourceVersion, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -8747,11 +8747,11 @@ export const WorkflowTemplateServiceApiFp = function(configuration?: Configurati
         /**
          * 
          * @param {string} namespace 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowTemplateLintRequest} body 
+         * @param {WorkflowTemplateLintRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        lintWorkflowTemplate(namespace: string, body: IoArgoprojWorkflowV1alpha1WorkflowTemplateLintRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1WorkflowTemplate> {
+        lintWorkflowTemplate(namespace: string, body: WorkflowTemplateLintRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<WorkflowTemplate> {
             const localVarAxiosArgs = WorkflowTemplateServiceApiAxiosParamCreator(configuration).lintWorkflowTemplate(namespace, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -8772,7 +8772,7 @@ export const WorkflowTemplateServiceApiFp = function(configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listWorkflowTemplates(namespace: string, listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1WorkflowTemplateList> {
+        listWorkflowTemplates(namespace: string, listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<WorkflowTemplateList> {
             const localVarAxiosArgs = WorkflowTemplateServiceApiAxiosParamCreator(configuration).listWorkflowTemplates(namespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -8783,11 +8783,11 @@ export const WorkflowTemplateServiceApiFp = function(configuration?: Configurati
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowTemplateUpdateRequest} body 
+         * @param {WorkflowTemplateUpdateRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateWorkflowTemplate(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowTemplateUpdateRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<IoArgoprojWorkflowV1alpha1WorkflowTemplate> {
+        updateWorkflowTemplate(namespace: string, name: string, body: WorkflowTemplateUpdateRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<WorkflowTemplate> {
             const localVarAxiosArgs = WorkflowTemplateServiceApiAxiosParamCreator(configuration).updateWorkflowTemplate(namespace, name, body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -8806,11 +8806,11 @@ export const WorkflowTemplateServiceApiFactory = function (configuration?: Confi
         /**
          * 
          * @param {string} namespace 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowTemplateCreateRequest} body 
+         * @param {WorkflowTemplateCreateRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createWorkflowTemplate(namespace: string, body: IoArgoprojWorkflowV1alpha1WorkflowTemplateCreateRequest, options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1WorkflowTemplate> {
+        createWorkflowTemplate(namespace: string, body: WorkflowTemplateCreateRequest, options?: any): AxiosPromise<WorkflowTemplate> {
             return WorkflowTemplateServiceApiFp(configuration).createWorkflowTemplate(namespace, body, options)(axios, basePath);
         },
         /**
@@ -8837,17 +8837,17 @@ export const WorkflowTemplateServiceApiFactory = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWorkflowTemplate(namespace: string, name: string, getOptionsResourceVersion?: string, options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1WorkflowTemplate> {
+        getWorkflowTemplate(namespace: string, name: string, getOptionsResourceVersion?: string, options?: any): AxiosPromise<WorkflowTemplate> {
             return WorkflowTemplateServiceApiFp(configuration).getWorkflowTemplate(namespace, name, getOptionsResourceVersion, options)(axios, basePath);
         },
         /**
          * 
          * @param {string} namespace 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowTemplateLintRequest} body 
+         * @param {WorkflowTemplateLintRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        lintWorkflowTemplate(namespace: string, body: IoArgoprojWorkflowV1alpha1WorkflowTemplateLintRequest, options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1WorkflowTemplate> {
+        lintWorkflowTemplate(namespace: string, body: WorkflowTemplateLintRequest, options?: any): AxiosPromise<WorkflowTemplate> {
             return WorkflowTemplateServiceApiFp(configuration).lintWorkflowTemplate(namespace, body, options)(axios, basePath);
         },
         /**
@@ -8864,18 +8864,18 @@ export const WorkflowTemplateServiceApiFactory = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listWorkflowTemplates(namespace: string, listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1WorkflowTemplateList> {
+        listWorkflowTemplates(namespace: string, listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, options?: any): AxiosPromise<WorkflowTemplateList> {
             return WorkflowTemplateServiceApiFp(configuration).listWorkflowTemplates(namespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, options)(axios, basePath);
         },
         /**
          * 
          * @param {string} namespace 
          * @param {string} name 
-         * @param {IoArgoprojWorkflowV1alpha1WorkflowTemplateUpdateRequest} body 
+         * @param {WorkflowTemplateUpdateRequest} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateWorkflowTemplate(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowTemplateUpdateRequest, options?: any): AxiosPromise<IoArgoprojWorkflowV1alpha1WorkflowTemplate> {
+        updateWorkflowTemplate(namespace: string, name: string, body: WorkflowTemplateUpdateRequest, options?: any): AxiosPromise<WorkflowTemplate> {
             return WorkflowTemplateServiceApiFp(configuration).updateWorkflowTemplate(namespace, name, body, options)(axios, basePath);
         },
     };
@@ -8891,12 +8891,12 @@ export class WorkflowTemplateServiceApi extends BaseAPI {
     /**
      * 
      * @param {string} namespace 
-     * @param {IoArgoprojWorkflowV1alpha1WorkflowTemplateCreateRequest} body 
+     * @param {WorkflowTemplateCreateRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorkflowTemplateServiceApi
      */
-    public createWorkflowTemplate(namespace: string, body: IoArgoprojWorkflowV1alpha1WorkflowTemplateCreateRequest, options?: any) {
+    public createWorkflowTemplate(namespace: string, body: WorkflowTemplateCreateRequest, options?: any) {
         return WorkflowTemplateServiceApiFp(this.configuration).createWorkflowTemplate(namespace, body, options)(this.axios, this.basePath);
     }
 
@@ -8934,12 +8934,12 @@ export class WorkflowTemplateServiceApi extends BaseAPI {
     /**
      * 
      * @param {string} namespace 
-     * @param {IoArgoprojWorkflowV1alpha1WorkflowTemplateLintRequest} body 
+     * @param {WorkflowTemplateLintRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorkflowTemplateServiceApi
      */
-    public lintWorkflowTemplate(namespace: string, body: IoArgoprojWorkflowV1alpha1WorkflowTemplateLintRequest, options?: any) {
+    public lintWorkflowTemplate(namespace: string, body: WorkflowTemplateLintRequest, options?: any) {
         return WorkflowTemplateServiceApiFp(this.configuration).lintWorkflowTemplate(namespace, body, options)(this.axios, this.basePath);
     }
 
@@ -8966,12 +8966,12 @@ export class WorkflowTemplateServiceApi extends BaseAPI {
      * 
      * @param {string} namespace 
      * @param {string} name 
-     * @param {IoArgoprojWorkflowV1alpha1WorkflowTemplateUpdateRequest} body 
+     * @param {WorkflowTemplateUpdateRequest} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WorkflowTemplateServiceApi
      */
-    public updateWorkflowTemplate(namespace: string, name: string, body: IoArgoprojWorkflowV1alpha1WorkflowTemplateUpdateRequest, options?: any) {
+    public updateWorkflowTemplate(namespace: string, name: string, body: WorkflowTemplateUpdateRequest, options?: any) {
         return WorkflowTemplateServiceApiFp(this.configuration).updateWorkflowTemplate(namespace, name, body, options)(this.axios, this.basePath);
     }
 
