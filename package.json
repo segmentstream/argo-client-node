@@ -1,6 +1,6 @@
 {
   "name": "@segmentstream/argo-client-node",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Argo client for node generated from openapi spec",
   "repository": {
     "url": "git@github.com:segmentstream/argo-client-node.git"
