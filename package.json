@@ -21,7 +21,7 @@
   "author": "vardan.manucharian@segmentstream.com",
   "license": "ISC",
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^1.0.12-4.3.0",
+    "@openapitools/openapi-generator-cli": "^2.1.23",
     "rimraf": "^3.0.2",
     "axios": "^0.19.2",
     "url": "^0.11.0"
