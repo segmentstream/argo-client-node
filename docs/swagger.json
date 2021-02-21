@@ -84,7 +84,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowList"
+              "$ref": "#/definitions/WorkflowList"
             }
           },
           "default": {
@@ -114,7 +114,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Workflow"
+              "$ref": "#/definitions/Workflow"
             }
           },
           "default": {
@@ -142,7 +142,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ArchivedWorkflowDeletedResponse"
+              "$ref": "#/definitions/ArchivedWorkflowDeletedResponse"
             }
           },
           "default": {
@@ -222,7 +222,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ClusterWorkflowTemplateList"
+              "$ref": "#/definitions/ClusterWorkflowTemplateList"
             }
           },
           "default": {
@@ -244,7 +244,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ClusterWorkflowTemplateCreateRequest"
+              "$ref": "#/definitions/ClusterWorkflowTemplateCreateRequest"
             }
           }
         ],
@@ -252,7 +252,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ClusterWorkflowTemplate"
+              "$ref": "#/definitions/ClusterWorkflowTemplate"
             }
           },
           "default": {
@@ -276,7 +276,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ClusterWorkflowTemplateLintRequest"
+              "$ref": "#/definitions/ClusterWorkflowTemplateLintRequest"
             }
           }
         ],
@@ -284,7 +284,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ClusterWorkflowTemplate"
+              "$ref": "#/definitions/ClusterWorkflowTemplate"
             }
           },
           "default": {
@@ -320,7 +320,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ClusterWorkflowTemplate"
+              "$ref": "#/definitions/ClusterWorkflowTemplate"
             }
           },
           "default": {
@@ -349,7 +349,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ClusterWorkflowTemplateUpdateRequest"
+              "$ref": "#/definitions/ClusterWorkflowTemplateUpdateRequest"
             }
           }
         ],
@@ -357,7 +357,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ClusterWorkflowTemplate"
+              "$ref": "#/definitions/ClusterWorkflowTemplate"
             }
           },
           "default": {
@@ -426,7 +426,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ClusterWorkflowTemplateDeleteResponse"
+              "$ref": "#/definitions/ClusterWorkflowTemplateDeleteResponse"
             }
           },
           "default": {
@@ -512,7 +512,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.CronWorkflowList"
+              "$ref": "#/definitions/CronWorkflowList"
             }
           },
           "default": {
@@ -540,7 +540,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.CreateCronWorkflowRequest"
+              "$ref": "#/definitions/CreateCronWorkflowRequest"
             }
           }
         ],
@@ -548,7 +548,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.CronWorkflow"
+              "$ref": "#/definitions/CronWorkflow"
             }
           },
           "default": {
@@ -578,7 +578,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.LintCronWorkflowRequest"
+              "$ref": "#/definitions/LintCronWorkflowRequest"
             }
           }
         ],
@@ -586,7 +586,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.CronWorkflow"
+              "$ref": "#/definitions/CronWorkflow"
             }
           },
           "default": {
@@ -628,7 +628,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.CronWorkflow"
+              "$ref": "#/definitions/CronWorkflow"
             }
           },
           "default": {
@@ -663,7 +663,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.UpdateCronWorkflowRequest"
+              "$ref": "#/definitions/UpdateCronWorkflowRequest"
             }
           }
         ],
@@ -671,7 +671,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.CronWorkflow"
+              "$ref": "#/definitions/CronWorkflow"
             }
           },
           "default": {
@@ -746,7 +746,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.CronWorkflowDeletedResponse"
+              "$ref": "#/definitions/CronWorkflowDeletedResponse"
             }
           },
           "default": {
@@ -782,7 +782,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.CronWorkflowResumeRequest"
+              "$ref": "#/definitions/CronWorkflowResumeRequest"
             }
           }
         ],
@@ -790,7 +790,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.CronWorkflow"
+              "$ref": "#/definitions/CronWorkflow"
             }
           },
           "default": {
@@ -826,7 +826,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.CronWorkflowSuspendRequest"
+              "$ref": "#/definitions/CronWorkflowSuspendRequest"
             }
           }
         ],
@@ -834,7 +834,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.CronWorkflow"
+              "$ref": "#/definitions/CronWorkflow"
             }
           },
           "default": {
@@ -1130,14 +1130,14 @@
         "parameters": [
           {
             "type": "string",
-            "description": "The namespace for the io.argoproj.workflow.v1alpha1. This can be empty if the client has cluster scoped permissions.\nIf empty, then the event is \"broadcast\" to workflow event binding in all namespaces.",
+            "description": "The namespace for the  This can be empty if the client has cluster scoped permissions.\nIf empty, then the event is \"broadcast\" to workflow event binding in all namespaces.",
             "name": "namespace",
             "in": "path",
             "required": true
           },
           {
             "type": "string",
-            "description": "Optional discriminator for the io.argoproj.workflow.v1alpha1. This should almost always be empty.\nUsed for edge-cases where the event payload alone is not provide enough information to discriminate the event.\nThis MUST NOT be used as security mechanism, e.g. to allow two clients to use the same access token, or\nto support webhooks on unsecured server. Instead, use access tokens.\nThis is made available as `discriminator` in the event binding selector (`/spec/event/selector)`",
+            "description": "Optional discriminator for the  This should almost always be empty.\nUsed for edge-cases where the event payload alone is not provide enough information to discriminate the event.\nThis MUST NOT be used as security mechanism, e.g. to allow two clients to use the same access token, or\nto support webhooks on unsecured server. Instead, use access tokens.\nThis is made available as `discriminator` in the event binding selector (`/spec/event/selector)`",
             "name": "discriminator",
             "in": "path",
             "required": true
@@ -1148,7 +1148,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Item"
+              "$ref": "#/definitions/Item"
             }
           }
         ],
@@ -1156,7 +1156,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.EventResponse"
+              "$ref": "#/definitions/EventResponse"
             }
           },
           "default": {
@@ -1178,7 +1178,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.InfoResponse"
+              "$ref": "#/definitions/InfoResponse"
             }
           },
           "default": {
@@ -2016,7 +2016,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.GetUserInfoResponse"
+              "$ref": "#/definitions/GetUserInfoResponse"
             }
           },
           "default": {
@@ -2038,7 +2038,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Version"
+              "$ref": "#/definitions/Version"
             }
           },
           "default": {
@@ -2124,7 +2124,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowEventBindingList"
+              "$ref": "#/definitions/WorkflowEventBindingList"
             }
           },
           "default": {
@@ -2211,13 +2211,13 @@
             "description": "A successful response.(streaming responses)",
             "schema": {
               "type": "object",
-              "title": "io.argoproj.workflow.v1alpha1.WorkflowWatchEvent",
+              "title": "WorkflowWatchEvent",
               "properties": {
                 "error": {
                   "$ref": "#/definitions/grpc.gateway.runtime.StreamError"
                 },
                 "result": {
-                  "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowWatchEvent"
+                  "$ref": "#/definitions/WorkflowWatchEvent"
                 }
               }
             }
@@ -2305,7 +2305,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowTemplateList"
+              "$ref": "#/definitions/WorkflowTemplateList"
             }
           },
           "default": {
@@ -2333,7 +2333,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowTemplateCreateRequest"
+              "$ref": "#/definitions/WorkflowTemplateCreateRequest"
             }
           }
         ],
@@ -2341,7 +2341,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowTemplate"
+              "$ref": "#/definitions/WorkflowTemplate"
             }
           },
           "default": {
@@ -2371,7 +2371,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowTemplateLintRequest"
+              "$ref": "#/definitions/WorkflowTemplateLintRequest"
             }
           }
         ],
@@ -2379,7 +2379,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowTemplate"
+              "$ref": "#/definitions/WorkflowTemplate"
             }
           },
           "default": {
@@ -2421,7 +2421,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowTemplate"
+              "$ref": "#/definitions/WorkflowTemplate"
             }
           },
           "default": {
@@ -2456,7 +2456,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowTemplateUpdateRequest"
+              "$ref": "#/definitions/WorkflowTemplateUpdateRequest"
             }
           }
         ],
@@ -2464,7 +2464,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowTemplate"
+              "$ref": "#/definitions/WorkflowTemplate"
             }
           },
           "default": {
@@ -2539,7 +2539,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowTemplateDeleteResponse"
+              "$ref": "#/definitions/WorkflowTemplateDeleteResponse"
             }
           },
           "default": {
@@ -2631,7 +2631,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowList"
+              "$ref": "#/definitions/WorkflowList"
             }
           },
           "default": {
@@ -2659,7 +2659,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowCreateRequest"
+              "$ref": "#/definitions/WorkflowCreateRequest"
             }
           }
         ],
@@ -2667,7 +2667,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Workflow"
+              "$ref": "#/definitions/Workflow"
             }
           },
           "default": {
@@ -2697,7 +2697,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowLintRequest"
+              "$ref": "#/definitions/WorkflowLintRequest"
             }
           }
         ],
@@ -2705,7 +2705,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Workflow"
+              "$ref": "#/definitions/Workflow"
             }
           },
           "default": {
@@ -2735,7 +2735,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowSubmitRequest"
+              "$ref": "#/definitions/WorkflowSubmitRequest"
             }
           }
         ],
@@ -2743,7 +2743,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Workflow"
+              "$ref": "#/definitions/Workflow"
             }
           },
           "default": {
@@ -2791,7 +2791,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Workflow"
+              "$ref": "#/definitions/Workflow"
             }
           },
           "default": {
@@ -2866,7 +2866,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowDeleteResponse"
+              "$ref": "#/definitions/WorkflowDeleteResponse"
             }
           },
           "default": {
@@ -2973,13 +2973,13 @@
             "description": "A successful response.(streaming responses)",
             "schema": {
               "type": "object",
-              "title": "io.argoproj.workflow.v1alpha1.LogEntry",
+              "title": "LogEntry",
               "properties": {
                 "error": {
                   "$ref": "#/definitions/grpc.gateway.runtime.StreamError"
                 },
                 "result": {
-                  "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.LogEntry"
+                  "$ref": "#/definitions/LogEntry"
                 }
               }
             }
@@ -3017,7 +3017,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowResubmitRequest"
+              "$ref": "#/definitions/WorkflowResubmitRequest"
             }
           }
         ],
@@ -3025,7 +3025,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Workflow"
+              "$ref": "#/definitions/Workflow"
             }
           },
           "default": {
@@ -3061,7 +3061,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowResumeRequest"
+              "$ref": "#/definitions/WorkflowResumeRequest"
             }
           }
         ],
@@ -3069,7 +3069,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Workflow"
+              "$ref": "#/definitions/Workflow"
             }
           },
           "default": {
@@ -3105,7 +3105,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowRetryRequest"
+              "$ref": "#/definitions/WorkflowRetryRequest"
             }
           }
         ],
@@ -3113,7 +3113,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Workflow"
+              "$ref": "#/definitions/Workflow"
             }
           },
           "default": {
@@ -3149,7 +3149,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowSetRequest"
+              "$ref": "#/definitions/WorkflowSetRequest"
             }
           }
         ],
@@ -3157,7 +3157,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Workflow"
+              "$ref": "#/definitions/Workflow"
             }
           },
           "default": {
@@ -3193,7 +3193,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowStopRequest"
+              "$ref": "#/definitions/WorkflowStopRequest"
             }
           }
         ],
@@ -3201,7 +3201,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Workflow"
+              "$ref": "#/definitions/Workflow"
             }
           },
           "default": {
@@ -3237,7 +3237,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowSuspendRequest"
+              "$ref": "#/definitions/WorkflowSuspendRequest"
             }
           }
         ],
@@ -3245,7 +3245,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Workflow"
+              "$ref": "#/definitions/Workflow"
             }
           },
           "default": {
@@ -3281,7 +3281,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowTerminateRequest"
+              "$ref": "#/definitions/WorkflowTerminateRequest"
             }
           }
         ],
@@ -3289,7 +3289,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Workflow"
+              "$ref": "#/definitions/Workflow"
             }
           },
           "default": {
@@ -3398,13 +3398,13 @@
             "description": "A successful response.(streaming responses)",
             "schema": {
               "type": "object",
-              "title": "io.argoproj.workflow.v1alpha1.LogEntry",
+              "title": "LogEntry",
               "properties": {
                 "error": {
                   "$ref": "#/definitions/grpc.gateway.runtime.StreamError"
                 },
                 "result": {
-                  "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.LogEntry"
+                  "$ref": "#/definitions/LogEntry"
                 }
               }
             }
@@ -4692,7 +4692,7 @@
         },
         "labels": {
           "type": "array",
-          "title": "Labels provide listing options to K8s API to watch resource/s.\nRefer https://kubernetes.io/docs/concepts/overview/working-with-objects/label-selectors/ for more io.argoproj.workflow.v1alpha1.\n+optional",
+          "title": "Labels provide listing options to K8s API to watch resource/s.\nRefer https://kubernetes.io/docs/concepts/overview/working-with-objects/label-selectors/ for more \n+optional",
           "items": {
             "$ref": "#/definitions/github.com.argoproj.argo_events.pkg.apis.eventsource.v1alpha1.Selector"
           }
@@ -4799,7 +4799,7 @@
         },
         "operation": {
           "type": "string",
-          "title": "Supported operations like ==, !=, \u003c=, \u003e= etc.\nDefaults to ==.\nRefer https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors for more io.argoproj.workflow.v1alpha1.\n+optional"
+          "title": "Supported operations like ==, !=, \u003c=, \u003e= etc.\nDefaults to ==.\nRefer https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors for more \n+optional"
         },
         "value": {
           "type": "string",
@@ -5271,7 +5271,7 @@
           "type": "string"
         },
         "specversion": {
-          "description": "SpecVersion - The version of the CloudEvents specification used by the io.argoproj.workflow.v1alpha1.",
+          "description": "SpecVersion - The version of the CloudEvents specification used by the ",
           "type": "string"
         },
         "subject": {
@@ -5311,7 +5311,7 @@
       }
     },
     "github.com.argoproj.argo_events.pkg.apis.sensor.v1alpha1.EventDependencyFilter": {
-      "description": "EventDependencyFilter defines filters and constraints for a io.argoproj.workflow.v1alpha1.",
+      "description": "EventDependencyFilter defines filters and constraints for a ",
       "type": "object",
       "properties": {
         "context": {
@@ -5432,7 +5432,7 @@
         },
         "method": {
           "type": "string",
-          "title": "Method refers to the type of the HTTP request.\nRefer https://golang.org/src/net/http/method.go for more io.argoproj.workflow.v1alpha1.\nDefault value is POST.\n+optional"
+          "title": "Method refers to the type of the HTTP request.\nRefer https://golang.org/src/net/http/method.go for more \nDefault value is POST.\n+optional"
         },
         "parameters": {
           "type": "array",
@@ -5809,7 +5809,7 @@
         },
         "volumes": {
           "type": "array",
-          "title": "Volumes is a list of volumes that can be mounted by containers in a io.argoproj.workflow.v1alpha1.\n+patchStrategy=merge\n+patchMergeKey=name\n+optional",
+          "title": "Volumes is a list of volumes that can be mounted by containers in a \n+patchStrategy=merge\n+patchMergeKey=name\n+optional",
           "items": {
             "$ref": "#/definitions/io.k8s.api.core.v1.Volume"
           }
@@ -5938,7 +5938,7 @@
       "type": "object",
       "properties": {
         "argoWorkflow": {
-          "title": "ArgoWorkflow refers to the trigger that can perform various operations on an Argo io.argoproj.workflow.v1alpha1.\n+optional",
+          "title": "ArgoWorkflow refers to the trigger that can perform various operations on an Argo \n+optional",
           "$ref": "#/definitions/github.com.argoproj.argo_events.pkg.apis.sensor.v1alpha1.ArgoWorkflowTrigger"
         },
         "awsLambda": {
@@ -5966,7 +5966,7 @@
           "$ref": "#/definitions/github.com.argoproj.argo_events.pkg.apis.sensor.v1alpha1.KafkaTrigger"
         },
         "log": {
-          "title": "Log refers to the trigger designed to invoke log the io.argoproj.workflow.v1alpha1.\n+optional",
+          "title": "Log refers to the trigger designed to invoke log the \n+optional",
           "$ref": "#/definitions/github.com.argoproj.argo_events.pkg.apis.sensor.v1alpha1.LogTrigger"
         },
         "name": {
@@ -6060,29 +6060,29 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Amount": {
+    "Amount": {
       "description": "Amount represent a numeric amount.",
       "type": "number"
     },
-    "io.argoproj.workflow.v1alpha1.ArchiveStrategy": {
+    "ArchiveStrategy": {
       "description": "ArchiveStrategy describes how to archive files/directory when saving artifacts",
       "type": "object",
       "properties": {
         "none": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.NoneStrategy"
+          "$ref": "#/definitions/NoneStrategy"
         },
         "tar": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.TarStrategy"
+          "$ref": "#/definitions/TarStrategy"
         },
         "zip": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ZipStrategy"
+          "$ref": "#/definitions/ZipStrategy"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.ArchivedWorkflowDeletedResponse": {
+    "ArchivedWorkflowDeletedResponse": {
       "type": "object"
     },
-    "io.argoproj.workflow.v1alpha1.Arguments": {
+    "Arguments": {
       "description": "Arguments to a template",
       "type": "object",
       "properties": {
@@ -6090,7 +6090,7 @@
           "description": "Artifacts is the list of artifacts to pass to the template or workflow",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Artifact"
+            "$ref": "#/definitions/Artifact"
           },
           "x-kubernetes-patch-merge-key": "name",
           "x-kubernetes-patch-strategy": "merge"
@@ -6099,14 +6099,14 @@
           "description": "Parameters is the list of parameters to pass to the template or workflow",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Parameter"
+            "$ref": "#/definitions/Parameter"
           },
           "x-kubernetes-patch-merge-key": "name",
           "x-kubernetes-patch-strategy": "merge"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Artifact": {
+    "Artifact": {
       "description": "Artifact indicates an artifact to place at a specified path",
       "type": "object",
       "required": [
@@ -6115,7 +6115,7 @@
       "properties": {
         "archive": {
           "description": "Archive controls how the artifact will be saved to the artifact repository.",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ArchiveStrategy"
+          "$ref": "#/definitions/ArchiveStrategy"
         },
         "archiveLogs": {
           "description": "ArchiveLogs indicates if the container logs should be archived",
@@ -6123,7 +6123,7 @@
         },
         "artifactory": {
           "description": "Artifactory contains artifactory artifact location details",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ArtifactoryArtifact"
+          "$ref": "#/definitions/ArtifactoryArtifact"
         },
         "from": {
           "description": "From allows an artifact to reference an artifact from a previous step",
@@ -6131,23 +6131,23 @@
         },
         "gcs": {
           "description": "GCS contains GCS artifact location details",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.GCSArtifact"
+          "$ref": "#/definitions/GCSArtifact"
         },
         "git": {
           "description": "Git contains git artifact location details",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.GitArtifact"
+          "$ref": "#/definitions/GitArtifact"
         },
         "globalName": {
-          "description": "GlobalName exports an output artifact to the global scope, making it available as '{{io.argoproj.workflow.v1alpha1.outputs.artifacts.XXXX}} and in workflow.status.outputs.artifacts",
+          "description": "GlobalName exports an output artifact to the global scope, making it available as '{{outputs.artifacts.XXXX}} and in workflow.status.outputs.artifacts",
           "type": "string"
         },
         "hdfs": {
           "description": "HDFS contains HDFS artifact location details",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.HDFSArtifact"
+          "$ref": "#/definitions/HDFSArtifact"
         },
         "http": {
           "description": "HTTP contains HTTP artifact location details",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.HTTPArtifact"
+          "$ref": "#/definitions/HTTPArtifact"
         },
         "mode": {
           "description": "mode bits to use on this file, must be a value between 0 and 0777 set when loading input artifacts.",
@@ -6163,7 +6163,7 @@
         },
         "oss": {
           "description": "OSS contains OSS artifact location details",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.OSSArtifact"
+          "$ref": "#/definitions/OSSArtifact"
         },
         "path": {
           "description": "Path is the container path to the artifact",
@@ -6171,7 +6171,7 @@
         },
         "raw": {
           "description": "Raw contains raw artifact location details",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.RawArtifact"
+          "$ref": "#/definitions/RawArtifact"
         },
         "recurseMode": {
           "description": "If mode is set, apply the permission recursively into the artifact if it is a folder",
@@ -6179,7 +6179,7 @@
         },
         "s3": {
           "description": "S3 contains S3 artifact location details",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.S3Artifact"
+          "$ref": "#/definitions/S3Artifact"
         },
         "subPath": {
           "description": "SubPath allows an artifact to be sourced from a subpath within the specified source",
@@ -6187,7 +6187,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.ArtifactLocation": {
+    "ArtifactLocation": {
       "description": "ArtifactLocation describes a location for a single or multiple artifacts. It is used as single artifact in the context of inputs/outputs (e.g. outputs.artifacts.artname). It is also used to describe the location of multiple artifacts such as the archive location of a single workflow step, which the executor will use as a default location to store its files.",
       "type": "object",
       "properties": {
@@ -6197,39 +6197,39 @@
         },
         "artifactory": {
           "description": "Artifactory contains artifactory artifact location details",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ArtifactoryArtifact"
+          "$ref": "#/definitions/ArtifactoryArtifact"
         },
         "gcs": {
           "description": "GCS contains GCS artifact location details",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.GCSArtifact"
+          "$ref": "#/definitions/GCSArtifact"
         },
         "git": {
           "description": "Git contains git artifact location details",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.GitArtifact"
+          "$ref": "#/definitions/GitArtifact"
         },
         "hdfs": {
           "description": "HDFS contains HDFS artifact location details",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.HDFSArtifact"
+          "$ref": "#/definitions/HDFSArtifact"
         },
         "http": {
           "description": "HTTP contains HTTP artifact location details",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.HTTPArtifact"
+          "$ref": "#/definitions/HTTPArtifact"
         },
         "oss": {
           "description": "OSS contains OSS artifact location details",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.OSSArtifact"
+          "$ref": "#/definitions/OSSArtifact"
         },
         "raw": {
           "description": "Raw contains raw artifact location details",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.RawArtifact"
+          "$ref": "#/definitions/RawArtifact"
         },
         "s3": {
           "description": "S3 contains S3 artifact location details",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.S3Artifact"
+          "$ref": "#/definitions/S3Artifact"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.ArtifactRepositoryRef": {
+    "ArtifactRepositoryRef": {
       "type": "object",
       "properties": {
         "configMap": {
@@ -6242,7 +6242,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.ArtifactRepositoryRefStatus": {
+    "ArtifactRepositoryRefStatus": {
       "type": "object",
       "properties": {
         "configMap": {
@@ -6263,7 +6263,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.ArtifactoryArtifact": {
+    "ArtifactoryArtifact": {
       "description": "ArtifactoryArtifact is the location of an artifactory artifact",
       "type": "object",
       "required": [
@@ -6284,7 +6284,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Backoff": {
+    "Backoff": {
       "description": "Backoff is a backoff strategy to use within retryStrategy",
       "type": "object",
       "properties": {
@@ -6302,7 +6302,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Cache": {
+    "Cache": {
       "description": "Cache is the configuration for the type of cache to be used",
       "type": "object",
       "required": [
@@ -6315,7 +6315,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.ClusterWorkflowTemplate": {
+    "ClusterWorkflowTemplate": {
       "description": "ClusterWorkflowTemplate is the definition of a workflow template resource in cluster scope",
       "type": "object",
       "required": [
@@ -6335,36 +6335,36 @@
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
         },
         "spec": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowTemplateSpec"
+          "$ref": "#/definitions/WorkflowTemplateSpec"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.ClusterWorkflowTemplateCreateRequest": {
+    "ClusterWorkflowTemplateCreateRequest": {
       "type": "object",
       "properties": {
         "createOptions": {
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.CreateOptions"
         },
         "template": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ClusterWorkflowTemplate"
+          "$ref": "#/definitions/ClusterWorkflowTemplate"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.ClusterWorkflowTemplateDeleteResponse": {
+    "ClusterWorkflowTemplateDeleteResponse": {
       "type": "object"
     },
-    "io.argoproj.workflow.v1alpha1.ClusterWorkflowTemplateLintRequest": {
+    "ClusterWorkflowTemplateLintRequest": {
       "type": "object",
       "properties": {
         "createOptions": {
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.CreateOptions"
         },
         "template": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ClusterWorkflowTemplate"
+          "$ref": "#/definitions/ClusterWorkflowTemplate"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.ClusterWorkflowTemplateList": {
+    "ClusterWorkflowTemplateList": {
       "description": "ClusterWorkflowTemplateList is list of ClusterWorkflowTemplate resources",
       "type": "object",
       "required": [
@@ -6379,7 +6379,7 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ClusterWorkflowTemplate"
+            "$ref": "#/definitions/ClusterWorkflowTemplate"
           }
         },
         "kind": {
@@ -6391,7 +6391,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.ClusterWorkflowTemplateUpdateRequest": {
+    "ClusterWorkflowTemplateUpdateRequest": {
       "type": "object",
       "properties": {
         "name": {
@@ -6399,11 +6399,11 @@
           "type": "string"
         },
         "template": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ClusterWorkflowTemplate"
+          "$ref": "#/definitions/ClusterWorkflowTemplate"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Condition": {
+    "Condition": {
       "type": "object",
       "properties": {
         "message": {
@@ -6420,7 +6420,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.ContinueOn": {
+    "ContinueOn": {
       "description": "ContinueOn defines if a workflow should continue even if a task or step fails/errors. It can be specified if the workflow should continue when the pod errors, fails or both.",
       "type": "object",
       "properties": {
@@ -6432,7 +6432,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Counter": {
+    "Counter": {
       "description": "Counter is a Counter prometheus metric",
       "type": "object",
       "required": [
@@ -6445,21 +6445,21 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.CreateCronWorkflowRequest": {
+    "CreateCronWorkflowRequest": {
       "type": "object",
       "properties": {
         "createOptions": {
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.CreateOptions"
         },
         "cronWorkflow": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.CronWorkflow"
+          "$ref": "#/definitions/CronWorkflow"
         },
         "namespace": {
           "type": "string"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.CreateS3BucketOptions": {
+    "CreateS3BucketOptions": {
       "description": "CreateS3BucketOptions options used to determine automatic automatic bucket-creation process",
       "type": "object",
       "properties": {
@@ -6469,7 +6469,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.CronWorkflow": {
+    "CronWorkflow": {
       "description": "CronWorkflow is the definition of a scheduled workflow resource",
       "type": "object",
       "required": [
@@ -6489,17 +6489,17 @@
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
         },
         "spec": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.CronWorkflowSpec"
+          "$ref": "#/definitions/CronWorkflowSpec"
         },
         "status": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.CronWorkflowStatus"
+          "$ref": "#/definitions/CronWorkflowStatus"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.CronWorkflowDeletedResponse": {
+    "CronWorkflowDeletedResponse": {
       "type": "object"
     },
-    "io.argoproj.workflow.v1alpha1.CronWorkflowList": {
+    "CronWorkflowList": {
       "description": "CronWorkflowList is list of CronWorkflow resources",
       "type": "object",
       "required": [
@@ -6514,7 +6514,7 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.CronWorkflow"
+            "$ref": "#/definitions/CronWorkflow"
           }
         },
         "kind": {
@@ -6526,7 +6526,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.CronWorkflowResumeRequest": {
+    "CronWorkflowResumeRequest": {
       "type": "object",
       "properties": {
         "name": {
@@ -6537,7 +6537,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.CronWorkflowSpec": {
+    "CronWorkflowSpec": {
       "description": "CronWorkflowSpec is the specification of a CronWorkflow",
       "type": "object",
       "required": [
@@ -6579,11 +6579,11 @@
         },
         "workflowSpec": {
           "description": "WorkflowSpec is the spec of the workflow to be run",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowSpec"
+          "$ref": "#/definitions/WorkflowSpec"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.CronWorkflowStatus": {
+    "CronWorkflowStatus": {
       "description": "CronWorkflowStatus is the status of a CronWorkflow",
       "type": "object",
       "required": [
@@ -6603,7 +6603,7 @@
           "description": "Conditions is a list of conditions the CronWorkflow may have",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Condition"
+            "$ref": "#/definitions/Condition"
           }
         },
         "lastScheduledTime": {
@@ -6612,7 +6612,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.CronWorkflowSuspendRequest": {
+    "CronWorkflowSuspendRequest": {
       "type": "object",
       "properties": {
         "name": {
@@ -6623,7 +6623,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.DAGTask": {
+    "DAGTask": {
       "description": "DAGTask represents a node in the graph during DAG execution",
       "type": "object",
       "required": [
@@ -6632,11 +6632,11 @@
       "properties": {
         "arguments": {
           "description": "Arguments are the parameter and artifact arguments to the template",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Arguments"
+          "$ref": "#/definitions/Arguments"
         },
         "continueOn": {
           "description": "ContinueOn makes argo to proceed with the following step even if this step fails. Errors and Failed states can be specified",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ContinueOn"
+          "$ref": "#/definitions/ContinueOn"
         },
         "dependencies": {
           "description": "Dependencies are name of other targets which this depends on",
@@ -6663,7 +6663,7 @@
         },
         "templateRef": {
           "description": "TemplateRef is the reference to the template resource to execute.",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.TemplateRef"
+          "$ref": "#/definitions/TemplateRef"
         },
         "when": {
           "description": "When is an expression in which the task should conditionally execute",
@@ -6673,7 +6673,7 @@
           "description": "WithItems expands a task into multiple parallel tasks from the items in the list",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Item"
+            "$ref": "#/definitions/Item"
           }
         },
         "withParam": {
@@ -6682,11 +6682,11 @@
         },
         "withSequence": {
           "description": "WithSequence expands a task into a numeric sequence",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Sequence"
+          "$ref": "#/definitions/Sequence"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.DAGTemplate": {
+    "DAGTemplate": {
       "description": "DAGTemplate is a template subtype for directed acyclic graph templates",
       "type": "object",
       "required": [
@@ -6705,29 +6705,29 @@
           "description": "Tasks are a list of DAG tasks",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.DAGTask"
+            "$ref": "#/definitions/DAGTask"
           },
           "x-kubernetes-patch-merge-key": "name",
           "x-kubernetes-patch-strategy": "merge"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Event": {
+    "Event": {
       "type": "object",
       "required": [
         "selector"
       ],
       "properties": {
         "selector": {
-          "description": "Selector (https://github.com/antonmedv/expr) that we must must match the io.argoproj.workflow.v1alpha1. E.g. `payload.message == \"test\"`",
+          "description": "Selector (https://github.com/antonmedv/expr) that we must must match the  E.g. `payload.message == \"test\"`",
           "type": "string"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.EventResponse": {
+    "EventResponse": {
       "type": "object"
     },
-    "io.argoproj.workflow.v1alpha1.ExecutorConfig": {
+    "ExecutorConfig": {
       "description": "ExecutorConfig holds configurations of an executor container.",
       "type": "object",
       "properties": {
@@ -6737,7 +6737,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.GCSArtifact": {
+    "GCSArtifact": {
       "description": "GCSArtifact is the location of a GCS artifact",
       "type": "object",
       "required": [
@@ -6758,7 +6758,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Gauge": {
+    "Gauge": {
       "description": "Gauge is a Gauge prometheus metric",
       "type": "object",
       "required": [
@@ -6776,7 +6776,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.GetUserInfoResponse": {
+    "GetUserInfoResponse": {
       "type": "object",
       "properties": {
         "email": {
@@ -6802,7 +6802,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.GitArtifact": {
+    "GitArtifact": {
       "description": "GitArtifact is the location of an git artifact",
       "type": "object",
       "required": [
@@ -6846,7 +6846,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.HDFSArtifact": {
+    "HDFSArtifact": {
       "description": "HDFSArtifact is the location of an HDFS artifact",
       "type": "object",
       "required": [
@@ -6898,7 +6898,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.HTTPArtifact": {
+    "HTTPArtifact": {
       "description": "HTTPArtifact allows an file served on HTTP to be placed as an input artifact in a container",
       "type": "object",
       "required": [
@@ -6909,7 +6909,7 @@
           "description": "Headers are an optional list of headers to send with HTTP requests for artifacts",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Header"
+            "$ref": "#/definitions/Header"
           }
         },
         "url": {
@@ -6918,7 +6918,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Header": {
+    "Header": {
       "description": "Header indicate a key-value request header to be used when fetching artifacts over HTTP",
       "type": "object",
       "required": [
@@ -6936,7 +6936,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Histogram": {
+    "Histogram": {
       "description": "Histogram is a Histogram prometheus metric",
       "type": "object",
       "required": [
@@ -6948,7 +6948,7 @@
           "description": "Buckets is a list of bucket divisors for the histogram",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Amount"
+            "$ref": "#/definitions/Amount"
           }
         },
         "value": {
@@ -6957,13 +6957,13 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.InfoResponse": {
+    "InfoResponse": {
       "type": "object",
       "properties": {
         "links": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Link"
+            "$ref": "#/definitions/Link"
           }
         },
         "managedNamespace": {
@@ -6971,7 +6971,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Inputs": {
+    "Inputs": {
       "description": "Inputs are the mechanism for passing parameters, artifacts, volumes from one template to another",
       "type": "object",
       "properties": {
@@ -6979,7 +6979,7 @@
           "description": "Artifact are a list of artifacts passed as inputs",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Artifact"
+            "$ref": "#/definitions/Artifact"
           },
           "x-kubernetes-patch-merge-key": "name",
           "x-kubernetes-patch-strategy": "merge"
@@ -6988,17 +6988,17 @@
           "description": "Parameters are a list of parameters passed as inputs",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Parameter"
+            "$ref": "#/definitions/Parameter"
           },
           "x-kubernetes-patch-merge-key": "name",
           "x-kubernetes-patch-strategy": "merge"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Item": {
+    "Item": {
       "description": "Item expands a single workflow step into multiple parallel steps The value of Item can be a map, string, bool, or number"
     },
-    "io.argoproj.workflow.v1alpha1.Link": {
+    "Link": {
       "description": "A link to another app.",
       "type": "object",
       "required": [
@@ -7023,18 +7023,18 @@
       "x-kubernetes-patch-merge-key": "name",
       "x-kubernetes-patch-strategy": "merge"
     },
-    "io.argoproj.workflow.v1alpha1.LintCronWorkflowRequest": {
+    "LintCronWorkflowRequest": {
       "type": "object",
       "properties": {
         "cronWorkflow": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.CronWorkflow"
+          "$ref": "#/definitions/CronWorkflow"
         },
         "namespace": {
           "type": "string"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.LogEntry": {
+    "LogEntry": {
       "type": "object",
       "properties": {
         "content": {
@@ -7045,7 +7045,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.MemoizationStatus": {
+    "MemoizationStatus": {
       "description": "MemoizationStatus is the status of this memoized node",
       "type": "object",
       "required": [
@@ -7068,7 +7068,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Memoize": {
+    "Memoize": {
       "description": "Memoization enables caching for the Outputs of the template",
       "type": "object",
       "required": [
@@ -7079,7 +7079,7 @@
       "properties": {
         "cache": {
           "description": "Cache sets and configures the kind of cache",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Cache"
+          "$ref": "#/definitions/Cache"
         },
         "key": {
           "description": "Key is the key to use as the caching key",
@@ -7091,7 +7091,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Metadata": {
+    "Metadata": {
       "description": "Pod metdata",
       "type": "object",
       "properties": {
@@ -7109,7 +7109,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.MetricLabel": {
+    "MetricLabel": {
       "description": "MetricLabel is a single label for a prometheus metric",
       "type": "object",
       "required": [
@@ -7125,7 +7125,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Metrics": {
+    "Metrics": {
       "description": "Metrics are a list of metrics emitted from a Workflow/Template",
       "type": "object",
       "required": [
@@ -7136,12 +7136,12 @@
           "description": "Prometheus is a list of prometheus metrics to be emitted",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Prometheus"
+            "$ref": "#/definitions/Prometheus"
           }
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Mutex": {
+    "Mutex": {
       "description": "Mutex holds Mutex configuration",
       "type": "object",
       "properties": {
@@ -7151,7 +7151,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.MutexHolding": {
+    "MutexHolding": {
       "description": "MutexHolding describes the mutex and the object which is holding it.",
       "type": "object",
       "properties": {
@@ -7165,15 +7165,15 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.MutexStatus": {
+    "MutexStatus": {
       "description": "MutexStatus contains which objects hold  mutex locks, and which objects this workflow is waiting on to release locks.",
       "type": "object",
       "properties": {
         "holding": {
-          "description": "Holding is a list of mutexes and their respective objects that are held by mutex lock for this io.argoproj.workflow.v1alpha1.",
+          "description": "Holding is a list of mutexes and their respective objects that are held by mutex lock for this ",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.MutexHolding"
+            "$ref": "#/definitions/MutexHolding"
           },
           "x-kubernetes-list-type": "atomic"
         },
@@ -7181,13 +7181,13 @@
           "description": "Waiting is a list of mutexes and their respective objects this workflow is waiting for.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.MutexHolding"
+            "$ref": "#/definitions/MutexHolding"
           },
           "x-kubernetes-list-type": "atomic"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.NodeStatus": {
+    "NodeStatus": {
       "description": "NodeStatus contains status information about an individual node in the workflow",
       "type": "object",
       "required": [
@@ -7233,11 +7233,11 @@
         },
         "inputs": {
           "description": "Inputs captures input parameter values and artifact locations supplied to this template invocation",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Inputs"
+          "$ref": "#/definitions/Inputs"
         },
         "memoizationStatus": {
           "description": "MemoizationStatus holds information about cached nodes",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.MemoizationStatus"
+          "$ref": "#/definitions/MemoizationStatus"
         },
         "message": {
           "description": "A human readable message indicating details about why the node is in this condition.",
@@ -7256,7 +7256,7 @@
         },
         "outputs": {
           "description": "Outputs captures output parameter values and artifact locations produced by this template invocation",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Outputs"
+          "$ref": "#/definitions/Outputs"
         },
         "phase": {
           "description": "Phase a simple, high-level summary of where the node is in its lifecycle. Can be used as a state machine.",
@@ -7284,7 +7284,7 @@
         },
         "synchronizationStatus": {
           "description": "SynchronizationStatus is the synchronization status of the node",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.NodeSynchronizationStatus"
+          "$ref": "#/definitions/NodeSynchronizationStatus"
         },
         "templateName": {
           "description": "TemplateName is the template name which this node corresponds to. Not applicable to virtual nodes (e.g. Retry, StepGroup)",
@@ -7292,7 +7292,7 @@
         },
         "templateRef": {
           "description": "TemplateRef is the reference to the template resource which this node corresponds to. Not applicable to virtual nodes (e.g. Retry, StepGroup)",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.TemplateRef"
+          "$ref": "#/definitions/TemplateRef"
         },
         "templateScope": {
           "description": "TemplateScope is the template scope in which the template of this node was retrieved.",
@@ -7304,7 +7304,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.NodeSynchronizationStatus": {
+    "NodeSynchronizationStatus": {
       "description": "NodeSynchronizationStatus stores the status of a node",
       "type": "object",
       "properties": {
@@ -7314,11 +7314,11 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.NoneStrategy": {
+    "NoneStrategy": {
       "description": "NoneStrategy indicates to skip tar process and upload the files or directory tree as independent files. Note that if the artifact is a directory, the artifact driver must support the ability to save/load the directory appropriately.",
       "type": "object"
     },
-    "io.argoproj.workflow.v1alpha1.OSSArtifact": {
+    "OSSArtifact": {
       "description": "OSSArtifact is the location of an Alibaba Cloud OSS artifact",
       "type": "object",
       "required": [
@@ -7347,7 +7347,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Outputs": {
+    "Outputs": {
       "description": "Outputs hold parameters, artifacts, and results from a step",
       "type": "object",
       "properties": {
@@ -7355,7 +7355,7 @@
           "description": "Artifacts holds the list of output artifacts produced by a step",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Artifact"
+            "$ref": "#/definitions/Artifact"
           },
           "x-kubernetes-patch-merge-key": "name",
           "x-kubernetes-patch-strategy": "merge"
@@ -7368,7 +7368,7 @@
           "description": "Parameters holds the list of output parameters produced by a step",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Parameter"
+            "$ref": "#/definitions/Parameter"
           },
           "x-kubernetes-patch-merge-key": "name",
           "x-kubernetes-patch-strategy": "merge"
@@ -7379,13 +7379,13 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.ParallelSteps": {
+    "ParallelSteps": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowStep"
+        "$ref": "#/definitions/WorkflowStep"
       }
     },
-    "io.argoproj.workflow.v1alpha1.Parameter": {
+    "Parameter": {
       "description": "Parameter indicate a passed string parameter to a service template with an optional default value",
       "type": "object",
       "required": [
@@ -7404,7 +7404,7 @@
           }
         },
         "globalName": {
-          "description": "GlobalName exports an output parameter to the global scope, making it available as '{{io.argoproj.workflow.v1alpha1.outputs.parameters.XXXX}} and in workflow.status.outputs.parameters",
+          "description": "GlobalName exports an output parameter to the global scope, making it available as '{{outputs.parameters.XXXX}} and in workflow.status.outputs.parameters",
           "type": "string"
         },
         "name": {
@@ -7417,11 +7417,11 @@
         },
         "valueFrom": {
           "description": "ValueFrom is the source for the output parameter's value",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ValueFrom"
+          "$ref": "#/definitions/ValueFrom"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.PodGC": {
+    "PodGC": {
       "description": "PodGC describes how to delete completed pods as they complete",
       "type": "object",
       "properties": {
@@ -7431,7 +7431,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Prometheus": {
+    "Prometheus": {
       "description": "Prometheus is a prometheus metric to be emitted",
       "type": "object",
       "required": [
@@ -7441,11 +7441,11 @@
       "properties": {
         "counter": {
           "description": "Counter is a counter metric",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Counter"
+          "$ref": "#/definitions/Counter"
         },
         "gauge": {
           "description": "Gauge is a gauge metric",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Gauge"
+          "$ref": "#/definitions/Gauge"
         },
         "help": {
           "description": "Help is a string that describes the metric",
@@ -7453,13 +7453,13 @@
         },
         "histogram": {
           "description": "Histogram is a histogram metric",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Histogram"
+          "$ref": "#/definitions/Histogram"
         },
         "labels": {
           "description": "Labels is a list of metric labels",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.MetricLabel"
+            "$ref": "#/definitions/MetricLabel"
           }
         },
         "name": {
@@ -7472,7 +7472,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.RawArtifact": {
+    "RawArtifact": {
       "description": "RawArtifact allows raw string content to be placed as an artifact in a container",
       "type": "object",
       "required": [
@@ -7485,7 +7485,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.ResourceTemplate": {
+    "ResourceTemplate": {
       "description": "ResourceTemplate is a template subtype to manipulate kubernetes resources",
       "type": "object",
       "required": [
@@ -7525,30 +7525,30 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.RetryAffinity": {
+    "RetryAffinity": {
       "description": "RetryAffinity prevents running steps on the same host.",
       "type": "object",
       "properties": {
         "nodeAntiAffinity": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.RetryNodeAntiAffinity"
+          "$ref": "#/definitions/RetryNodeAntiAffinity"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.RetryNodeAntiAffinity": {
+    "RetryNodeAntiAffinity": {
       "description": "RetryNodeAntiAffinity is a placeholder for future expansion, only empty nodeAntiAffinity is allowed. In order to prevent running steps on the same host, it uses \"kubernetes.io/hostname\".",
       "type": "object"
     },
-    "io.argoproj.workflow.v1alpha1.RetryStrategy": {
+    "RetryStrategy": {
       "description": "RetryStrategy provides controls on how to retry a workflow step",
       "type": "object",
       "properties": {
         "affinity": {
           "description": "Affinity prevents running workflow's step on the same host",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.RetryAffinity"
+          "$ref": "#/definitions/RetryAffinity"
         },
         "backoff": {
           "description": "Backoff is a backoff strategy",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Backoff"
+          "$ref": "#/definitions/Backoff"
         },
         "limit": {
           "description": "Limit is the maximum number of attempts when retrying a container",
@@ -7560,7 +7560,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.S3Artifact": {
+    "S3Artifact": {
       "description": "S3Artifact is the location of an S3 artifact",
       "type": "object",
       "required": [
@@ -7577,7 +7577,7 @@
         },
         "createBucketIfNotPresent": {
           "description": "CreateBucketIfNotPresent tells the driver to attempt to create the S3 bucket for output artifacts, if it doesn't exist",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.CreateS3BucketOptions"
+          "$ref": "#/definitions/CreateS3BucketOptions"
         },
         "endpoint": {
           "description": "Endpoint is the hostname of the bucket endpoint",
@@ -7609,7 +7609,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.ScriptTemplate": {
+    "ScriptTemplate": {
       "description": "ScriptTemplate is a template subtype to enable scripting through code steps",
       "type": "object",
       "required": [
@@ -7745,11 +7745,11 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.SemaphoreHolding": {
+    "SemaphoreHolding": {
       "type": "object",
       "properties": {
         "holders": {
-          "description": "Holders stores the list of current holder names in the io.argoproj.workflow.v1alpha1.",
+          "description": "Holders stores the list of current holder names in the ",
           "type": "array",
           "items": {
             "type": "string"
@@ -7762,7 +7762,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.SemaphoreRef": {
+    "SemaphoreRef": {
       "description": "SemaphoreRef is a reference of Semaphore",
       "type": "object",
       "properties": {
@@ -7772,26 +7772,26 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.SemaphoreStatus": {
+    "SemaphoreStatus": {
       "type": "object",
       "properties": {
         "holding": {
           "description": "Holding stores the list of resource acquired synchronization lock for workflows.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.SemaphoreHolding"
+            "$ref": "#/definitions/SemaphoreHolding"
           }
         },
         "waiting": {
           "description": "Waiting indicates the list of current synchronization lock holders.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.SemaphoreHolding"
+            "$ref": "#/definitions/SemaphoreHolding"
           }
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Sequence": {
+    "Sequence": {
       "description": "Sequence expands a workflow step into numeric range",
       "type": "object",
       "properties": {
@@ -7813,7 +7813,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Submit": {
+    "Submit": {
       "type": "object",
       "required": [
         "workflowTemplateRef"
@@ -7821,7 +7821,7 @@
       "properties": {
         "arguments": {
           "description": "Arguments extracted from the event and then set as arguments to the workflow created.",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Arguments"
+          "$ref": "#/definitions/Arguments"
         },
         "metadata": {
           "description": "Metadata optional means to customize select fields of the workflow metadata",
@@ -7829,11 +7829,11 @@
         },
         "workflowTemplateRef": {
           "description": "WorkflowTemplateRef the workflow template to submit",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowTemplateRef"
+          "$ref": "#/definitions/WorkflowTemplateRef"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.SubmitOpts": {
+    "SubmitOpts": {
       "description": "SubmitOpts are workflow submission options",
       "type": "object",
       "properties": {
@@ -7882,11 +7882,11 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.SuppliedValueFrom": {
+    "SuppliedValueFrom": {
       "description": "SuppliedValueFrom is a placeholder for a value to be filled in directly, either through the CLI, API, etc.",
       "type": "object"
     },
-    "io.argoproj.workflow.v1alpha1.SuspendTemplate": {
+    "SuspendTemplate": {
       "description": "SuspendTemplate is a template subtype to suspend a workflow at a predetermined point in time",
       "type": "object",
       "properties": {
@@ -7896,35 +7896,35 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Synchronization": {
+    "Synchronization": {
       "description": "Synchronization holds synchronization lock configuration",
       "type": "object",
       "properties": {
         "mutex": {
           "description": "Mutex holds the Mutex lock details",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Mutex"
+          "$ref": "#/definitions/Mutex"
         },
         "semaphore": {
           "description": "Semaphore holds the Semaphore configuration",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.SemaphoreRef"
+          "$ref": "#/definitions/SemaphoreRef"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.SynchronizationStatus": {
+    "SynchronizationStatus": {
       "description": "SynchronizationStatus stores the status of semaphore and mutex.",
       "type": "object",
       "properties": {
         "mutex": {
           "description": "Mutex stores this workflow's mutex holder details",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.MutexStatus"
+          "$ref": "#/definitions/MutexStatus"
         },
         "semaphore": {
           "description": "Semaphore stores this workflow's Semaphore holder details",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.SemaphoreStatus"
+          "$ref": "#/definitions/SemaphoreStatus"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.TTLStrategy": {
+    "TTLStrategy": {
       "description": "TTLStrategy is the strategy for the time to live depending on if the workflow succeeded or failed",
       "type": "object",
       "properties": {
@@ -7942,7 +7942,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.TarStrategy": {
+    "TarStrategy": {
       "description": "TarStrategy will tar and gzip the file or directory when saving",
       "type": "object",
       "properties": {
@@ -7952,7 +7952,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Template": {
+    "Template": {
       "description": "Template is a reusable and composable unit of execution in a workflow",
       "type": "object",
       "required": [
@@ -7969,7 +7969,7 @@
         },
         "archiveLocation": {
           "description": "Location in which all files related to the step will be stored (logs, artifacts, etc...). Can be overridden by individual items in Outputs. If omitted, will use the default artifact repository location configured in the controller, appended with the \u003cworkflowname\u003e/\u003cnodename\u003e in the key.",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ArtifactLocation"
+          "$ref": "#/definitions/ArtifactLocation"
         },
         "automountServiceAccountToken": {
           "description": "AutomountServiceAccountToken indicates whether a service account token should be automatically mounted in pods. ServiceAccountName of ExecutorConfig must be specified if this value is false.",
@@ -7985,11 +7985,11 @@
         },
         "dag": {
           "description": "DAG template subtype which runs a DAG",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.DAGTemplate"
+          "$ref": "#/definitions/DAGTemplate"
         },
         "executor": {
           "description": "Executor holds configurations of the executor container.",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ExecutorConfig"
+          "$ref": "#/definitions/ExecutorConfig"
         },
         "hostAliases": {
           "description": "HostAliases is an optional list of hosts and IPs that will be injected into the pod spec",
@@ -8004,26 +8004,26 @@
           "description": "InitContainers is a list of containers which run before the main container.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.UserContainer"
+            "$ref": "#/definitions/UserContainer"
           },
           "x-kubernetes-patch-merge-key": "name",
           "x-kubernetes-patch-strategy": "merge"
         },
         "inputs": {
           "description": "Inputs describe what inputs parameters and artifacts are supplied to this template",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Inputs"
+          "$ref": "#/definitions/Inputs"
         },
         "memoize": {
           "description": "Memoize allows templates to use outputs generated from already executed templates",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Memoize"
+          "$ref": "#/definitions/Memoize"
         },
         "metadata": {
           "description": "Metdata sets the pods's metadata, i.e. annotations and labels",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Metadata"
+          "$ref": "#/definitions/Metadata"
         },
         "metrics": {
           "description": "Metrics are a list of metrics emitted from this template",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Metrics"
+          "$ref": "#/definitions/Metrics"
         },
         "name": {
           "description": "Name is the name of the template",
@@ -8038,7 +8038,7 @@
         },
         "outputs": {
           "description": "Outputs describe the parameters and artifacts that this template produces",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Outputs"
+          "$ref": "#/definitions/Outputs"
         },
         "parallelism": {
           "description": "Parallelism limits the max total parallel pods that can execute at the same time within the boundaries of this template invocation. If additional steps/dag templates are invoked, the pods created by those templates will not be counted towards this total.",
@@ -8058,11 +8058,11 @@
         },
         "resource": {
           "description": "Resource template subtype which can run k8s resources",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ResourceTemplate"
+          "$ref": "#/definitions/ResourceTemplate"
         },
         "retryStrategy": {
           "description": "RetryStrategy describes how to retry a template when it fails",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.RetryStrategy"
+          "$ref": "#/definitions/RetryStrategy"
         },
         "schedulerName": {
           "description": "If specified, the pod will be dispatched by specified scheduler. Or it will be dispatched by workflow scope scheduler if specified. If neither specified, the pod will be dispatched by default scheduler.",
@@ -8070,7 +8070,7 @@
         },
         "script": {
           "description": "Script runs a portion of code against an interpreter",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ScriptTemplate"
+          "$ref": "#/definitions/ScriptTemplate"
         },
         "securityContext": {
           "description": "SecurityContext holds pod-level security attributes and common container settings. Optional: Defaults to empty.  See type description for default values of each field.",
@@ -8084,7 +8084,7 @@
           "description": "Sidecars is a list of containers which run alongside the main container Sidecars are automatically killed when the main container completes",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.UserContainer"
+            "$ref": "#/definitions/UserContainer"
           },
           "x-kubernetes-patch-merge-key": "name",
           "x-kubernetes-patch-strategy": "merge"
@@ -8093,16 +8093,16 @@
           "description": "Steps define a series of sequential/parallel workflow steps",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ParallelSteps"
+            "$ref": "#/definitions/ParallelSteps"
           }
         },
         "suspend": {
           "description": "Suspend template subtype which can suspend a workflow when reaching the step",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.SuspendTemplate"
+          "$ref": "#/definitions/SuspendTemplate"
         },
         "synchronization": {
           "description": "Synchronization holds synchronization lock configuration for this template",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Synchronization"
+          "$ref": "#/definitions/Synchronization"
         },
         "timeout": {
           "description": "Timout allows to set the total node execution timeout duration counting from the node's start time. This duration also includes time in which the node spends in Pending state. This duration may not be applied to Step or DAG templates.",
@@ -8128,7 +8128,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.TemplateRef": {
+    "TemplateRef": {
       "description": "TemplateRef is a reference of template resource.",
       "type": "object",
       "properties": {
@@ -8146,11 +8146,11 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.UpdateCronWorkflowRequest": {
+    "UpdateCronWorkflowRequest": {
       "type": "object",
       "properties": {
         "cronWorkflow": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.CronWorkflow"
+          "$ref": "#/definitions/CronWorkflow"
         },
         "name": {
           "description": "DEPRECATED: This field is ignored.",
@@ -8161,7 +8161,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.UserContainer": {
+    "UserContainer": {
       "description": "UserContainer is a container specified by a user.",
       "type": "object",
       "required": [
@@ -8296,7 +8296,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.ValueFrom": {
+    "ValueFrom": {
       "description": "ValueFrom describes a location in which to obtain the value to a parameter",
       "type": "object",
       "properties": {
@@ -8326,11 +8326,11 @@
         },
         "supplied": {
           "description": "Supplied value to be filled in directly, either through the CLI, API, etc.",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.SuppliedValueFrom"
+          "$ref": "#/definitions/SuppliedValueFrom"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Version": {
+    "Version": {
       "type": "object",
       "required": [
         "version",
@@ -8369,7 +8369,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.VolumeClaimGC": {
+    "VolumeClaimGC": {
       "description": "VolumeClaimGC describes how to delete volumes from completed Workflows",
       "type": "object",
       "properties": {
@@ -8379,7 +8379,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.Workflow": {
+    "Workflow": {
       "description": "Workflow is the definition of a workflow resource",
       "type": "object",
       "required": [
@@ -8399,14 +8399,14 @@
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
         },
         "spec": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowSpec"
+          "$ref": "#/definitions/WorkflowSpec"
         },
         "status": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowStatus"
+          "$ref": "#/definitions/WorkflowStatus"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowCreateRequest": {
+    "WorkflowCreateRequest": {
       "type": "object",
       "properties": {
         "createOptions": {
@@ -8423,14 +8423,14 @@
           "type": "boolean"
         },
         "workflow": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Workflow"
+          "$ref": "#/definitions/Workflow"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowDeleteResponse": {
+    "WorkflowDeleteResponse": {
       "type": "object"
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowEventBinding": {
+    "WorkflowEventBinding": {
       "description": "WorkflowEventBinding is the definition of an event resource",
       "type": "object",
       "required": [
@@ -8450,11 +8450,11 @@
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
         },
         "spec": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowEventBindingSpec"
+          "$ref": "#/definitions/WorkflowEventBindingSpec"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowEventBindingList": {
+    "WorkflowEventBindingList": {
       "description": "WorkflowEventBindingList is list of event resources",
       "type": "object",
       "required": [
@@ -8469,7 +8469,7 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowEventBinding"
+            "$ref": "#/definitions/WorkflowEventBinding"
           }
         },
         "kind": {
@@ -8481,7 +8481,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowEventBindingSpec": {
+    "WorkflowEventBindingSpec": {
       "type": "object",
       "required": [
         "event"
@@ -8489,26 +8489,26 @@
       "properties": {
         "event": {
           "description": "Event is the event to bind to",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Event"
+          "$ref": "#/definitions/Event"
         },
         "submit": {
           "description": "Submit is the workflow template to submit",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Submit"
+          "$ref": "#/definitions/Submit"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowLintRequest": {
+    "WorkflowLintRequest": {
       "type": "object",
       "properties": {
         "namespace": {
           "type": "string"
         },
         "workflow": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Workflow"
+          "$ref": "#/definitions/Workflow"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowList": {
+    "WorkflowList": {
       "description": "WorkflowList is list of Workflow resources",
       "type": "object",
       "required": [
@@ -8523,7 +8523,7 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Workflow"
+            "$ref": "#/definitions/Workflow"
           }
         },
         "kind": {
@@ -8535,7 +8535,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowResubmitRequest": {
+    "WorkflowResubmitRequest": {
       "type": "object",
       "properties": {
         "memoized": {
@@ -8549,7 +8549,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowResumeRequest": {
+    "WorkflowResumeRequest": {
       "type": "object",
       "properties": {
         "name": {
@@ -8563,7 +8563,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowRetryRequest": {
+    "WorkflowRetryRequest": {
       "type": "object",
       "properties": {
         "name": {
@@ -8580,7 +8580,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowSetRequest": {
+    "WorkflowSetRequest": {
       "type": "object",
       "properties": {
         "message": {
@@ -8603,25 +8603,25 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowSpec": {
+    "WorkflowSpec": {
       "description": "WorkflowSpec is the specification of a Workflow.",
       "type": "object",
       "properties": {
         "activeDeadlineSeconds": {
-          "description": "Optional duration in seconds relative to the workflow start time which the workflow is allowed to run before the controller terminates the io.argoproj.workflow.v1alpha1. A value of zero is used to terminate a Running workflow",
+          "description": "Optional duration in seconds relative to the workflow start time which the workflow is allowed to run before the controller terminates the  A value of zero is used to terminate a Running workflow",
           "type": "integer"
         },
         "affinity": {
-          "description": "Affinity sets the scheduling constraints for all pods in the io.argoproj.workflow.v1alpha1. Can be overridden by an affinity specified in the template",
+          "description": "Affinity sets the scheduling constraints for all pods in the  Can be overridden by an affinity specified in the template",
           "$ref": "#/definitions/io.k8s.api.core.v1.Affinity"
         },
         "arguments": {
-          "description": "Arguments contain the parameters and artifacts sent to the workflow entrypoint Parameters are referencable globally using the 'workflow' variable prefix. e.g. {{io.argoproj.workflow.v1alpha1.parameters.myparam}}",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Arguments"
+          "description": "Arguments contain the parameters and artifacts sent to the workflow entrypoint Parameters are referencable globally using the 'workflow' variable prefix. e.g. {{parameters.myparam}}",
+          "$ref": "#/definitions/Arguments"
         },
         "artifactRepositoryRef": {
           "description": "ArtifactRepositoryRef specifies the configMap name and key containing the artifact repository config.",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ArtifactRepositoryRef"
+          "$ref": "#/definitions/ArtifactRepositoryRef"
         },
         "automountServiceAccountToken": {
           "description": "AutomountServiceAccountToken indicates whether a service account token should be automatically mounted in pods. ServiceAccountName of ExecutorConfig must be specified if this value is false.",
@@ -8636,12 +8636,12 @@
           "type": "string"
         },
         "entrypoint": {
-          "description": "Entrypoint is a template reference to the starting point of the io.argoproj.workflow.v1alpha1.",
+          "description": "Entrypoint is a template reference to the starting point of the ",
           "type": "string"
         },
         "executor": {
-          "description": "Executor holds configurations of executor containers of the io.argoproj.workflow.v1alpha1.",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ExecutorConfig"
+          "description": "Executor holds configurations of executor containers of the ",
+          "$ref": "#/definitions/ExecutorConfig"
         },
         "hostAliases": {
           "type": "array",
@@ -8666,7 +8666,7 @@
         },
         "metrics": {
           "description": "Metrics are a list of metrics emitted from this Workflow",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Metrics"
+          "$ref": "#/definitions/Metrics"
         },
         "nodeSelector": {
           "description": "NodeSelector is a selector which will result in all pods of the workflow to be scheduled on the selected node(s). This is able to be overridden by a nodeSelector specified in the template.",
@@ -8676,7 +8676,7 @@
           }
         },
         "onExit": {
-          "description": "OnExit is a template reference which is invoked at the end of the workflow, irrespective of the success, failure, or error of the primary io.argoproj.workflow.v1alpha1.",
+          "description": "OnExit is a template reference which is invoked at the end of the workflow, irrespective of the success, failure, or error of the primary ",
           "type": "string"
         },
         "parallelism": {
@@ -8689,11 +8689,11 @@
         },
         "podGC": {
           "description": "PodGC describes the strategy to use when to deleting completed pods",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.PodGC"
+          "$ref": "#/definitions/PodGC"
         },
         "podMetadata": {
           "description": "PodMetadata defines additional metadata that should be applied to workflow pods",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Metadata"
+          "$ref": "#/definitions/Metadata"
         },
         "podPriority": {
           "description": "Priority to apply to workflow pods.",
@@ -8712,8 +8712,8 @@
           "type": "integer"
         },
         "retryStrategy": {
-          "description": "RetryStrategy for all templates in the io.argoproj.workflow.v1alpha1.",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.RetryStrategy"
+          "description": "RetryStrategy for all templates in the ",
+          "$ref": "#/definitions/RetryStrategy"
         },
         "schedulerName": {
           "description": "Set scheduler name for all pods. Will be overridden if container/script template's scheduler name is set. Default scheduler will be used if neither specified.",
@@ -8737,13 +8737,13 @@
         },
         "synchronization": {
           "description": "Synchronization holds synchronization lock configuration for this Workflow",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Synchronization"
+          "$ref": "#/definitions/Synchronization"
         },
         "templates": {
           "description": "Templates is a list of workflow templates used in a workflow",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Template"
+            "$ref": "#/definitions/Template"
           },
           "x-kubernetes-patch-merge-key": "name",
           "x-kubernetes-patch-strategy": "merge"
@@ -8759,11 +8759,11 @@
         },
         "ttlStrategy": {
           "description": "TTLStrategy limits the lifetime of a Workflow that has finished execution depending on if it Succeeded or Failed. If this struct is set, once the Workflow finishes, it will be deleted after the time to live expires. If this field is unset, the controller config map will hold the default values.",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.TTLStrategy"
+          "$ref": "#/definitions/TTLStrategy"
         },
         "volumeClaimGC": {
           "description": "VolumeClaimGC describes the strategy to use when to deleting volumes from completed workflows",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.VolumeClaimGC"
+          "$ref": "#/definitions/VolumeClaimGC"
         },
         "volumeClaimTemplates": {
           "description": "VolumeClaimTemplates is a list of claims that containers are allowed to reference. The Workflow controller will create the claims at the beginning of the workflow and delete the claims upon completion of the workflow",
@@ -8775,7 +8775,7 @@
           "x-kubernetes-patch-strategy": "merge"
         },
         "volumes": {
-          "description": "Volumes is a list of volumes that can be mounted by containers in a io.argoproj.workflow.v1alpha1.",
+          "description": "Volumes is a list of volumes that can be mounted by containers in a ",
           "type": "array",
           "items": {
             "$ref": "#/definitions/io.k8s.api.core.v1.Volume"
@@ -8785,17 +8785,17 @@
         },
         "workflowTemplateRef": {
           "description": "WorkflowTemplateRef holds a reference to a WorkflowTemplate for execution",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowTemplateRef"
+          "$ref": "#/definitions/WorkflowTemplateRef"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowStatus": {
+    "WorkflowStatus": {
       "description": "WorkflowStatus contains overall status information about a workflow",
       "type": "object",
       "properties": {
         "artifactRepositoryRef": {
           "description": "ArtifactRepositoryRef is used to cache the repository to use so we do not need to determine it everytime we reconcile.",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ArtifactRepositoryRefStatus"
+          "$ref": "#/definitions/ArtifactRepositoryRefStatus"
         },
         "compressedNodes": {
           "description": "Compressed and base64 decoded Nodes map",
@@ -8805,7 +8805,7 @@
           "description": "Conditions is a list of conditions the Workflow may have",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Condition"
+            "$ref": "#/definitions/Condition"
           }
         },
         "estimatedDuration": {
@@ -8824,7 +8824,7 @@
           "description": "Nodes is a mapping between a node ID and the node's status.",
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.NodeStatus"
+            "$ref": "#/definitions/NodeStatus"
           }
         },
         "offloadNodeStatusVersion": {
@@ -8833,10 +8833,10 @@
         },
         "outputs": {
           "description": "Outputs captures output values and artifact locations produced by the workflow via global outputs",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Outputs"
+          "$ref": "#/definitions/Outputs"
         },
         "persistentVolumeClaims": {
-          "description": "PersistentVolumeClaims tracks all PVCs that were created as part of the io.argoproj.workflow.v1alpha1. The contents of this list are drained at the end of the workflow.",
+          "description": "PersistentVolumeClaims tracks all PVCs that were created as part of the  The contents of this list are drained at the end of the workflow.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/io.k8s.api.core.v1.Volume"
@@ -8866,30 +8866,30 @@
           "description": "StoredTemplates is a mapping between a template ref and the node's status.",
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Template"
+            "$ref": "#/definitions/Template"
           }
         },
         "storedWorkflowTemplateSpec": {
           "description": "StoredWorkflowSpec stores the WorkflowTemplate spec for future execution.",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowSpec"
+          "$ref": "#/definitions/WorkflowSpec"
         },
         "synchronization": {
           "description": "Synchronization stores the status of synchronization locks",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.SynchronizationStatus"
+          "$ref": "#/definitions/SynchronizationStatus"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowStep": {
+    "WorkflowStep": {
       "description": "WorkflowStep is a reference to a template to execute in a series of step",
       "type": "object",
       "properties": {
         "arguments": {
           "description": "Arguments hold arguments to the template",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Arguments"
+          "$ref": "#/definitions/Arguments"
         },
         "continueOn": {
           "description": "ContinueOn makes argo to proceed with the following step even if this step fails. Errors and Failed states can be specified",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ContinueOn"
+          "$ref": "#/definitions/ContinueOn"
         },
         "name": {
           "description": "Name of the step",
@@ -8905,7 +8905,7 @@
         },
         "templateRef": {
           "description": "TemplateRef is the reference to the template resource to execute as the step.",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.TemplateRef"
+          "$ref": "#/definitions/TemplateRef"
         },
         "when": {
           "description": "When is an expression in which the step should conditionally execute",
@@ -8915,7 +8915,7 @@
           "description": "WithItems expands a step into multiple parallel steps from the items in the list",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Item"
+            "$ref": "#/definitions/Item"
           }
         },
         "withParam": {
@@ -8924,11 +8924,11 @@
         },
         "withSequence": {
           "description": "WithSequence expands a step into a numeric sequence",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Sequence"
+          "$ref": "#/definitions/Sequence"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowStopRequest": {
+    "WorkflowStopRequest": {
       "type": "object",
       "properties": {
         "message": {
@@ -8945,7 +8945,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowSubmitRequest": {
+    "WorkflowSubmitRequest": {
       "type": "object",
       "properties": {
         "namespace": {
@@ -8958,11 +8958,11 @@
           "type": "string"
         },
         "submitOptions": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.SubmitOpts"
+          "$ref": "#/definitions/SubmitOpts"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowSuspendRequest": {
+    "WorkflowSuspendRequest": {
       "type": "object",
       "properties": {
         "name": {
@@ -8973,7 +8973,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowTemplate": {
+    "WorkflowTemplate": {
       "description": "WorkflowTemplate is the definition of a workflow template resource",
       "type": "object",
       "required": [
@@ -8993,11 +8993,11 @@
           "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
         },
         "spec": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowTemplateSpec"
+          "$ref": "#/definitions/WorkflowTemplateSpec"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowTemplateCreateRequest": {
+    "WorkflowTemplateCreateRequest": {
       "type": "object",
       "properties": {
         "createOptions": {
@@ -9007,14 +9007,14 @@
           "type": "string"
         },
         "template": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowTemplate"
+          "$ref": "#/definitions/WorkflowTemplate"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowTemplateDeleteResponse": {
+    "WorkflowTemplateDeleteResponse": {
       "type": "object"
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowTemplateLintRequest": {
+    "WorkflowTemplateLintRequest": {
       "type": "object",
       "properties": {
         "createOptions": {
@@ -9024,11 +9024,11 @@
           "type": "string"
         },
         "template": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowTemplate"
+          "$ref": "#/definitions/WorkflowTemplate"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowTemplateList": {
+    "WorkflowTemplateList": {
       "description": "WorkflowTemplateList is list of WorkflowTemplate resources",
       "type": "object",
       "required": [
@@ -9043,7 +9043,7 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowTemplate"
+            "$ref": "#/definitions/WorkflowTemplate"
           }
         },
         "kind": {
@@ -9055,7 +9055,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowTemplateRef": {
+    "WorkflowTemplateRef": {
       "description": "WorkflowTemplateRef is a reference to a WorkflowTemplate resource.",
       "type": "object",
       "properties": {
@@ -9069,25 +9069,25 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowTemplateSpec": {
+    "WorkflowTemplateSpec": {
       "description": "WorkflowTemplateSpec is a spec of WorkflowTemplate.",
       "type": "object",
       "properties": {
         "activeDeadlineSeconds": {
-          "description": "Optional duration in seconds relative to the workflow start time which the workflow is allowed to run before the controller terminates the io.argoproj.workflow.v1alpha1. A value of zero is used to terminate a Running workflow",
+          "description": "Optional duration in seconds relative to the workflow start time which the workflow is allowed to run before the controller terminates the  A value of zero is used to terminate a Running workflow",
           "type": "integer"
         },
         "affinity": {
-          "description": "Affinity sets the scheduling constraints for all pods in the io.argoproj.workflow.v1alpha1. Can be overridden by an affinity specified in the template",
+          "description": "Affinity sets the scheduling constraints for all pods in the  Can be overridden by an affinity specified in the template",
           "$ref": "#/definitions/io.k8s.api.core.v1.Affinity"
         },
         "arguments": {
-          "description": "Arguments contain the parameters and artifacts sent to the workflow entrypoint Parameters are referencable globally using the 'workflow' variable prefix. e.g. {{io.argoproj.workflow.v1alpha1.parameters.myparam}}",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Arguments"
+          "description": "Arguments contain the parameters and artifacts sent to the workflow entrypoint Parameters are referencable globally using the 'workflow' variable prefix. e.g. {{parameters.myparam}}",
+          "$ref": "#/definitions/Arguments"
         },
         "artifactRepositoryRef": {
           "description": "ArtifactRepositoryRef specifies the configMap name and key containing the artifact repository config.",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ArtifactRepositoryRef"
+          "$ref": "#/definitions/ArtifactRepositoryRef"
         },
         "automountServiceAccountToken": {
           "description": "AutomountServiceAccountToken indicates whether a service account token should be automatically mounted in pods. ServiceAccountName of ExecutorConfig must be specified if this value is false.",
@@ -9102,12 +9102,12 @@
           "type": "string"
         },
         "entrypoint": {
-          "description": "Entrypoint is a template reference to the starting point of the io.argoproj.workflow.v1alpha1.",
+          "description": "Entrypoint is a template reference to the starting point of the ",
           "type": "string"
         },
         "executor": {
-          "description": "Executor holds configurations of executor containers of the io.argoproj.workflow.v1alpha1.",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ExecutorConfig"
+          "description": "Executor holds configurations of executor containers of the ",
+          "$ref": "#/definitions/ExecutorConfig"
         },
         "hostAliases": {
           "type": "array",
@@ -9132,7 +9132,7 @@
         },
         "metrics": {
           "description": "Metrics are a list of metrics emitted from this Workflow",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Metrics"
+          "$ref": "#/definitions/Metrics"
         },
         "nodeSelector": {
           "description": "NodeSelector is a selector which will result in all pods of the workflow to be scheduled on the selected node(s). This is able to be overridden by a nodeSelector specified in the template.",
@@ -9142,7 +9142,7 @@
           }
         },
         "onExit": {
-          "description": "OnExit is a template reference which is invoked at the end of the workflow, irrespective of the success, failure, or error of the primary io.argoproj.workflow.v1alpha1.",
+          "description": "OnExit is a template reference which is invoked at the end of the workflow, irrespective of the success, failure, or error of the primary ",
           "type": "string"
         },
         "parallelism": {
@@ -9155,11 +9155,11 @@
         },
         "podGC": {
           "description": "PodGC describes the strategy to use when to deleting completed pods",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.PodGC"
+          "$ref": "#/definitions/PodGC"
         },
         "podMetadata": {
           "description": "PodMetadata defines additional metadata that should be applied to workflow pods",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Metadata"
+          "$ref": "#/definitions/Metadata"
         },
         "podPriority": {
           "description": "Priority to apply to workflow pods.",
@@ -9178,8 +9178,8 @@
           "type": "integer"
         },
         "retryStrategy": {
-          "description": "RetryStrategy for all templates in the io.argoproj.workflow.v1alpha1.",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.RetryStrategy"
+          "description": "RetryStrategy for all templates in the ",
+          "$ref": "#/definitions/RetryStrategy"
         },
         "schedulerName": {
           "description": "Set scheduler name for all pods. Will be overridden if container/script template's scheduler name is set. Default scheduler will be used if neither specified.",
@@ -9203,13 +9203,13 @@
         },
         "synchronization": {
           "description": "Synchronization holds synchronization lock configuration for this Workflow",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Synchronization"
+          "$ref": "#/definitions/Synchronization"
         },
         "templates": {
           "description": "Templates is a list of workflow templates used in a workflow",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Template"
+            "$ref": "#/definitions/Template"
           },
           "x-kubernetes-patch-merge-key": "name",
           "x-kubernetes-patch-strategy": "merge"
@@ -9225,11 +9225,11 @@
         },
         "ttlStrategy": {
           "description": "TTLStrategy limits the lifetime of a Workflow that has finished execution depending on if it Succeeded or Failed. If this struct is set, once the Workflow finishes, it will be deleted after the time to live expires. If this field is unset, the controller config map will hold the default values.",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.TTLStrategy"
+          "$ref": "#/definitions/TTLStrategy"
         },
         "volumeClaimGC": {
           "description": "VolumeClaimGC describes the strategy to use when to deleting volumes from completed workflows",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.VolumeClaimGC"
+          "$ref": "#/definitions/VolumeClaimGC"
         },
         "volumeClaimTemplates": {
           "description": "VolumeClaimTemplates is a list of claims that containers are allowed to reference. The Workflow controller will create the claims at the beginning of the workflow and delete the claims upon completion of the workflow",
@@ -9241,7 +9241,7 @@
           "x-kubernetes-patch-strategy": "merge"
         },
         "volumes": {
-          "description": "Volumes is a list of volumes that can be mounted by containers in a io.argoproj.workflow.v1alpha1.",
+          "description": "Volumes is a list of volumes that can be mounted by containers in a ",
           "type": "array",
           "items": {
             "$ref": "#/definitions/io.k8s.api.core.v1.Volume"
@@ -9255,11 +9255,11 @@
         },
         "workflowTemplateRef": {
           "description": "WorkflowTemplateRef holds a reference to a WorkflowTemplate for execution",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowTemplateRef"
+          "$ref": "#/definitions/WorkflowTemplateRef"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowTemplateUpdateRequest": {
+    "WorkflowTemplateUpdateRequest": {
       "type": "object",
       "properties": {
         "name": {
@@ -9270,11 +9270,11 @@
           "type": "string"
         },
         "template": {
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.WorkflowTemplate"
+          "$ref": "#/definitions/WorkflowTemplate"
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowTerminateRequest": {
+    "WorkflowTerminateRequest": {
       "type": "object",
       "properties": {
         "name": {
@@ -9285,12 +9285,12 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.WorkflowWatchEvent": {
+    "WorkflowWatchEvent": {
       "type": "object",
       "properties": {
         "object": {
           "title": "the workflow",
-          "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.Workflow"
+          "$ref": "#/definitions/Workflow"
         },
         "type": {
           "type": "string",
@@ -9298,7 +9298,7 @@
         }
       }
     },
-    "io.argoproj.workflow.v1alpha1.ZipStrategy": {
+    "ZipStrategy": {
       "description": "ZipStrategy will unzip zipped input artifacts",
       "type": "object"
     },
