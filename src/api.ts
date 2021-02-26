@@ -1,4 +1,5 @@
 // tslint:disable
+/// <reference path="./custom.d.ts" />
 /**
  * Argo
  * Argo
@@ -15,8 +16,6 @@
 import * as globalImportUrl from 'url';
 import { Configuration } from './configuration';
 import globalAxios, { AxiosPromise, AxiosInstance } from 'axios';
-// Some imports not used depending on template conditions
-// @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from './base';
 
 /**
@@ -714,7 +713,7 @@ export interface GoogleProtobufAny {
      * @type {string}
      * @memberof GoogleProtobufAny
      */
-    type_url?: string;
+    typeUrl?: string;
     /**
      * 
      * @type {string}
@@ -739,19 +738,19 @@ export interface GrpcGatewayRuntimeStreamError {
      * @type {number}
      * @memberof GrpcGatewayRuntimeStreamError
      */
-    grpc_code?: number;
+    grpcCode?: number;
     /**
      * 
      * @type {number}
      * @memberof GrpcGatewayRuntimeStreamError
      */
-    http_code?: number;
+    httpCode?: number;
     /**
      * 
      * @type {string}
      * @memberof GrpcGatewayRuntimeStreamError
      */
-    http_status?: string;
+    httpStatus?: string;
     /**
      * 
      * @type {string}
@@ -1732,7 +1731,7 @@ export interface IoK8sApiCoreV1FieldsV1 {
      * @type {string}
      * @memberof IoK8sApiCoreV1FieldsV1
      */
-    Raw?: string;
+    raw?: string;
 }
 /**
  * FlexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.
@@ -5075,10 +5074,10 @@ export interface Template {
     sidecars?: Array<UserContainer>;
     /**
      * 
-     * @type {Array<Array<WorkflowStep>>}
+     * @type {Array<Array>}
      * @memberof Template
      */
-    steps?: Array<Array<WorkflowStep>>;
+    steps?: Array<Array<any>>;
     /**
      * 
      * @type {SuspendTemplate}
@@ -5984,8 +5983,7 @@ export const ArchivedWorkflowServiceApiAxiosParamCreator = function (configurati
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -6019,8 +6017,7 @@ export const ArchivedWorkflowServiceApiAxiosParamCreator = function (configurati
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -6088,8 +6085,7 @@ export const ArchivedWorkflowServiceApiAxiosParamCreator = function (configurati
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -6166,7 +6162,7 @@ export const ArchivedWorkflowServiceApiFactory = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteArchivedWorkflow(uid: string, options?: any): AxiosPromise<object> {
+        deleteArchivedWorkflow(uid: string, options?: any) {
             return ArchivedWorkflowServiceApiFp(configuration).deleteArchivedWorkflow(uid, options)(axios, basePath);
         },
         /**
@@ -6175,7 +6171,7 @@ export const ArchivedWorkflowServiceApiFactory = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getArchivedWorkflow(uid: string, options?: any): AxiosPromise<Workflow> {
+        getArchivedWorkflow(uid: string, options?: any) {
             return ArchivedWorkflowServiceApiFp(configuration).getArchivedWorkflow(uid, options)(axios, basePath);
         },
         /**
@@ -6191,7 +6187,7 @@ export const ArchivedWorkflowServiceApiFactory = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listArchivedWorkflows(listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, options?: any): AxiosPromise<WorkflowList> {
+        listArchivedWorkflows(listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, options?: any) {
             return ArchivedWorkflowServiceApiFp(configuration).listArchivedWorkflows(listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, options)(axios, basePath);
         },
     };
@@ -6287,9 +6283,8 @@ export const CronWorkflowServiceApiAxiosParamCreator = function (configuration?:
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+            const needsSerialization = (<any>"CronCreateCronWorkflowRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
@@ -6360,8 +6355,7 @@ export const CronWorkflowServiceApiAxiosParamCreator = function (configuration?:
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -6406,8 +6400,7 @@ export const CronWorkflowServiceApiAxiosParamCreator = function (configuration?:
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -6448,9 +6441,8 @@ export const CronWorkflowServiceApiAxiosParamCreator = function (configuration?:
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+            const needsSerialization = (<any>"CronLintCronWorkflowRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
@@ -6525,8 +6517,7 @@ export const CronWorkflowServiceApiAxiosParamCreator = function (configuration?:
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -6573,9 +6564,8 @@ export const CronWorkflowServiceApiAxiosParamCreator = function (configuration?:
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+            const needsSerialization = (<any>"CronUpdateCronWorkflowRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
@@ -6707,7 +6697,7 @@ export const CronWorkflowServiceApiFactory = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCronWorkflow(namespace: string, body: CronCreateCronWorkflowRequest, options?: any): AxiosPromise<CronWorkflow> {
+        createCronWorkflow(namespace: string, body: CronCreateCronWorkflowRequest, options?: any) {
             return CronWorkflowServiceApiFp(configuration).createCronWorkflow(namespace, body, options)(axios, basePath);
         },
         /**
@@ -6723,7 +6713,7 @@ export const CronWorkflowServiceApiFactory = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteCronWorkflow(namespace: string, name: string, deleteOptionsGracePeriodSeconds?: string, deleteOptionsPreconditionsUid?: string, deleteOptionsPreconditionsResourceVersion?: string, deleteOptionsOrphanDependents?: boolean, deleteOptionsPropagationPolicy?: string, deleteOptionsDryRun?: Array<string>, options?: any): AxiosPromise<object> {
+        deleteCronWorkflow(namespace: string, name: string, deleteOptionsGracePeriodSeconds?: string, deleteOptionsPreconditionsUid?: string, deleteOptionsPreconditionsResourceVersion?: string, deleteOptionsOrphanDependents?: boolean, deleteOptionsPropagationPolicy?: string, deleteOptionsDryRun?: Array<string>, options?: any) {
             return CronWorkflowServiceApiFp(configuration).deleteCronWorkflow(namespace, name, deleteOptionsGracePeriodSeconds, deleteOptionsPreconditionsUid, deleteOptionsPreconditionsResourceVersion, deleteOptionsOrphanDependents, deleteOptionsPropagationPolicy, deleteOptionsDryRun, options)(axios, basePath);
         },
         /**
@@ -6734,7 +6724,7 @@ export const CronWorkflowServiceApiFactory = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCronWorkflow(namespace: string, name: string, getOptionsResourceVersion?: string, options?: any): AxiosPromise<CronWorkflow> {
+        getCronWorkflow(namespace: string, name: string, getOptionsResourceVersion?: string, options?: any) {
             return CronWorkflowServiceApiFp(configuration).getCronWorkflow(namespace, name, getOptionsResourceVersion, options)(axios, basePath);
         },
         /**
@@ -6744,7 +6734,7 @@ export const CronWorkflowServiceApiFactory = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        lintCronWorkflow(namespace: string, body: CronLintCronWorkflowRequest, options?: any): AxiosPromise<CronWorkflow> {
+        lintCronWorkflow(namespace: string, body: CronLintCronWorkflowRequest, options?: any) {
             return CronWorkflowServiceApiFp(configuration).lintCronWorkflow(namespace, body, options)(axios, basePath);
         },
         /**
@@ -6761,7 +6751,7 @@ export const CronWorkflowServiceApiFactory = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listCronWorkflows(namespace: string, listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, options?: any): AxiosPromise<CronWorkflowList> {
+        listCronWorkflows(namespace: string, listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, options?: any) {
             return CronWorkflowServiceApiFp(configuration).listCronWorkflows(namespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, options)(axios, basePath);
         },
         /**
@@ -6772,7 +6762,7 @@ export const CronWorkflowServiceApiFactory = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCronWorkflow(namespace: string, name: string, body: CronUpdateCronWorkflowRequest, options?: any): AxiosPromise<CronWorkflow> {
+        updateCronWorkflow(namespace: string, name: string, body: CronUpdateCronWorkflowRequest, options?: any) {
             return CronWorkflowServiceApiFp(configuration).updateCronWorkflow(namespace, name, body, options)(axios, basePath);
         },
     };
@@ -6902,8 +6892,7 @@ export const InfoServiceApiAxiosParamCreator = function (configuration?: Configu
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -6945,7 +6934,7 @@ export const InfoServiceApiFactory = function (configuration?: Configuration, ba
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getInfo(options?: any): AxiosPromise<InfoResponse> {
+        getInfo(options?: any) {
             return InfoServiceApiFp(configuration).getInfo(options)(axios, basePath);
         },
     };
@@ -7011,9 +7000,8 @@ export const WorkflowServiceApiAxiosParamCreator = function (configuration?: Con
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+            const needsSerialization = (<any>"WorkflowCreateRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
@@ -7084,8 +7072,7 @@ export const WorkflowServiceApiAxiosParamCreator = function (configuration?: Con
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -7135,8 +7122,7 @@ export const WorkflowServiceApiAxiosParamCreator = function (configuration?: Con
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -7177,9 +7163,8 @@ export const WorkflowServiceApiAxiosParamCreator = function (configuration?: Con
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+            const needsSerialization = (<any>"WorkflowLintRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
@@ -7259,8 +7244,7 @@ export const WorkflowServiceApiAxiosParamCreator = function (configuration?: Con
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -7351,8 +7335,7 @@ export const WorkflowServiceApiAxiosParamCreator = function (configuration?: Con
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -7399,9 +7382,8 @@ export const WorkflowServiceApiAxiosParamCreator = function (configuration?: Con
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+            const needsSerialization = (<any>"WorkflowResubmitRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
@@ -7449,9 +7431,8 @@ export const WorkflowServiceApiAxiosParamCreator = function (configuration?: Con
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+            const needsSerialization = (<any>"WorkflowResumeRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
@@ -7499,9 +7480,8 @@ export const WorkflowServiceApiAxiosParamCreator = function (configuration?: Con
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+            const needsSerialization = (<any>"WorkflowRetryRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
@@ -7549,9 +7529,8 @@ export const WorkflowServiceApiAxiosParamCreator = function (configuration?: Con
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+            const needsSerialization = (<any>"WorkflowStopRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
@@ -7599,9 +7578,8 @@ export const WorkflowServiceApiAxiosParamCreator = function (configuration?: Con
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+            const needsSerialization = (<any>"WorkflowSuspendRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
@@ -7649,9 +7627,8 @@ export const WorkflowServiceApiAxiosParamCreator = function (configuration?: Con
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+            const needsSerialization = (<any>"WorkflowTerminateRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
@@ -7726,8 +7703,7 @@ export const WorkflowServiceApiAxiosParamCreator = function (configuration?: Con
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -7980,7 +7956,7 @@ export const WorkflowServiceApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createWorkflow(namespace: string, body: WorkflowCreateRequest, options?: any): AxiosPromise<Workflow> {
+        createWorkflow(namespace: string, body: WorkflowCreateRequest, options?: any) {
             return WorkflowServiceApiFp(configuration).createWorkflow(namespace, body, options)(axios, basePath);
         },
         /**
@@ -7996,7 +7972,7 @@ export const WorkflowServiceApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteWorkflow(namespace: string, name: string, deleteOptionsGracePeriodSeconds?: string, deleteOptionsPreconditionsUid?: string, deleteOptionsPreconditionsResourceVersion?: string, deleteOptionsOrphanDependents?: boolean, deleteOptionsPropagationPolicy?: string, deleteOptionsDryRun?: Array<string>, options?: any): AxiosPromise<object> {
+        deleteWorkflow(namespace: string, name: string, deleteOptionsGracePeriodSeconds?: string, deleteOptionsPreconditionsUid?: string, deleteOptionsPreconditionsResourceVersion?: string, deleteOptionsOrphanDependents?: boolean, deleteOptionsPropagationPolicy?: string, deleteOptionsDryRun?: Array<string>, options?: any) {
             return WorkflowServiceApiFp(configuration).deleteWorkflow(namespace, name, deleteOptionsGracePeriodSeconds, deleteOptionsPreconditionsUid, deleteOptionsPreconditionsResourceVersion, deleteOptionsOrphanDependents, deleteOptionsPropagationPolicy, deleteOptionsDryRun, options)(axios, basePath);
         },
         /**
@@ -8008,7 +7984,7 @@ export const WorkflowServiceApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWorkflow(namespace: string, name: string, getOptionsResourceVersion?: string, fields?: string, options?: any): AxiosPromise<Workflow> {
+        getWorkflow(namespace: string, name: string, getOptionsResourceVersion?: string, fields?: string, options?: any) {
             return WorkflowServiceApiFp(configuration).getWorkflow(namespace, name, getOptionsResourceVersion, fields, options)(axios, basePath);
         },
         /**
@@ -8018,7 +7994,7 @@ export const WorkflowServiceApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        lintWorkflow(namespace: string, body: WorkflowLintRequest, options?: any): AxiosPromise<Workflow> {
+        lintWorkflow(namespace: string, body: WorkflowLintRequest, options?: any) {
             return WorkflowServiceApiFp(configuration).lintWorkflow(namespace, body, options)(axios, basePath);
         },
         /**
@@ -8036,7 +8012,7 @@ export const WorkflowServiceApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listWorkflows(namespace: string, listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, fields?: string, options?: any): AxiosPromise<WorkflowList> {
+        listWorkflows(namespace: string, listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, fields?: string, options?: any) {
             return WorkflowServiceApiFp(configuration).listWorkflows(namespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, fields, options)(axios, basePath);
         },
         /**
@@ -8056,7 +8032,7 @@ export const WorkflowServiceApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        podLogs(namespace: string, name: string, podName: string, logOptionsContainer?: string, logOptionsFollow?: boolean, logOptionsPrevious?: boolean, logOptionsSinceSeconds?: string, logOptionsSinceTimeSeconds?: string, logOptionsSinceTimeNanos?: number, logOptionsTimestamps?: boolean, logOptionsTailLines?: string, logOptionsLimitBytes?: string, options?: any): AxiosPromise<object> {
+        podLogs(namespace: string, name: string, podName: string, logOptionsContainer?: string, logOptionsFollow?: boolean, logOptionsPrevious?: boolean, logOptionsSinceSeconds?: string, logOptionsSinceTimeSeconds?: string, logOptionsSinceTimeNanos?: number, logOptionsTimestamps?: boolean, logOptionsTailLines?: string, logOptionsLimitBytes?: string, options?: any) {
             return WorkflowServiceApiFp(configuration).podLogs(namespace, name, podName, logOptionsContainer, logOptionsFollow, logOptionsPrevious, logOptionsSinceSeconds, logOptionsSinceTimeSeconds, logOptionsSinceTimeNanos, logOptionsTimestamps, logOptionsTailLines, logOptionsLimitBytes, options)(axios, basePath);
         },
         /**
@@ -8067,7 +8043,7 @@ export const WorkflowServiceApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        resubmitWorkflow(namespace: string, name: string, body: WorkflowResubmitRequest, options?: any): AxiosPromise<Workflow> {
+        resubmitWorkflow(namespace: string, name: string, body: WorkflowResubmitRequest, options?: any) {
             return WorkflowServiceApiFp(configuration).resubmitWorkflow(namespace, name, body, options)(axios, basePath);
         },
         /**
@@ -8078,7 +8054,7 @@ export const WorkflowServiceApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        resumeWorkflow(namespace: string, name: string, body: WorkflowResumeRequest, options?: any): AxiosPromise<Workflow> {
+        resumeWorkflow(namespace: string, name: string, body: WorkflowResumeRequest, options?: any) {
             return WorkflowServiceApiFp(configuration).resumeWorkflow(namespace, name, body, options)(axios, basePath);
         },
         /**
@@ -8089,7 +8065,7 @@ export const WorkflowServiceApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        retryWorkflow(namespace: string, name: string, body: WorkflowRetryRequest, options?: any): AxiosPromise<Workflow> {
+        retryWorkflow(namespace: string, name: string, body: WorkflowRetryRequest, options?: any) {
             return WorkflowServiceApiFp(configuration).retryWorkflow(namespace, name, body, options)(axios, basePath);
         },
         /**
@@ -8100,7 +8076,7 @@ export const WorkflowServiceApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        stopWorkflow(namespace: string, name: string, body: WorkflowStopRequest, options?: any): AxiosPromise<Workflow> {
+        stopWorkflow(namespace: string, name: string, body: WorkflowStopRequest, options?: any) {
             return WorkflowServiceApiFp(configuration).stopWorkflow(namespace, name, body, options)(axios, basePath);
         },
         /**
@@ -8111,7 +8087,7 @@ export const WorkflowServiceApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        suspendWorkflow(namespace: string, name: string, body: WorkflowSuspendRequest, options?: any): AxiosPromise<Workflow> {
+        suspendWorkflow(namespace: string, name: string, body: WorkflowSuspendRequest, options?: any) {
             return WorkflowServiceApiFp(configuration).suspendWorkflow(namespace, name, body, options)(axios, basePath);
         },
         /**
@@ -8122,7 +8098,7 @@ export const WorkflowServiceApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        terminateWorkflow(namespace: string, name: string, body: WorkflowTerminateRequest, options?: any): AxiosPromise<Workflow> {
+        terminateWorkflow(namespace: string, name: string, body: WorkflowTerminateRequest, options?: any) {
             return WorkflowServiceApiFp(configuration).terminateWorkflow(namespace, name, body, options)(axios, basePath);
         },
         /**
@@ -8139,7 +8115,7 @@ export const WorkflowServiceApiFactory = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        watchWorkflows(namespace: string, listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, options?: any): AxiosPromise<object> {
+        watchWorkflows(namespace: string, listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, options?: any) {
             return WorkflowServiceApiFp(configuration).watchWorkflows(namespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, options)(axios, basePath);
         },
     };
@@ -8390,9 +8366,8 @@ export const WorkflowTemplateServiceApiAxiosParamCreator = function (configurati
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+            const needsSerialization = (<any>"WorkflowTemplateCreateRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
@@ -8463,8 +8438,7 @@ export const WorkflowTemplateServiceApiAxiosParamCreator = function (configurati
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -8509,8 +8483,7 @@ export const WorkflowTemplateServiceApiAxiosParamCreator = function (configurati
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -8551,9 +8524,8 @@ export const WorkflowTemplateServiceApiAxiosParamCreator = function (configurati
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+            const needsSerialization = (<any>"WorkflowTemplateLintRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
@@ -8628,8 +8600,7 @@ export const WorkflowTemplateServiceApiAxiosParamCreator = function (configurati
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -8676,9 +8647,8 @@ export const WorkflowTemplateServiceApiAxiosParamCreator = function (configurati
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+            const needsSerialization = (<any>"WorkflowTemplateUpdateRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
 
             return {
@@ -8810,7 +8780,7 @@ export const WorkflowTemplateServiceApiFactory = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createWorkflowTemplate(namespace: string, body: WorkflowTemplateCreateRequest, options?: any): AxiosPromise<WorkflowTemplate> {
+        createWorkflowTemplate(namespace: string, body: WorkflowTemplateCreateRequest, options?: any) {
             return WorkflowTemplateServiceApiFp(configuration).createWorkflowTemplate(namespace, body, options)(axios, basePath);
         },
         /**
@@ -8826,7 +8796,7 @@ export const WorkflowTemplateServiceApiFactory = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteWorkflowTemplate(namespace: string, name: string, deleteOptionsGracePeriodSeconds?: string, deleteOptionsPreconditionsUid?: string, deleteOptionsPreconditionsResourceVersion?: string, deleteOptionsOrphanDependents?: boolean, deleteOptionsPropagationPolicy?: string, deleteOptionsDryRun?: Array<string>, options?: any): AxiosPromise<object> {
+        deleteWorkflowTemplate(namespace: string, name: string, deleteOptionsGracePeriodSeconds?: string, deleteOptionsPreconditionsUid?: string, deleteOptionsPreconditionsResourceVersion?: string, deleteOptionsOrphanDependents?: boolean, deleteOptionsPropagationPolicy?: string, deleteOptionsDryRun?: Array<string>, options?: any) {
             return WorkflowTemplateServiceApiFp(configuration).deleteWorkflowTemplate(namespace, name, deleteOptionsGracePeriodSeconds, deleteOptionsPreconditionsUid, deleteOptionsPreconditionsResourceVersion, deleteOptionsOrphanDependents, deleteOptionsPropagationPolicy, deleteOptionsDryRun, options)(axios, basePath);
         },
         /**
@@ -8837,7 +8807,7 @@ export const WorkflowTemplateServiceApiFactory = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWorkflowTemplate(namespace: string, name: string, getOptionsResourceVersion?: string, options?: any): AxiosPromise<WorkflowTemplate> {
+        getWorkflowTemplate(namespace: string, name: string, getOptionsResourceVersion?: string, options?: any) {
             return WorkflowTemplateServiceApiFp(configuration).getWorkflowTemplate(namespace, name, getOptionsResourceVersion, options)(axios, basePath);
         },
         /**
@@ -8847,7 +8817,7 @@ export const WorkflowTemplateServiceApiFactory = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        lintWorkflowTemplate(namespace: string, body: WorkflowTemplateLintRequest, options?: any): AxiosPromise<WorkflowTemplate> {
+        lintWorkflowTemplate(namespace: string, body: WorkflowTemplateLintRequest, options?: any) {
             return WorkflowTemplateServiceApiFp(configuration).lintWorkflowTemplate(namespace, body, options)(axios, basePath);
         },
         /**
@@ -8864,7 +8834,7 @@ export const WorkflowTemplateServiceApiFactory = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listWorkflowTemplates(namespace: string, listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, options?: any): AxiosPromise<WorkflowTemplateList> {
+        listWorkflowTemplates(namespace: string, listOptionsLabelSelector?: string, listOptionsFieldSelector?: string, listOptionsWatch?: boolean, listOptionsAllowWatchBookmarks?: boolean, listOptionsResourceVersion?: string, listOptionsTimeoutSeconds?: string, listOptionsLimit?: string, listOptionsContinue?: string, options?: any) {
             return WorkflowTemplateServiceApiFp(configuration).listWorkflowTemplates(namespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, options)(axios, basePath);
         },
         /**
@@ -8875,7 +8845,7 @@ export const WorkflowTemplateServiceApiFactory = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateWorkflowTemplate(namespace: string, name: string, body: WorkflowTemplateUpdateRequest, options?: any): AxiosPromise<WorkflowTemplate> {
+        updateWorkflowTemplate(namespace: string, name: string, body: WorkflowTemplateUpdateRequest, options?: any) {
             return WorkflowTemplateServiceApiFp(configuration).updateWorkflowTemplate(namespace, name, body, options)(axios, basePath);
         },
     };

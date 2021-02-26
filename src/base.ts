@@ -1,4 +1,5 @@
 // tslint:disable
+/// <reference path="./custom.d.ts" />
 /**
  * Argo
  * Argo
@@ -13,8 +14,6 @@
 
 
 import { Configuration } from "./configuration";
-// Some imports not used depending on template conditions
-// @ts-ignore
 import globalAxios, { AxiosPromise, AxiosInstance } from 'axios';
 
 export const BASE_PATH = "http://localhost:2746".replace(/\/+$/, "");
